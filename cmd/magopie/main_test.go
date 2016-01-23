@@ -66,16 +66,16 @@ func TestGetSites(t *testing.T) {
 
 	expected := []map[string]interface{}{
 		{
-			"id":      "foo",
-			"name":    "Foo",
-			"url":     "http://foo.foo",
-			"enabled": true,
+			"ID":      "foo",
+			"Name":    "Foo",
+			"URL":     "http://foo.foo",
+			"Enabled": true,
 		},
 		{
-			"id":      "bar",
-			"name":    "Bar",
-			"url":     "http://bar.bar",
-			"enabled": false,
+			"ID":      "bar",
+			"Name":    "Bar",
+			"URL":     "http://bar.bar",
+			"Enabled": false,
 		},
 	}
 	if !reflect.DeepEqual(actual, expected) {
@@ -103,10 +103,10 @@ func TestGetSiteSingle(t *testing.T) {
 	}
 
 	expected := map[string]interface{}{
-		"id":      "bar",
-		"name":    "Bar",
-		"url":     "http://bar.bar",
-		"enabled": false,
+		"ID":      "bar",
+		"Name":    "Bar",
+		"URL":     "http://bar.bar",
+		"Enabled": false,
 	}
 	if !reflect.DeepEqual(actual, expected) {
 		t.Errorf("JSON actual: %v\nExpected: %v", actual, expected)
@@ -123,16 +123,21 @@ func TestGetTorrents(t *testing.T) {
 		Site: mp.Site{
 			Enabled: true,
 		},
-	}
-	siteA.search = func(term string) ([]mp.Torrent, error) {
-		termA = term
-		return []mp.Torrent{
-			{
-				ID:      "torrentA",
-				Title:   "ubuntu 1",
-				FileURL: "http://sitea/torrentA",
-			},
-		}, nil
+		search: func(term string) ([]mp.Torrent, error) {
+			termA = term
+			return []mp.Torrent{
+				{
+					ID:          "torrent1",
+					Title:       "ubuntu 1",
+					FileURL:     "http://sitea/torrent1",
+					SiteID:      "a",
+					Description: "torrent a",
+					Seeders:     10,
+					Leechers:    50,
+					Size:        1234567,
+				},
+			}, nil
+		},
 	}
 
 	var termB string
@@ -140,15 +145,21 @@ func TestGetTorrents(t *testing.T) {
 		Site: mp.Site{
 			Enabled: true,
 		},
-	}
-	siteB.search = func(term string) ([]mp.Torrent, error) {
-		termB = term
-		return []mp.Torrent{
-			{
-				ID:   "b",
-				Site: siteB.Site,
-			},
-		}, nil
+		search: func(term string) ([]mp.Torrent, error) {
+			termB = term
+			return []mp.Torrent{
+				{
+					ID:          "torrentB",
+					Title:       "ubuntu 2",
+					FileURL:     "http://siteb/torrentB",
+					SiteID:      "b",
+					Description: "torrent b",
+					Seeders:     20,
+					Leechers:    80,
+					Size:        7654321,
+				},
+			}, nil
+		},
 	}
 
 	var termC string
@@ -172,14 +183,13 @@ func TestGetTorrents(t *testing.T) {
 		t.Errorf("%s : status = %d, expected %d", describeReq(req), res.Code, http.StatusOK)
 	}
 
+	// Ensure our search term was passed to the appropriate site search funcs
 	if termA != term {
 		t.Errorf("Site A search was passed %q, expected %q", termA, term)
 	}
-
 	if termB != term {
 		t.Errorf("Site B search was passed %q, expected %q", termB, term)
 	}
-
 	if termC != "" {
 		t.Errorf("Site C search was passed %q, expected site to not be used", termC)
 	}
@@ -191,10 +201,24 @@ func TestGetTorrents(t *testing.T) {
 
 	expected := []map[string]interface{}{
 		{
-			"id": "a",
+			"ID":          "torrent1",
+			"Title":       "ubuntu 1",
+			"FileURL":     "http://sitea/torrent1",
+			"SiteID":      "a",
+			"Description": "torrent a",
+			"Seeders":     10,
+			"Leechers":    50,
+			"Size":        1234567,
 		},
 		{
-			"id": "b",
+			"ID":          "torrentB",
+			"Title":       "ubuntu 2",
+			"FileURL":     "http://siteb/torrentB",
+			"SiteID":      "b",
+			"Description": "torrent b",
+			"Seeders":     20,
+			"Leechers":    80,
+			"Size":        7654321,
 		},
 	}
 	if !reflect.DeepEqual(actual, expected) {
