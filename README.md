@@ -1,6 +1,8 @@
 # Magopie
 ## (It's a silent "O")
 
+[![GoDoc][magopie]][godoc]
+
 Your personal torrent search engine.
 
 Magopie uses gomobile for Android support.
