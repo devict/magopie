@@ -26,6 +26,7 @@ func router(a *app) http.Handler {
 	r := http.NewServeMux()
 
 	r.HandleFunc("/sites", a.handleSites)
+	r.HandleFunc("/sites/", a.handleSites)
 
 	return r
 }
@@ -35,8 +36,18 @@ type app struct {
 }
 
 func (a *app) handleSites(w http.ResponseWriter, r *http.Request) {
-	if err := json.NewEncoder(w).Encode(a.sites.GetAllSites()); err != nil {
-		log.Println(err)
+	enc := json.NewEncoder(w)
+	pfx := len("/sites/")
+
+	if len(r.URL.Path) <= pfx {
+		if err := enc.Encode(a.sites.GetAllSites()); err != nil {
+			log.Println(err)
+		}
 		return
+	}
+
+	id := r.URL.Path[pfx:]
+	if err := enc.Encode(a.sites.GetSite(id)); err != nil {
+		log.Println(err)
 	}
 }

@@ -24,31 +24,33 @@ func describeReq(req *http.Request) string {
 	return req.Method + " " + req.URL.Path
 }
 
+func fooBarSites() []site {
+	return []site{
+		{
+			Site: entities.Site{
+				ID:      "foo",
+				Name:    "Foo",
+				URL:     "http://foo.foo",
+				Enabled: true,
+			},
+		},
+		{
+			Site: entities.Site{
+				ID:      "bar",
+				Name:    "Bar",
+				URL:     "http://bar.bar",
+				Enabled: false,
+			},
+		},
+	}
+}
+
 func TestGetSites(t *testing.T) {
 	req := mustNewRequest(t, "GET", "/sites", nil)
 	res := httptest.NewRecorder()
 
 	a := &app{
-		sites: sitedb{
-			sites: []site{
-				{
-					Site: entities.Site{
-						ID:      "foo",
-						Name:    "Foo",
-						URL:     "http://foo.foo",
-						Enabled: true,
-					},
-				},
-				{
-					Site: entities.Site{
-						ID:      "bar",
-						Name:    "Bar",
-						URL:     "http://bar.bar",
-						Enabled: false,
-					},
-				},
-			},
-		},
+		sites: sitedb{sites: fooBarSites()},
 	}
 
 	router(a).ServeHTTP(res, req)
@@ -75,6 +77,36 @@ func TestGetSites(t *testing.T) {
 			"url":     "http://bar.bar",
 			"enabled": false,
 		},
+	}
+	if !reflect.DeepEqual(actual, expected) {
+		t.Errorf("JSON actual: %v\nExpected: %v", actual, expected)
+	}
+}
+
+func TestGetSiteSingle(t *testing.T) {
+	req := mustNewRequest(t, "GET", "/sites/bar", nil)
+	res := httptest.NewRecorder()
+
+	a := &app{
+		sites: sitedb{sites: fooBarSites()},
+	}
+
+	router(a).ServeHTTP(res, req)
+
+	if res.Code != http.StatusOK {
+		t.Errorf("%s : status = %d, expected %d", describeReq(req), res.Code, http.StatusOK)
+	}
+
+	actual := map[string]interface{}{}
+	if err := json.NewDecoder(res.Body).Decode(&actual); err != nil {
+		t.Fatal("Error parsing json response as []. Err:", err)
+	}
+
+	expected := map[string]interface{}{
+		"id":      "bar",
+		"name":    "Bar",
+		"url":     "http://bar.bar",
+		"enabled": false,
 	}
 	if !reflect.DeepEqual(actual, expected) {
 		t.Errorf("JSON actual: %v\nExpected: %v", actual, expected)
