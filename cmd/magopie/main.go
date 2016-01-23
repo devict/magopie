@@ -11,8 +11,13 @@ import (
 )
 
 func main() {
-	// TODO populate with registered sites
-	a := &app{}
+	a := &app{
+		sites: sitedb{
+			sites: []site{
+				kickAssTorrents,
+			},
+		},
+	}
 
 	var port string
 	if port = os.Getenv("PORT"); port == "" {

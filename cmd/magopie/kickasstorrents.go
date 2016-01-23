@@ -2,7 +2,10 @@ package main
 
 import (
 	"encoding/xml"
+	"fmt"
 	"io"
+	"net/http"
+	"net/url"
 
 	"github.com/gophergala2016/magopie"
 )
@@ -15,8 +18,22 @@ var kickAssTorrents = site{
 		Enabled: true,
 	},
 	search: func(term string) ([]magopie.Torrent, error) {
-		// TODO make http request the pass body to katParse()
-		return nil, nil
+		url := fmt.Sprintf(
+			"https://kat.cr/usearch/%s/?rss=1",
+			url.QueryEscape(term),
+		)
+
+		res, err := http.DefaultClient.Get(url)
+		if err != nil {
+			return nil, err
+		}
+		defer res.Body.Close()
+
+		if res.StatusCode != 200 {
+			return nil, ErrFailedRequest
+		}
+
+		return katParse(res.Body)
 	},
 }
 
