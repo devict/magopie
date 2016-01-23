@@ -1,14 +1,12 @@
-package client
+package magopie
 
 import (
 	"fmt"
-
-	"github.com/gophergala2016/magopie/entities"
 )
 
 // TorrentCollection ...
 type TorrentCollection struct {
-	list []entities.Torrent
+	list []Torrent
 }
 
 // GetResultsLength returns the number of results in the TorrentCollection
@@ -32,7 +30,7 @@ func Greetings(n string) string {
 // Search ...
 func Search(s string) *TorrentCollection {
 	ret := &TorrentCollection{}
-	t := &entities.Torrent{}
+	t := &Torrent{}
 	t.ID = "Banana"
 	ret.list = append(ret.list, *t)
 	return ret

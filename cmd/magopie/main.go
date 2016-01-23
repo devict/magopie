@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/gophergala2016/magopie/entities"
+	"github.com/gophergala2016/magopie"
 )
 
 func main() {
@@ -59,7 +59,7 @@ func (a *app) handleTorrents(w http.ResponseWriter, r *http.Request) {
 	sites := a.sites.GetEnabledSites()
 	_ = sites
 
-	torrents := []entities.Torrent{}
+	torrents := []magopie.Torrent{}
 
 	if err := json.NewEncoder(w).Encode(torrents); err != nil {
 		log.Println(err)

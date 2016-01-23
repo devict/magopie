@@ -8,7 +8,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/gophergala2016/magopie/entities"
+	mp "github.com/gophergala2016/magopie"
 )
 
 func mustNewRequest(t *testing.T, method, urlStr string, body io.Reader) *http.Request {
@@ -27,7 +27,7 @@ func describeReq(req *http.Request) string {
 func fooBarSites() []site {
 	return []site{
 		{
-			Site: entities.Site{
+			Site: mp.Site{
 				ID:      "foo",
 				Name:    "Foo",
 				URL:     "http://foo.foo",
@@ -35,7 +35,7 @@ func fooBarSites() []site {
 			},
 		},
 		{
-			Site: entities.Site{
+			Site: mp.Site{
 				ID:      "bar",
 				Name:    "Bar",
 				URL:     "http://bar.bar",
@@ -120,13 +120,13 @@ func TestGetTorrents(t *testing.T) {
 
 	var termA string
 	siteA := site{
-		Site: entities.Site{
+		Site: mp.Site{
 			Enabled: true,
 		},
 	}
-	siteA.search = func(term string) []entities.Torrent {
+	siteA.search = func(term string) []mp.Torrent {
 		termA = term
-		return []entities.Torrent{
+		return []mp.Torrent{
 			{
 				ID:      "torrentA",
 				Title:   "ubuntu 1",
@@ -137,13 +137,13 @@ func TestGetTorrents(t *testing.T) {
 
 	var termB string
 	siteB := site{
-		Site: entities.Site{
+		Site: mp.Site{
 			Enabled: true,
 		},
 	}
-	siteB.search = func(term string) []entities.Torrent {
+	siteB.search = func(term string) []mp.Torrent {
 		termB = term
-		return []entities.Torrent{
+		return []mp.Torrent{
 			{
 				ID:   "b",
 				Site: siteB.Site,
@@ -153,10 +153,10 @@ func TestGetTorrents(t *testing.T) {
 
 	var termC string
 	siteC := site{
-		Site: entities.Site{
+		Site: mp.Site{
 			Enabled: false,
 		},
-		search: func(term string) []entities.Torrent {
+		search: func(term string) []mp.Torrent {
 			termC = term
 			return nil
 		},

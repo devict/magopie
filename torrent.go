@@ -1,4 +1,4 @@
-package entities
+package magopie
 
 // A Torrent is an individual result from a search operation representing a
 // single torrent file.

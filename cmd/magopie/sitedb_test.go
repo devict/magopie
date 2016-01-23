@@ -4,13 +4,13 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/gophergala2016/magopie/entities"
+	mp "github.com/gophergala2016/magopie"
 )
 
 var (
-	siteFoo = site{Site: entities.Site{ID: "foo", Enabled: true}}
-	siteBar = site{Site: entities.Site{ID: "bar", Enabled: false}}
-	siteBaz = site{Site: entities.Site{ID: "baz", Enabled: true}}
+	siteFoo = site{Site: mp.Site{ID: "foo", Enabled: true}}
+	siteBar = site{Site: mp.Site{ID: "bar", Enabled: false}}
+	siteBaz = site{Site: mp.Site{ID: "baz", Enabled: true}}
 )
 
 func TestGetSite(t *testing.T) {

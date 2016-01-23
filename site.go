@@ -1,4 +1,4 @@
-package entities
+package magopie
 
 // Site defines a site that serves torrent files.
 type Site struct {

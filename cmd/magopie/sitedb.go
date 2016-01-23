@@ -3,12 +3,12 @@ package main
 import (
 	"sync"
 
-	"github.com/gophergala2016/magopie/entities"
+	"github.com/gophergala2016/magopie"
 )
 
 type site struct {
-	entities.Site
-	search func(term string) []entities.Torrent
+	magopie.Site
+	search func(term string) []magopie.Torrent
 }
 
 type sitedb struct {
