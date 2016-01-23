@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file:///mnt/d/Development/go/src/github.com/gophergala2016/magopie/cmd/android/magopie/app/app.iml" filepath="/mnt/d/Development/go/src/github.com/gophergala2016/magopie/cmd/android/magopie/app/app.iml" />
       <module fileurl="file:///mnt/d/Development/go/src/github.com/gophergala2016/magopie/cmd/android/magopie/client/client.iml" filepath="/mnt/d/Development/go/src/github.com/gophergala2016/magopie/cmd/android/magopie/client/client.iml" />
+      <module fileurl="file:///mnt/d/Development/go/src/github.com/gophergala2016/magopie/cmd/android/magopie/client/client.iml" filepath="/mnt/d/Development/go/src/github.com/gophergala2016/magopie/cmd/android/magopie/client/client.iml" />
       <module fileurl="file:///mnt/d/Development/go/src/github.com/gophergala2016/magopie/cmd/android/magopie/magopie.iml" filepath="/mnt/d/Development/go/src/github.com/gophergala2016/magopie/cmd/android/magopie/magopie.iml" />
     </modules>
   </component>

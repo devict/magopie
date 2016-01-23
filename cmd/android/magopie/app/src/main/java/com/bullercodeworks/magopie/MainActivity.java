@@ -2,7 +2,6 @@ package com.bullercodeworks.magopie;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -17,8 +16,9 @@ public class MainActivity extends Activity {
         setContentView(R.layout.content_main);
 
         TextView helloText = (TextView)findViewById(R.id.helloText);
-        String str = Client.Greetings("magopie");
-        helloText.setText(str);
+        //String str = Client.Greetings("magopie");
+        Client.TorrentCollection results = Client.Search("nana");
+        helloText.setText(String.valueOf(results.GetResultsLength())+": "+results.GetResultID(0));
     }
 
     @Override
