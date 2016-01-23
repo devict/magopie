@@ -127,14 +127,13 @@ func TestGetTorrents(t *testing.T) {
 			termA = term
 			return []mp.Torrent{
 				{
-					ID:          "torrent1",
-					Title:       "ubuntu 1",
-					FileURL:     "http://sitea/torrent1",
-					SiteID:      "a",
-					Description: "torrent a",
-					Seeders:     10,
-					Leechers:    50,
-					Size:        1234567,
+					ID:       "torrent1",
+					Title:    "ubuntu 1",
+					FileURL:  "http://sitea/torrent1",
+					SiteID:   "a",
+					Seeders:  10,
+					Leechers: 50,
+					Size:     1234567,
 				},
 			}, nil
 		},
@@ -149,14 +148,13 @@ func TestGetTorrents(t *testing.T) {
 			termB = term
 			return []mp.Torrent{
 				{
-					ID:          "torrentB",
-					Title:       "ubuntu 2",
-					FileURL:     "http://siteb/torrentB",
-					SiteID:      "b",
-					Description: "torrent b",
-					Seeders:     20,
-					Leechers:    80,
-					Size:        7654321,
+					ID:       "torrentB",
+					Title:    "ubuntu 2",
+					FileURL:  "http://siteb/torrentB",
+					SiteID:   "b",
+					Seeders:  20,
+					Leechers: 80,
+					Size:     7654321,
 				},
 			}, nil
 		},
@@ -201,24 +199,22 @@ func TestGetTorrents(t *testing.T) {
 
 	expected := []map[string]interface{}{
 		{
-			"ID":          "torrent1",
-			"Title":       "ubuntu 1",
-			"FileURL":     "http://sitea/torrent1",
-			"SiteID":      "a",
-			"Description": "torrent a",
-			"Seeders":     float64(10),
-			"Leechers":    float64(50),
-			"Size":        float64(1234567),
+			"ID":       "torrent1",
+			"Title":    "ubuntu 1",
+			"FileURL":  "http://sitea/torrent1",
+			"SiteID":   "a",
+			"Seeders":  float64(10),
+			"Leechers": float64(50),
+			"Size":     float64(1234567),
 		},
 		{
-			"ID":          "torrentB",
-			"Title":       "ubuntu 2",
-			"FileURL":     "http://siteb/torrentB",
-			"SiteID":      "b",
-			"Description": "torrent b",
-			"Seeders":     float64(20),
-			"Leechers":    float64(80),
-			"Size":        float64(7654321),
+			"ID":       "torrentB",
+			"Title":    "ubuntu 2",
+			"FileURL":  "http://siteb/torrentB",
+			"SiteID":   "b",
+			"Seeders":  float64(20),
+			"Leechers": float64(80),
+			"Size":     float64(7654321),
 		},
 	}
 	if !reflect.DeepEqual(actual, expected) {
