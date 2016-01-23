@@ -1,0 +1,13 @@
+plugins {
+  id "org.golang.mobile.bind" version "0.2.2"
+}
+
+gobind {
+  pkg = "github.com/gophergala2016/magopie/client"
+
+  /* GOPATH where the Go package is; check `go env` */
+  GOPATH = "/home/brbuller/Development/go"
+
+  /* Absolute path to the go binary */
+  GO = "/usr/local/go/bin/go"
+}
