@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>The Pirate Bay - The galaxy's most resilient bittorrent site</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="google-site-verification" content="bERYeomIC5eBWlPLupPPYPYGA9GvAUKzFHh3WIw24Xs" />
+    <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="Search The Pirate Bay" />
+    <link rel="stylesheet" type="text/css" href="//thepiratebay.se/static/css/pirate6.css"/>
+    <link rel="dns-prefetch" href="//adbrau.com/">
+    <link rel="dns-prefetch" href="//cdn.adbrau.com/">
+    <link rel="dns-prefetch" href="//cdn3.adbrau.com/">
+    <link rel="dns-prefetch" href="//syndication.exoclick.com/">
+    <link rel="dns-prefetch" href="//main.exoclick.com/">
+    <link rel="dns-prefetch" href="//static-ssl.exoclick.com/">
+    <link rel="dns-prefetch" href="//ads.exoclick.com/">
+    <link rel="canonical" href="//thepiratebay.se/search/ubuntu/0/99/0" />
+    <style type="text/css">
+        .searchBox{
+            margin: 6px;
+            width: 300px;
+            vertical-align: middle;
+            padding: 2px;
+            background-image:url('//thepiratebay.se/static/img/icon-https.gif');
+            background-repeat:no-repeat;
+            background-position: right;
+        }
+        .detLink {
+            font-size: 1.2em;
+            font-weight: 400;
+        }
+        .detDesc {
+            color: #4e5456;
+        }
+        .detDesc a:hover {
+            color: #000099;
+            text-decoration: underline;
+        }
+        .sortby {
+            text-align: left;
+            float: left;
+        }
+        .detName {
+            padding-top: 3px;
+            padding-bottom: 2px;
+        }
+        .viewswitch {
+            font-style: normal;
+            float: right;
+            text-align: right;
+            font-weight: normal;
+        }
+    </style>
+    <script src="//thepiratebay.se/static/js/jquery.min.js" type="text/javascript"></script>
+    <script src="//thepiratebay.se/static/js/tpb.js" type="text/javascript"></script>
+    <meta name="description" content="Search for and download any torrent from the pirate bay using search query ubuntu. Direct download via magnet link."/>
+    <meta name="keywords" content="ubuntu direct download torrent magnet tpb piratebay search"/>
+
+    <script language="javascript" type="text/javascript">if (top.location != self.location) {top.location.replace(self.location);}</script>
+</head>
+
+<body>
+    <div id="header">
+
+        <form method="get" id="q" action="/s/">
+            <a href="/" class="img"><img src="//thepiratebay.se/static/img/tpblogo_sm_ny.gif" id="TPBlogo" alt="The Pirate Bay" /></a>
+            <b><a href="/" title="Search Torrents">Search Torrents</a></b>&nbsp;&nbsp;|&nbsp;
+ <a href="/browse" title="Browse Torrents">Browse Torrents</a>&nbsp;&nbsp;|&nbsp;
+ <a href="/recent" title="Recent Torrent">Recent Torrents</a>&nbsp;&nbsp;|&nbsp;
+ <a href="/tv/" title="TV shows">TV shows</a>&nbsp;&nbsp;|&nbsp;
+ <a href="/music" title="Music">Music</a>&nbsp;&nbsp;|&nbsp;
+ <a href="/top" title="Top 100">Top 100</a>
+            <br /><input type="search" class="inputbox" title="Pirate Search" name="q" placeholder="Search here..." value="ubuntu" /><input value="Pirate Search" type="submit" class="submitbutton" /><br />            <label for="audio" title="Audio"><input id="audio" name="audio" onclick="javascript:rmAll();" type="checkbox"/>Audio</label>
+            <label for="video" title="Video"><input id="video" name="video" onclick="javascript:rmAll();" type="checkbox"/>Video</label>
+            <label for="apps" title="Applications"><input id="apps" name="apps" onclick="javascript:rmAll();" type="checkbox"/>Applications</label>
+            <label for="games" title="Games"><input id="games" name="games" onclick="javascript:rmAll();" type="checkbox"/>Games</label>
+            <label for="porn" title="Porn"><input id="porn" name="porn" onclick="javascript:rmAll();" type="checkbox"/>Porn</label>
+            <label for="other" title="Other"><input id="other" name="other" onclick="javascript:rmAll();" type="checkbox"/>Other</label>
+
+            <select id="category" name="category" onchange="javascript:setAll();">
+                <option value="0">All</option>
+                <optgroup label="Audio">
+                    <option value="101">Music</option>
+                    <option value="102">Audio books</option>
+                    <option value="103">Sound clips</option>
+                    <option value="104">FLAC</option>
+                    <option value="199">Other</option>
+                </optgroup>
+                <optgroup label="Video">
+                    <option value="201">Movies</option>
+                    <option value="202">Movies DVDR</option>
+                    <option value="203">Music videos</option>
+                    <option value="204">Movie clips</option>
+                    <option value="205">TV shows</option>
+                    <option value="206">Handheld</option>
+                    <option value="207">HD - Movies</option>
+                    <option value="208">HD - TV shows</option>
+                    <option value="209">3D</option>
+                    <option value="299">Other</option>
+                </optgroup>
+                <optgroup label="Applications">
+                    <option value="301">Windows</option>
+                    <option value="302">Mac</option>
+                    <option value="303">UNIX</option>
+                    <option value="304">Handheld</option>
+                    <option value="305">IOS (iPad/iPhone)</option>
+                    <option value="306">Android</option>
+                    <option value="399">Other OS</option>
+                </optgroup>
+                <optgroup label="Games">
+                    <option value="401">PC</option>
+                    <option value="402">Mac</option>
+                    <option value="403">PSx</option>
+                    <option value="404">XBOX360</option>
+                    <option value="405">Wii</option>
+                    <option value="406">Handheld</option>
+                    <option value="407">IOS (iPad/iPhone)</option>
+                    <option value="408">Android</option>
+                    <option value="499">Other</option>
+                </optgroup>
+                <optgroup label="Porn">
+                    <option value="501">Movies</option>
+                    <option value="502">Movies DVDR</option>
+                    <option value="503">Pictures</option>
+                    <option value="504">Games</option>
+                    <option value="505">HD - Movies</option>
+                    <option value="506">Movie clips</option>
+                    <option value="599">Other</option>
+                </optgroup>
+                <optgroup label="Other">
+                    <option value="601">E-books</option>
+                    <option value="602">Comics</option>
+                    <option value="603">Pictures</option>
+                    <option value="604">Covers</option>
+                    <option value="605">Physibles</option>
+                    <option value="699">Other</option>
+                </optgroup>
+            </select>
+
+            <input type="hidden" name="page" value="0" />
+            <input type="hidden" name="orderby" value="99" />
+        </form>
+    </div><!-- // div:header -->
+
+    <h2><span>Search results: ubuntu</span>&nbsp;Displaying hits from 0 to 30 (approx 726 found)</h2>
+
+<div id="SearchResults"><div id="content">                 <script type="text/javascript" src="//thepiratebay.se/static/ads/exo_na_sm/sm6.js"></script>
+                 <script> if(getCookie("exo") == null) {
+                document.write(unescape("%3Cdiv id=\"sky-right-sm\"%3E%3Ciframe src=\"//thepiratebay.se/static/ads/exo_na_sm/sky2.html\" width=\"250\" height=\"600\" frameborder=\"0\" scrolling=\"no\"%3E%3C/iframe%3E%3C/div%3E"));
+                } else {
+                document.write(unescape("%3Cdiv id=\"sky-right\"%3E%3Ciframe src=\"//thepiratebay.se/static/ads/exo_na/sky2.html\" width=\"160\" height=\"600\" frameborder=\"0\" scrolling=\"no\"%3E%3C/iframe%3E%3C/div%3E"));
+                } </script>
+                 <script> if(getCookie("exo") == null) {
+                document.write(unescape("%3Cscript type=\"text/javascript\" src=\"https://ads.exoclick.com/ads.js\"%3E%3C/script%3E"));
+                document.write(unescape("%3Ciframe src=\"//thepiratebay.se/static/ads/exo_na_sm/center.html\" id=\"sky-center-sm\" width=\"980\" height=\"90\" frameborder=\"0\" scrolling=\"no\"%3E%3C/iframe%3E"));
+                } else {
+		document.write(unescape("%3Ciframe src=\"//thepiratebay.se/static/ads/exo_na/center.html\" id=\"sky-center\" width=\"728\" height=\"90\" frameborder=\"0\" scrolling=\"no\"%3E%3C/iframe%3E"));
+		} </script>
+<div id="main-content">
+<table id="searchResult">
+	<thead id="tableHead">
+		<tr class="header">
+			<th><a href="/search/ubuntu/0/13/0" title="Order by Type">Type</a></th>
+			<th><div class="sortby"><a href="/search/ubuntu/0/1/0" title="Order by Name">Name</a> (Order by: <a href="/search/ubuntu/0/3/0" title="Order by Uploaded">Uploaded</a>, <a href="/search/ubuntu/0/5/0" title="Order by Size">Size</a>, <span style="white-space: nowrap;"><a href="/search/ubuntu/0/11/0" title="Order by ULed by">ULed by</a></span>, <a href="/search/ubuntu/0/8/0" title="Order by Seeders">SE</a>, <a href="/search/ubuntu/0/9/0" title="Order by Leechers">LE</a>)</div><div class="viewswitch"> View: <a href="/switchview.php?view=s">Single</a> / Double&nbsp;</div></th>
+			<th><abbr title="Seeders"><a href="/search/ubuntu/0/8/0" title="Order by Seeders">SE</a></abbr></th>
+			<th><abbr title="Leechers"><a href="/search/ubuntu/0/9/0" title="Order by Leechers">LE</a></abbr></th>
+		</tr>
+	</thead>
+	<tr>
+		<td class="vertTh">
+			<center>
+				<a href="/browse/300" title="More from this category">Applications</a><br />
+				(<a href="/browse/303" title="More from this category">UNIX</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/11642732/Ubuntu_14.10_i386_(Desktop_ISO)" class="detLink" title="Details for Ubuntu 14.10 i386 (Desktop ISO)">Ubuntu 14.10 i386 (Desktop ISO)</a>
+</div>
+<a href="magnet:?xt=urn:btih:1619ecc9373c3639f4ee3e261638f29b33a6cbd6&dn=Ubuntu+14.10+i386+%28Desktop+ISO%29&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//thepiratebay.se/static/img/icon-magnet.gif" alt="Magnet link" /></a><img src="//thepiratebay.se/static/img/11x11p.png" /><img src="//thepiratebay.se/static/img/11x11p.png" />
+			<font class="detDesc">Uploaded 12-05&nbsp;2014, Size 1.11&nbsp;GiB, ULed by <a class="detDesc" href="/user/Altair64/" title="Browse Altair64">Altair64</a></font>
+		</td>
+		<td align="right">66</td>
+		<td align="right">8</td>
+	</tr>
+	<tr class="alt">
+		<td class="vertTh">
+			<center>
+				<a href="/browse/300" title="More from this category">Applications</a><br />
+				(<a href="/browse/303" title="More from this category">UNIX</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/11887232/Ubuntu_15.04_Desktop_i386__[Iso_-_MultiLang]_[TNTVillage]" class="detLink" title="Details for Ubuntu 15.04 Desktop i386, [Iso - MultiLang] [TNTVillage]">Ubuntu 15.04 Desktop i386, [Iso - MultiLang] [TNTVillage]</a>
+</div>
+<a href="magnet:?xt=urn:btih:4896fde14efbc0f66a274d2a69104fbb57fbd2cb&dn=Ubuntu+15.04+Desktop+i386%2C+%5BIso+-+MultiLang%5D+%5BTNTVillage%5D&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//thepiratebay.se/static/img/icon-magnet.gif" alt="Magnet link" /></a><a href="/user/mykons"><img src="//thepiratebay.se/static/img/trusted.png" alt="Trusted" title="Trusted" style="width:11px;" border='0' /></a><img src="//thepiratebay.se/static/img/11x11p.png" />
+			<font class="detDesc">Uploaded 05-05&nbsp;2015, Size 1.11&nbsp;GiB, ULed by <a class="detDesc" href="/user/mykons/" title="Browse mykons">mykons</a></font>
+		</td>
+		<td align="right">33</td>
+		<td align="right">3</td>
+	</tr>
+	<tr>
+		<td class="vertTh">
+			<center>
+				<a href="/browse/300" title="More from this category">Applications</a><br />
+				(<a href="/browse/303" title="More from this category">UNIX</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/11274073/Ubuntu_14.10_desktop__x64" class="detLink" title="Details for Ubuntu 14.10 desktop  x64">Ubuntu 14.10 desktop  x64</a>
+</div>
+<a href="magnet:?xt=urn:btih:b415c913643e5ff49fe37d304bbb5e6e11ad5101&dn=Ubuntu+14.10+desktop++x64&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//thepiratebay.se/static/img/icon-magnet.gif" alt="Magnet link" /></a><img src="//thepiratebay.se/static/img/11x11p.png" /><img src="//thepiratebay.se/static/img/11x11p.png" />
+			<font class="detDesc">Uploaded 10-24&nbsp;2014, Size 1.08&nbsp;GiB, ULed by <i>Anonymous</i></font>
+		</td>
+		<td align="right">23</td>
+		<td align="right">1</td>
+	</tr>
+	<tr class="alt">
+		<td class="vertTh">
+			<center>
+				<a href="/browse/300" title="More from this category">Applications</a><br />
+				(<a href="/browse/303" title="More from this category">UNIX</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/11887231/Ubuntu_15.04_Desktop_Amd64__[Iso_-_MultiLang]_[TNTVillage]" class="detLink" title="Details for Ubuntu 15.04 Desktop Amd64, [Iso - MultiLang] [TNTVillage]">Ubuntu 15.04 Desktop Amd64, [Iso - MultiLang] [TNTVillage]</a>
+</div>
+<a href="magnet:?xt=urn:btih:fc8a15a2faf2734dbb1dc5f7afdc5c9beaeb1f59&dn=Ubuntu+15.04+Desktop+Amd64%2C+%5BIso+-+MultiLang%5D+%5BTNTVillage%5D&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//thepiratebay.se/static/img/icon-magnet.gif" alt="Magnet link" /></a><a href="/user/mykons"><img src="//thepiratebay.se/static/img/trusted.png" alt="Trusted" title="Trusted" style="width:11px;" border='0' /></a><img src="//thepiratebay.se/static/img/11x11p.png" />
+			<font class="detDesc">Uploaded 05-05&nbsp;2015, Size 1.07&nbsp;GiB, ULed by <a class="detDesc" href="/user/mykons/" title="Browse mykons">mykons</a></font>
+		</td>
+		<td align="right">21</td>
+		<td align="right">1</td>
+	</tr>
+	<tr>
+		<td class="vertTh">
+			<center>
+				<a href="/browse/300" title="More from this category">Applications</a><br />
+				(<a href="/browse/303" title="More from this category">UNIX</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/9982925/Ubuntu_14.04_64_bit" class="detLink" title="Details for Ubuntu 14.04 64 bit">Ubuntu 14.04 64 bit</a>
+</div>
+<a href="magnet:?xt=urn:btih:4d753474429d817b80ff9e0c441ca660ec5d2450&dn=Ubuntu+14.04+64+bit&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//thepiratebay.se/static/img/icon-magnet.gif" alt="Magnet link" /></a><img src="//thepiratebay.se/static/img/11x11p.png" /><img src="//thepiratebay.se/static/img/11x11p.png" />
+			<font class="detDesc">Uploaded 04-17&nbsp;2014, Size 964&nbsp;MiB, ULed by <a class="detDesc" href="/user/fulanodetal1234/" title="Browse fulanodetal1234">fulanodetal1234</a></font>
+		</td>
+		<td align="right">19</td>
+		<td align="right">1</td>
+	</tr>
+	<tr class="alt">
+		<td class="vertTh">
+			<center>
+				<a href="/browse/200" title="More from this category">Video</a><br />
+				(<a href="/browse/299" title="More from this category">Other</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/12303404/Udemy_-_Ubuntu_Linux_Server_Troubleshooting" class="detLink" title="Details for Udemy - Ubuntu Linux Server Troubleshooting">Udemy - Ubuntu Linux Server Troubleshooting</a>
+</div>
+<a href="magnet:?xt=urn:btih:01c666cf5796f22414ca08f50404ba0d0fe6b814&dn=Udemy+-+Ubuntu+Linux+Server+Troubleshooting&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//thepiratebay.se/static/img/icon-magnet.gif" alt="Magnet link" /></a><a href="/user/The_Abee"><img src="//thepiratebay.se/static/img/vip.gif" alt="VIP" title="VIP" style="width:11px;" border='0' /></a><img src="//thepiratebay.se/static/img/11x11p.png" />
+			<font class="detDesc">Uploaded 08-28&nbsp;2015, Size 1.37&nbsp;GiB, ULed by <a class="detDesc" href="/user/The_Abee/" title="Browse The_Abee">The_Abee</a></font>
+		</td>
+		<td align="right">19</td>
+		<td align="right">4</td>
+	</tr>
+	<tr>
+		<td class="vertTh">
+			<center>
+				<a href="/browse/200" title="More from this category">Video</a><br />
+				(<a href="/browse/299" title="More from this category">Other</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/9681585/Infiniteskills_-_Learning_Ubuntu_Linux" class="detLink" title="Details for Infiniteskills - Learning Ubuntu Linux">Infiniteskills - Learning Ubuntu Linux</a>
+</div>
+<a href="magnet:?xt=urn:btih:7c7dca2ac0d7d5c3526fb21fd52b260e6967719e&dn=Infiniteskills+-+Learning+Ubuntu+Linux&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//thepiratebay.se/static/img/icon-magnet.gif" alt="Magnet link" /></a><img src="//thepiratebay.se/static/img/icon_comment.gif" alt="This torrent has 8 comments." title="This torrent has 8 comments." /><a href="/user/NepsterJay"><img src="//thepiratebay.se/static/img/vip.gif" alt="VIP" title="VIP" style="width:11px;" border='0' /></a>
+			<font class="detDesc">Uploaded 03-01&nbsp;2014, Size 810.69&nbsp;MiB, ULed by <a class="detDesc" href="/user/NepsterJay/" title="Browse NepsterJay">NepsterJay</a></font>
+		</td>
+		<td align="right">14</td>
+		<td align="right">1</td>
+	</tr>
+	<tr class="alt">
+		<td class="vertTh">
+			<center>
+				<a href="/browse/300" title="More from this category">Applications</a><br />
+				(<a href="/browse/303" title="More from this category">UNIX</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/7218279/ubuntu-12.04-desktop-i386.iso" class="detLink" title="Details for ubuntu-12.04-desktop-i386.iso">ubuntu-12.04-desktop-i386.iso</a>
+</div>
+<a href="magnet:?xt=urn:btih:49fbd26322960d982da855c54e36df19ad3113b8&dn=ubuntu-12.04-desktop-i386.iso&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//thepiratebay.se/static/img/icon-magnet.gif" alt="Magnet link" /></a><img src="//thepiratebay.se/static/img/icon_comment.gif" alt="This torrent has 3 comments." title="This torrent has 3 comments." /><a href="/user/Zen_Bud"><img src="//thepiratebay.se/static/img/trusted.png" alt="Trusted" title="Trusted" style="width:11px;" border='0' /></a>
+			<font class="detDesc">Uploaded 04-26&nbsp;2012, Size 701.29&nbsp;MiB, ULed by <a class="detDesc" href="/user/Zen_Bud/" title="Browse Zen_Bud">Zen_Bud</a></font>
+		</td>
+		<td align="right">13</td>
+		<td align="right">0</td>
+	</tr>
+	<tr>
+		<td class="vertTh">
+			<center>
+				<a href="/browse/600" title="More from this category">Other</a><br />
+				(<a href="/browse/601" title="More from this category">E-books</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/9393221/Ubuntu_Linux_Toolbox_1000__Commands_for_Ubuntu_and_Debian_Power_" class="detLink" title="Details for Ubuntu Linux Toolbox 1000+ Commands for Ubuntu and Debian Power ">Ubuntu Linux Toolbox 1000+ Commands for Ubuntu and Debian Power </a>
+</div>
+<a href="magnet:?xt=urn:btih:d2aa08ab08325a1d9b62ea9eb7f4585148101a00&dn=Ubuntu+Linux+Toolbox+1000%2B+Commands+for+Ubuntu+and+Debian+Power+&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//thepiratebay.se/static/img/icon-magnet.gif" alt="Magnet link" /></a><img src="//thepiratebay.se/static/img/icon_comment.gif" alt="This torrent has 2 comments." title="This torrent has 2 comments." /><a href="/user/420weedman"><img src="//thepiratebay.se/static/img/vip.gif" alt="VIP" title="VIP" style="width:11px;" border='0' /></a>
+			<font class="detDesc">Uploaded 12-24&nbsp;2013, Size 2.49&nbsp;MiB, ULed by <a class="detDesc" href="/user/420weedman/" title="Browse 420weedman">420weedman</a></font>
+		</td>
+		<td align="right">12</td>
+		<td align="right">1</td>
+	</tr>
+	<tr class="alt">
+		<td class="vertTh">
+			<center>
+				<a href="/browse/300" title="More from this category">Applications</a><br />
+				(<a href="/browse/303" title="More from this category">UNIX</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/9986309/Ubuntu_14.04_32_bits" class="detLink" title="Details for Ubuntu 14.04 32 bits">Ubuntu 14.04 32 bits</a>
+</div>
+<a href="magnet:?xt=urn:btih:7a1073bc39e6b0b01e3730227b8ffea6aeac5d59&dn=Ubuntu+14.04+32+bits&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//thepiratebay.se/static/img/icon-magnet.gif" alt="Magnet link" /></a><img src="//thepiratebay.se/static/img/icon_comment.gif" alt="This torrent has 4 comments." title="This torrent has 4 comments." /><img src="//thepiratebay.se/static/img/11x11p.png" />
+			<font class="detDesc">Uploaded 04-18&nbsp;2014, Size 970&nbsp;MiB, ULed by <a class="detDesc" href="/user/fulanodetal1234/" title="Browse fulanodetal1234">fulanodetal1234</a></font>
+		</td>
+		<td align="right">10</td>
+		<td align="right">0</td>
+	</tr>
+	<tr>
+		<td class="vertTh">
+			<center>
+				<a href="/browse/300" title="More from this category">Applications</a><br />
+				(<a href="/browse/303" title="More from this category">UNIX</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/10674546/Ubuntu_Server_14.04.1_x64" class="detLink" title="Details for Ubuntu Server 14.04.1 x64">Ubuntu Server 14.04.1 x64</a>
+</div>
+<a href="magnet:?xt=urn:btih:2d066c94480adcf52bfd1185a75eb4ddc1777673&dn=Ubuntu+Server+14.04.1+x64&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//thepiratebay.se/static/img/icon-magnet.gif" alt="Magnet link" /></a><img src="//thepiratebay.se/static/img/11x11p.png" /><img src="//thepiratebay.se/static/img/11x11p.png" />
+			<font class="detDesc">Uploaded 08-01&nbsp;2014, Size 572&nbsp;MiB, ULed by <i>Anonymous</i></font>
+		</td>
+		<td align="right">10</td>
+		<td align="right">0</td>
+	</tr>
+	<tr class="alt">
+		<td class="vertTh">
+			<center>
+				<a href="/browse/300" title="More from this category">Applications</a><br />
+				(<a href="/browse/303" title="More from this category">UNIX</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/11713543/Ubuntu_Desktop_GNU_Linux_14.04.2_Trusty_Tahr_LTS_x64_64bit_amd64" class="detLink" title="Details for Ubuntu Desktop GNU/Linux 14.04.2 Trusty Tahr LTS x64 64bit amd64">Ubuntu Desktop GNU/Linux 14.04.2 Trusty Tahr LTS x64 64bit amd64</a>
+</div>
+<a href="magnet:?xt=urn:btih:546cf15f724d19c4319cc17b179d7e035f89c1f4&dn=Ubuntu+Desktop+GNU%2FLinux+14.04.2+Trusty+Tahr+LTS+x64+64bit+amd64&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//thepiratebay.se/static/img/icon-magnet.gif" alt="Magnet link" /></a><img src="//thepiratebay.se/static/img/11x11p.png" /><img src="//thepiratebay.se/static/img/11x11p.png" />
+			<font class="detDesc">Uploaded 02-20&nbsp;2015, Size 996&nbsp;MiB, ULed by <a class="detDesc" href="/user/dchani/" title="Browse dchani">dchani</a></font>
+		</td>
+		<td align="right">8</td>
+		<td align="right">0</td>
+	</tr>
+	<tr>
+		<td class="vertTh">
+			<center>
+				<a href="/browse/300" title="More from this category">Applications</a><br />
+				(<a href="/browse/303" title="More from this category">UNIX</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/4514337/Ubuntu_Ultimate_1.4_DVD_(eng)__by_http___bestzooom." class="detLink" title="Details for Ubuntu Ultimate 1.4 DVD (eng)  by http://bestzooom.">Ubuntu Ultimate 1.4 DVD (eng)  by http://bestzooom.</a>
+</div>
+<a href="magnet:?xt=urn:btih:febd9a2cb755ec82e6e7a015a8dc497fde9dd507&dn=Ubuntu+Ultimate+1.4+DVD+%28eng%29++by+http%3A%2F%2Fbestzooom.&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//thepiratebay.se/static/img/icon-magnet.gif" alt="Magnet link" /></a><img src="//thepiratebay.se/static/img/11x11p.png" /><img src="//thepiratebay.se/static/img/11x11p.png" />
+			<font class="detDesc">Uploaded 11-17&nbsp;2008, Size 1.94&nbsp;GiB, ULed by <a class="detDesc" href="/user/dark240293/" title="Browse dark240293">dark240293</a></font>
+		</td>
+		<td align="right">7</td>
+		<td align="right">1</td>
+	</tr>
+	<tr class="alt">
+		<td class="vertTh">
+			<center>
+				<a href="/browse/600" title="More from this category">Other</a><br />
+				(<a href="/browse/601" title="More from this category">E-books</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/9845912/Ubuntu_Unleashed_2014_[Epub__amp__Mobi]_StormRG_" class="detLink" title="Details for Ubuntu Unleashed 2014 [Epub &amp; Mobi]~StormRG~">Ubuntu Unleashed 2014 [Epub &amp; Mobi]~StormRG~</a>
+</div>
+<a href="magnet:?xt=urn:btih:cdd73df3bb14c0e668936f66b41e5108fb9c89cb&dn=Ubuntu+Unleashed+2014+%5BEpub+%26amp%3B+Mobi%5D%7EStormRG%7E&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//thepiratebay.se/static/img/icon-magnet.gif" alt="Magnet link" /></a><img src="//thepiratebay.se/static/img/icon_comment.gif" alt="This torrent has 10 comments." title="This torrent has 10 comments." /><a href="/user/steelballz"><img src="//thepiratebay.se/static/img/trusted.png" alt="Trusted" title="Trusted" style="width:11px;" border='0' /></a>
+			<font class="detDesc">Uploaded 03-29&nbsp;2014, Size 38.33&nbsp;MiB, ULed by <a class="detDesc" href="/user/steelballz/" title="Browse steelballz">steelballz</a></font>
+		</td>
+		<td align="right">7</td>
+		<td align="right">0</td>
+	</tr>
+	<tr>
+		<td class="vertTh">
+			<center>
+				<a href="/browse/300" title="More from this category">Applications</a><br />
+				(<a href="/browse/303" title="More from this category">UNIX</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/12891202/ubuntu_14_04_3_desktop_i386_iso_(Server)" class="detLink" title="Details for ubuntu 14 04 3 desktop i386 iso (Server)">ubuntu 14 04 3 desktop i386 iso (Server)</a>
+</div>
+<a href="magnet:?xt=urn:btih:58ad8b464a0a4114e1890492543b6388d50af04a&dn=ubuntu+14+04+3+desktop+i386+iso+%28Server%29&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//thepiratebay.se/static/img/icon-magnet.gif" alt="Magnet link" /></a><img src="//thepiratebay.se/static/img/11x11p.png" /><img src="//thepiratebay.se/static/img/11x11p.png" />
+			<font class="detDesc">Uploaded 12-03&nbsp;2015, Size 1015&nbsp;MiB, ULed by <a class="detDesc" href="/user/aquilaxxd/" title="Browse aquilaxxd">aquilaxxd</a></font>
+		</td>
+		<td align="right">7</td>
+		<td align="right">1</td>
+	</tr>
+	<tr class="alt">
+		<td class="vertTh">
+			<center>
+				<a href="/browse/300" title="More from this category">Applications</a><br />
+				(<a href="/browse/303" title="More from this category">UNIX</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/11642752/Ubuntu_14.10_i386_(SERVER_ISO)" class="detLink" title="Details for Ubuntu 14.10 i386 (SERVER ISO)">Ubuntu 14.10 i386 (SERVER ISO)</a>
+</div>
+<a href="magnet:?xt=urn:btih:108f0624b9fd0ab708fa284f6b1f3c3022bdedd6&dn=Ubuntu+14.10+i386+%28SERVER+ISO%29&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//thepiratebay.se/static/img/icon-magnet.gif" alt="Magnet link" /></a><img src="//thepiratebay.se/static/img/11x11p.png" /><img src="//thepiratebay.se/static/img/11x11p.png" />
+			<font class="detDesc">Uploaded 12-05&nbsp;2014, Size 576&nbsp;MiB, ULed by <a class="detDesc" href="/user/Altair64/" title="Browse Altair64">Altair64</a></font>
+		</td>
+		<td align="right">6</td>
+		<td align="right">1</td>
+	</tr>
+	<tr>
+		<td class="vertTh">
+			<center>
+				<a href="/browse/300" title="More from this category">Applications</a><br />
+				(<a href="/browse/303" title="More from this category">UNIX</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/5520252/Ubuntu_10.04_LTS_x32" class="detLink" title="Details for Ubuntu 10.04 LTS x32">Ubuntu 10.04 LTS x32</a>
+</div>
+<a href="magnet:?xt=urn:btih:3e16157f0879eb43e9e51f45d485feff90a77283&dn=Ubuntu+10.04+LTS+x32&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//thepiratebay.se/static/img/icon-magnet.gif" alt="Magnet link" /></a><img src="//thepiratebay.se/static/img/icon_comment.gif" alt="This torrent has 14 comments." title="This torrent has 14 comments." /><a href="/user/MAFIAA."><img src="//thepiratebay.se/static/img/trusted.png" alt="Trusted" title="Trusted" style="width:11px;" border='0' /></a>
+			<font class="detDesc">Uploaded 04-29&nbsp;2010, Size 699.44&nbsp;MiB, ULed by <a class="detDesc" href="/user/MAFIAA./" title="Browse MAFIAA.">MAFIAA.</a></font>
+		</td>
+		<td align="right">5</td>
+		<td align="right">0</td>
+	</tr>
+	<tr class="alt">
+		<td class="vertTh">
+			<center>
+				<a href="/browse/300" title="More from this category">Applications</a><br />
+				(<a href="/browse/399" title="More from this category">Other OS</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/8662367/Packet_Tracer_6.0.1_Stable(Windows__Linux__Ubuntu)" class="detLink" title="Details for Packet Tracer 6.0.1 Stable(Windows, Linux, Ubuntu)">Packet Tracer 6.0.1 Stable(Windows, Linux, Ubuntu)</a>
+</div>
+<a href="magnet:?xt=urn:btih:fa99754e6528cb0fcd7521d2a514e978782842c1&dn=Packet+Tracer+6.0.1+Stable%28Windows%2C+Linux%2C+Ubuntu%29&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//thepiratebay.se/static/img/icon-magnet.gif" alt="Magnet link" /></a><img src="//thepiratebay.se/static/img/11x11p.png" /><img src="//thepiratebay.se/static/img/11x11p.png" />
+			<font class="detDesc">Uploaded 07-09&nbsp;2013, Size 209.71&nbsp;MiB, ULed by <a class="detDesc" href="/user/adi_a12/" title="Browse adi_a12">adi_a12</a></font>
+		</td>
+		<td align="right">5</td>
+		<td align="right">0</td>
+	</tr>
+	<tr>
+		<td class="vertTh">
+			<center>
+				<a href="/browse/600" title="More from this category">Other</a><br />
+				(<a href="/browse/601" title="More from this category">E-books</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/9726765/The_Official_Ubuntu_Book_-_7th_Edition.pdf_Gooner" class="detLink" title="Details for The Official Ubuntu Book - 7th Edition.pdf Gooner">The Official Ubuntu Book - 7th Edition.pdf Gooner</a>
+</div>
+<a href="magnet:?xt=urn:btih:5191b146a56451f5677e4ed10f7b3b54c3692b4f&dn=The+Official+Ubuntu+Book+-+7th+Edition.pdf+Gooner&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//thepiratebay.se/static/img/icon-magnet.gif" alt="Magnet link" /></a><img src="//thepiratebay.se/static/img/icon_comment.gif" alt="This torrent has 2 comments." title="This torrent has 2 comments." /><a href="/user/GoonerTPB"><img src="//thepiratebay.se/static/img/vip.gif" alt="VIP" title="VIP" style="width:11px;" border='0' /></a>
+			<font class="detDesc">Uploaded 03-08&nbsp;2014, Size 10.64&nbsp;MiB, ULed by <a class="detDesc" href="/user/GoonerTPB/" title="Browse GoonerTPB">GoonerTPB</a></font>
+		</td>
+		<td align="right">5</td>
+		<td align="right">0</td>
+	</tr>
+	<tr class="alt">
+		<td class="vertTh">
+			<center>
+				<a href="/browse/600" title="More from this category">Other</a><br />
+				(<a href="/browse/601" title="More from this category">E-books</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/12045303/Official_Ubuntu_Book_(8th_Edition)_-_Prentice_(2015)_EPUB_-_GOLU" class="detLink" title="Details for Official Ubuntu Book (8th Edition) - Prentice (2015) EPUB - GOLU">Official Ubuntu Book (8th Edition) - Prentice (2015) EPUB - GOLU</a>
+</div>
+<a href="magnet:?xt=urn:btih:d4262109dd29b1d4f4df2316fdea667516a91730&dn=Official+Ubuntu+Book+%288th+Edition%29+-+Prentice+%282015%29+EPUB+-+GOLU&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//thepiratebay.se/static/img/icon-magnet.gif" alt="Magnet link" /></a><img src="//thepiratebay.se/static/img/icon_comment.gif" alt="This torrent has 1 comments." title="This torrent has 1 comments." /><img src="//thepiratebay.se/static/img/11x11p.png" />
+			<font class="detDesc">Uploaded 06-21&nbsp;2015, Size 6.79&nbsp;MiB, ULed by <a class="detDesc" href="/user/GOLU/" title="Browse GOLU">GOLU</a></font>
+		</td>
+		<td align="right">5</td>
+		<td align="right">0</td>
+	</tr>
+	<tr>
+		<td class="vertTh">
+			<center>
+				<a href="/browse/300" title="More from this category">Applications</a><br />
+				(<a href="/browse/303" title="More from this category">UNIX</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/6307664/VTC.Computer.Software.Training_-_Ubuntu_Linux_Video_Tutorial" class="detLink" title="Details for VTC.Computer.Software.Training - Ubuntu Linux Video Tutorial">VTC.Computer.Software.Training - Ubuntu Linux Video Tutorial</a>
+</div>
+<a href="magnet:?xt=urn:btih:22ea8181492c18236c81ad905e3fba881072e961&dn=VTC.Computer.Software.Training+-+Ubuntu+Linux+Video+Tutorial&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//thepiratebay.se/static/img/icon-magnet.gif" alt="Magnet link" /></a><img src="//thepiratebay.se/static/img/icon_comment.gif" alt="This torrent has 8 comments." title="This torrent has 8 comments." /><img src="//thepiratebay.se/static/img/11x11p.png" />
+			<font class="detDesc">Uploaded 04-10&nbsp;2011, Size 488.98&nbsp;MiB, ULed by <a class="detDesc" href="/user/mohamez/" title="Browse mohamez">mohamez</a></font>
+		</td>
+		<td align="right">4</td>
+		<td align="right">0</td>
+	</tr>
+	<tr class="alt">
+		<td class="vertTh">
+			<center>
+				<a href="/browse/300" title="More from this category">Applications</a><br />
+				(<a href="/browse/303" title="More from this category">UNIX</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/8410967/ubuntu-13.04-desktop-i386.iso" class="detLink" title="Details for ubuntu-13.04-desktop-i386.iso">ubuntu-13.04-desktop-i386.iso</a>
+</div>
+<a href="magnet:?xt=urn:btih:daac7008e2e3a6e4321950c131690aca20c5a08a&dn=ubuntu-13.04-desktop-i386.iso&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//thepiratebay.se/static/img/icon-magnet.gif" alt="Magnet link" /></a><img src="//thepiratebay.se/static/img/icon_comment.gif" alt="This torrent has 6 comments." title="This torrent has 6 comments." /><img src="//thepiratebay.se/static/img/11x11p.png" />
+			<font class="detDesc">Uploaded 04-25&nbsp;2013, Size 794&nbsp;MiB, ULed by <a class="detDesc" href="/user/markuzmx/" title="Browse markuzmx">markuzmx</a></font>
+		</td>
+		<td align="right">4</td>
+		<td align="right">0</td>
+	</tr>
+	<tr>
+		<td class="vertTh">
+			<center>
+				<a href="/browse/300" title="More from this category">Applications</a><br />
+				(<a href="/browse/303" title="More from this category">UNIX</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/8414182/Ubuntu_Linux_13.04_Raring_Ringtail_(32-Bit)" class="detLink" title="Details for Ubuntu Linux 13.04 Raring Ringtail (32-Bit)">Ubuntu Linux 13.04 Raring Ringtail (32-Bit)</a>
+</div>
+<a href="magnet:?xt=urn:btih:4a676bc8f81dd4e9ef4d812cf99cce84aa8f5859&dn=Ubuntu+Linux+13.04+Raring+Ringtail+%2832-Bit%29&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//thepiratebay.se/static/img/icon-magnet.gif" alt="Magnet link" /></a><img src="//thepiratebay.se/static/img/icon_comment.gif" alt="This torrent has 1 comments." title="This torrent has 1 comments." /><img src="//thepiratebay.se/static/img/11x11p.png" />
+			<font class="detDesc">Uploaded 04-26&nbsp;2013, Size 794&nbsp;MiB, ULed by <a class="detDesc" href="/user/zippy1990/" title="Browse zippy1990">zippy1990</a></font>
+		</td>
+		<td align="right">4</td>
+		<td align="right">0</td>
+	</tr>
+	<tr class="alt">
+		<td class="vertTh">
+			<center>
+				<a href="/browse/200" title="More from this category">Video</a><br />
+				(<a href="/browse/204" title="More from this category">Movie clips</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/8846062/CBT_Nuggets_-_Ubuntu" class="detLink" title="Details for CBT Nuggets - Ubuntu">CBT Nuggets - Ubuntu</a>
+</div>
+<a href="magnet:?xt=urn:btih:cb8c0c9b486ae6bd257f5fdf41bd8cf8dcd893e9&dn=CBT+Nuggets+-+Ubuntu&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//thepiratebay.se/static/img/icon-magnet.gif" alt="Magnet link" /></a><img src="//thepiratebay.se/static/img/icon_comment.gif" alt="This torrent has 7 comments." title="This torrent has 7 comments." /><a href="/user/y7"><img src="//thepiratebay.se/static/img/trusted.png" alt="Trusted" title="Trusted" style="width:11px;" border='0' /></a>
+			<font class="detDesc">Uploaded 08-25&nbsp;2013, Size 1.91&nbsp;GiB, ULed by <a class="detDesc" href="/user/y7/" title="Browse y7">y7</a></font>
+		</td>
+		<td align="right">4</td>
+		<td align="right">1</td>
+	</tr>
+	<tr>
+		<td class="vertTh">
+			<center>
+				<a href="/browse/600" title="More from this category">Other</a><br />
+				(<a href="/browse/601" title="More from this category">E-books</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/11880710/Ubuntu_Facile_-_Aprile_2015__[Pdf_-_Ita]_[TNTVillage]" class="detLink" title="Details for Ubuntu Facile - Aprile 2015, [Pdf - Ita] [TNTVillage]">Ubuntu Facile - Aprile 2015, [Pdf - Ita] [TNTVillage]</a>
+</div>
+<a href="magnet:?xt=urn:btih:f94dfa73e45f521d158360e53b8cfac8143089d6&dn=Ubuntu+Facile+-+Aprile+2015%2C+%5BPdf+-+Ita%5D+%5BTNTVillage%5D&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//thepiratebay.se/static/img/icon-magnet.gif" alt="Magnet link" /></a><a href="/user/mykons"><img src="//thepiratebay.se/static/img/trusted.png" alt="Trusted" title="Trusted" style="width:11px;" border='0' /></a><img src="//thepiratebay.se/static/img/11x11p.png" />
+			<font class="detDesc">Uploaded 05-03&nbsp;2015, Size 11.5&nbsp;MiB, ULed by <a class="detDesc" href="/user/mykons/" title="Browse mykons">mykons</a></font>
+		</td>
+		<td align="right">4</td>
+		<td align="right">0</td>
+	</tr>
+	<tr class="alt">
+		<td class="vertTh">
+			<center>
+				<a href="/browse/300" title="More from this category">Applications</a><br />
+				(<a href="/browse/303" title="More from this category">UNIX</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/7218806/Ubuntu-12.04-desktop-i386.iso" class="detLink" title="Details for Ubuntu-12.04-desktop-i386.iso">Ubuntu-12.04-desktop-i386.iso</a>
+</div>
+<a href="magnet:?xt=urn:btih:bbb6db69965af769f664b6636e7914f8735141b3&dn=Ubuntu-12.04-desktop-i386.iso&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//thepiratebay.se/static/img/icon-magnet.gif" alt="Magnet link" /></a><img src="//thepiratebay.se/static/img/icon_comment.gif" alt="This torrent has 6 comments." title="This torrent has 6 comments." /><img src="//thepiratebay.se/static/img/11x11p.png" />
+			<font class="detDesc">Uploaded 04-26&nbsp;2012, Size 701.29&nbsp;MiB, ULed by <a class="detDesc" href="/user/suryamukhi/" title="Browse suryamukhi">suryamukhi</a></font>
+		</td>
+		<td align="right">3</td>
+		<td align="right">0</td>
+	</tr>
+	<tr>
+		<td class="vertTh">
+			<center>
+				<a href="/browse/600" title="More from this category">Other</a><br />
+				(<a href="/browse/601" title="More from this category">E-books</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/7574517/Ubuntu_Made_Easy-A_Project-Based_Introduction_to_Linux_BBS_" class="detLink" title="Details for Ubuntu Made Easy-A Project-Based Introduction to Linux{BBS}">Ubuntu Made Easy-A Project-Based Introduction to Linux{BBS}</a>
+</div>
+<a href="magnet:?xt=urn:btih:396663ae727a8836c02baa8fcbae17c8b66f46a2&dn=Ubuntu+Made+Easy-A+Project-Based+Introduction+to+Linux%7BBBS%7D&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//thepiratebay.se/static/img/icon-magnet.gif" alt="Magnet link" /></a><img src="//thepiratebay.se/static/img/icon_comment.gif" alt="This torrent has 2 comments." title="This torrent has 2 comments." /><img src="//thepiratebay.se/static/img/11x11p.png" />
+			<font class="detDesc">Uploaded 08-27&nbsp;2012, Size 23.08&nbsp;MiB, ULed by <a class="detDesc" href="/user/bigbluesea/" title="Browse bigbluesea">bigbluesea</a></font>
+		</td>
+		<td align="right">3</td>
+		<td align="right">0</td>
+	</tr>
+	<tr class="alt">
+		<td class="vertTh">
+			<center>
+				<a href="/browse/300" title="More from this category">Applications</a><br />
+				(<a href="/browse/301" title="More from this category">Windows</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/8394672/Usb_installers_for_Windows_8__Windows_7__Windows_xp__Ubuntu" class="detLink" title="Details for Usb installers for Windows 8, Windows 7, Windows xp ,Ubuntu">Usb installers for Windows 8, Windows 7, Windows xp ,Ubuntu</a>
+</div>
+<a href="magnet:?xt=urn:btih:4c29f4547d32178044af8c13c5268aa4329a403c&dn=Usb+installers+for+Windows+8%2C+Windows+7%2C+Windows+xp+%2CUbuntu&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//thepiratebay.se/static/img/icon-magnet.gif" alt="Magnet link" /></a><img src="//thepiratebay.se/static/img/icon_comment.gif" alt="This torrent has 2 comments." title="This torrent has 2 comments." /><img src="//thepiratebay.se/static/img/11x11p.png" />
+			<font class="detDesc">Uploaded 04-21&nbsp;2013, Size 8.49&nbsp;MiB, ULed by <a class="detDesc" href="/user/seeder34/" title="Browse seeder34">seeder34</a></font>
+		</td>
+		<td align="right">3</td>
+		<td align="right">0</td>
+	</tr>
+	<tr>
+		<td class="vertTh">
+			<center>
+				<a href="/browse/300" title="More from this category">Applications</a><br />
+				(<a href="/browse/303" title="More from this category">UNIX</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/9059456/Ubuntu_13.10_Desktop_Live_ISO_amd64" class="detLink" title="Details for Ubuntu 13.10 Desktop Live ISO amd64">Ubuntu 13.10 Desktop Live ISO amd64</a>
+</div>
+<a href="magnet:?xt=urn:btih:e3811b9539cacff680e418124272177c47477157&dn=Ubuntu+13.10+Desktop+Live+ISO+amd64&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//thepiratebay.se/static/img/icon-magnet.gif" alt="Magnet link" /></a><img src="//thepiratebay.se/static/img/icon_comment.gif" alt="This torrent has 1 comments." title="This torrent has 1 comments." /><img src="//thepiratebay.se/static/img/11x11p.png" />
+			<font class="detDesc">Uploaded 10-17&nbsp;2013, Size 883&nbsp;MiB, ULed by <a class="detDesc" href="/user/Plan9x128/" title="Browse Plan9x128">Plan9x128</a></font>
+		</td>
+		<td align="right">3</td>
+		<td align="right">1</td>
+	</tr>
+	<tr class="alt">
+		<td class="vertTh">
+			<center>
+				<a href="/browse/600" title="More from this category">Other</a><br />
+				(<a href="/browse/601" title="More from this category">E-books</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/9286416/Ubuntu_Linux_Toolbox" class="detLink" title="Details for Ubuntu Linux Toolbox">Ubuntu Linux Toolbox</a>
+</div>
+<a href="magnet:?xt=urn:btih:a687db7cf06d44e89f5651eb561ecd0ba4f8192a&dn=Ubuntu+Linux+Toolbox&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//thepiratebay.se/static/img/icon-magnet.gif" alt="Magnet link" /></a><img src="//thepiratebay.se/static/img/icon_comment.gif" alt="This torrent has 4 comments." title="This torrent has 4 comments." /><img src="//thepiratebay.se/static/img/11x11p.png" />
+			<font class="detDesc">Uploaded 12-02&nbsp;2013, Size 11.59&nbsp;MiB, ULed by <a class="detDesc" href="/user/MucGar/" title="Browse MucGar">MucGar</a></font>
+		</td>
+		<td align="right">3</td>
+		<td align="right">1</td>
+	</tr>
+
+</table>
+</div>
+<div align="center">1&nbsp;<a href="/search/ubuntu/1/7//">2</a>&nbsp;<a href="/search/ubuntu/2/7//">3</a>&nbsp;<a href="/search/ubuntu/3/7//">4</a>&nbsp;<a href="/search/ubuntu/4/7//">5</a>&nbsp;<a href="/search/ubuntu/5/7//">6</a>&nbsp;<a href="/search/ubuntu/6/7//">7</a>&nbsp;<a href="/search/ubuntu/7/7//">8</a>&nbsp;<a href="/search/ubuntu/8/7//">9</a>&nbsp;<a href="/search/ubuntu/9/7//">10</a>&nbsp;<a href="/search/ubuntu/10/7//">11</a>&nbsp;<a href="/search/ubuntu/11/7//">12</a>&nbsp;<a href="/search/ubuntu/12/7//">13</a>&nbsp;<a href="/search/ubuntu/13/7//">14</a>&nbsp;<a href="/search/ubuntu/14/7//">15</a>&nbsp;<a href="/search/ubuntu/15/7//">16</a>&nbsp;<a href="/search/ubuntu/16/7//">17</a>&nbsp;<a href="/search/ubuntu/17/7//">18</a>&nbsp;<a href="/search/ubuntu/18/7//">19</a>&nbsp;<a href="/search/ubuntu/19/7//">20</a>&nbsp;<a href="/search/ubuntu/20/7//">21</a>&nbsp;<a href="/search/ubuntu/21/7//">22</a>&nbsp;<a href="/search/ubuntu/22/7//">23</a>&nbsp;<a href="/search/ubuntu/23/7//">24</a>&nbsp;<a href="/search/ubuntu/24/7//">25</a>&nbsp;<a href="/search/ubuntu/1/7//"><img src="//thepiratebay.se/static/img/next.gif" border="0" alt="Next"/></a>&nbsp;
+</div>                 <script> if(getCookie("exo") == null) {
+                document.write(unescape("%3Cdiv class=\"ads\" id=\"sky-banner-sm\"%3E%3Ciframe src=\"//thepiratebay.se/static/ads/exo_na_sm/sky1.html\" width=\"250\" height=\"600\" frameborder=\"0\" scrolling=\"no\"%3E%3C/iframe%3E%3C/div%3E"));
+		document.write(unescape("%3Cscript type=\"text/javascript\" src=\"//thepiratebay.se/static/ads/ad-scroll-sm.js\"%3E%3C/script%3E"));
+                } else {
+                document.write(unescape("%3Cdiv class=\"ads\" id=\"sky-banner\"%3E%3Ciframe src=\"//thepiratebay.se/static/ads/exo_na/sky1.html\" width=\"120\" height=\"600\" frameborder=\"0\" scrolling=\"no\"%3E%3C/iframe%3E%3C/div%3E"));
+		document.write(unescape("%3Cscript type=\"text/javascript\" src=\"//thepiratebay.se/static/ads/ad-scroll.js\"%3E%3C/script%3E"));
+                } </script>
+</div></div></div><!-- //div:content -->
+
+	<div id="foot" style="text-align:center;margin-top:1em;">
+
+			 <iframe src="//thepiratebay.se/static/ads/exo_na/bottom.html" width="728" height="90" frameborder="0" scrolling="no"></iframe>
+				<p>
+			<a href="/login" title="Login">Login</a> | 
+			<a href="/register" title="Register">Register</a> | 
+			<a href="/language" title="Select language">Language / Select language</a> |
+			<a href="/about" title="About">About</a> |
+			<a href="/blog" title="Blog">Blog</a>
+			<br />
+			<!--<a href="/contact" title="Contact us">Contact us</a> |-->
+			<a href="/policy" title="Usage policy">Usage policy</a> |
+			<a href="http://uj3wazyk5u4hnvtk.onion" title="TOR">TOR</a> |
+			<a href="http://www.promobay.org/" title="Promo" target="_NEW">Promo</a> |
+			<a href="/doodles" title="Doodles">Doodles</a> |
+			<a href="/tags" title="Tag Cloud">Tag Cloud</a> |
+			<a href="http://pirates-forum.org/" title="Forum" target="_blank">Forum</a> |
+			<a href="http://piratebrowser.com/" title="PirateBrowser" target="_blank"><strong>PirateBrowser</strong></a>
+			<br />
+		</p>
+
+<br /><a href="http://bitcoin.org" target="_NEW">BitCoin</a>: <b><a href="bitcoin:129TQVAroeehD9fZpzK51NdZGQT4TqifbG">129TQVAroeehD9fZpzK51NdZGQT4TqifbG</a></b><br /><br />
+
+		<div id="fbanners">
+			<a href="/rss" class="rss" title="RSS"><img src="//thepiratebay.se/static/img/rss_small.gif" alt="RSS" /></a>
+		</div><!-- // div:fbanners -->
+	</div><!-- // div:foot -->
+
+<script>
+var _wm_settings = {
+  popunder: {
+    url: 			'http://serve.adplxmd.com/?placement=289748&redirect',
+    times: 		2,
+    hours: 		12.000000,
+    cookie: 	'tpbpop',
+    fastbind:true
+  }
+};
+var _wm={initialize:function(){this.ua.initialize()},array:{is_array:function(a){return Object.prototype.toString.call(a)==='[object Array]'},sort:function(a,b,c){a=a.sort();if(b)a=a.reverse();if(c){for(var i=0;i<a.length;i++){var d=a[i];if(Object.prototype.toString.call(d)==='[object Object]')d=_wm.object.sort(d,b,true);else if(Object.prototype.toString.call(d)==='[object Array]')d=_wm.array.sort(d,b,true);a[i]=d}}return a},random_value:function(a){return a[Math.floor(a.length*Math.random())]}},object:{is_object:function(a){return Object.prototype.toString.call(a)==='[object Object]'},keys:function(a){var hasOwnProperty=Object.prototype.hasOwnProperty,hasDontEnumBug=!({toString:null}).propertyIsEnumerable('toString'),dontEnums=['toString','toLocaleString','valueOf','hasOwnProperty','isPrototypeOf','propertyIsEnumerable','constructor'],dontEnumsLength=dontEnums.length;var b=[];if(typeof a!=='object'&&typeof a!=='function'||a===null)return b;for(var c in a){if(hasOwnProperty.call(a,c))b.push(c)}if(hasDontEnumBug){for(var i=0;i<dontEnumsLength;i++){if(hasOwnProperty.call(a,dontEnums[i]))b.push(dontEnums[i])}}return b},sort:function(a,c,d){var e=_wm.array.sort(_wm.object.keys(a));if(c)e=e.reverse();var b={};for(var i=0;i<e.length;i++){var f=a[e[i]];if(d){if(_wm.object.is_object(f))f=_wm.object.sort(f,c,true);else if(_wm.array.is_array(f))f=_wm.array.sort(f,c,true)}b[e[i]]=f}return b},iterator:function(b){this.element=b;this.element_array=_wm.object.keys(b);this.current_index=0;this.hasNext=function(){return this.current_index<=this.element_array.length-1};this.next=function(){if(this.hasNext()){var a=[this.element_array[this.current_index],this.element[this.element_array[this.current_index]]];this.current_index++;return a}return false}},random_value:function(a){return a[_wm.array.random_value(_wm.object.keys(a))]},length:function(a){return _wm.object.keys(a).length}},ua:{initialize:function(){this.maps={browser:{oldsafari:{major:{'1':['/8','/1','/3'],'2':'/4','?':'/'},version:{'1.0':'/8','1.2':'/1','1.3':'/3','2.0':'/412','2.0.2':'/416','2.0.3':'/417','2.0.4':'/419','?':'/'}}},os:{windows:{version:{'ME':'4.90','NT 3.11':'NT3.51','NT 4.0':'NT4.0','2000':'NT 5.0','XP':['NT 5.1','NT 5.2'],'Vista':'NT 6.0','7':'NT 6.1','8':'NT 6.2','8.1':'NT 6.3','RT':'ARM'}}}};this.regexes={browser:[[/(opera\smini)\/((\d+)?[\w\.-]+)/i,/(opera\s[mobiletab]+).+version\/((\d+)?[\w\.-]+)/i,/(opera).+version\/((\d+)?[\w\.]+)/i,/(opera)[\/\s]+((\d+)?[\w\.]+)/i],['name','version','major'],[/\s(opr)\/((\d+)?[\w\.]+)/i],[['name','Opera'],'version','major'],[/(kindle)\/((\d+)?[\w\.]+)/i,/(lunascape|maxthon|netfront|jasmine|blazer)[\/\s]?((\d+)?[\w\.]+)*/i,/(avant\s|iemobile|slim|baidu)(?:browser)?[\/\s]?((\d+)?[\w\.]*)/i,/(?:ms|\()(ie)\s((\d+)?[\w\.]+)/i,/(rekonq)((?:\/)[\w\.]+)*/i,/(chromium|flock|rockmelt|midori|epiphany|silk|skyfire|ovibrowser|bolt|iron)\/((\d+)?[\w\.-]+)/i],['name','version','major'],[/(trident).+rv[:\s]((\d+)?[\w\.]+).+like\sgecko/i],[['name','IE'],'version','major'],[/(yabrowser)\/((\d+)?[\w\.]+)/i],[['name','Yandex'],'version','major'],[/(comodo_dragon)\/((\d+)?[\w\.]+)/i],[['name',/_/g,' '],'version','major'],[/(chrome|omniweb|arora|[tizenoka]{5}\s?browser)\/v?((\d+)?[\w\.]+)/i],['name','version','major'],[/(dolfin)\/((\d+)?[\w\.]+)/i],[['name','Dolphin'],'version','major'],[/((?:android.+)crmo|crios)\/((\d+)?[\w\.]+)/i],[['name','Chrome'],'version','major'],[/version\/((\d+)?[\w\.]+).+?mobile\/\w+\s(safari)/i],['version','major',['name','Mobile Safari']],[/version\/((\d+)?[\w\.]+).+?(mobile\s?safari|safari)/i],['version','major','name'],[/webkit.+?(mobile\s?safari|safari)((\/[\w\.]+))/i],['name',['major',_wm.ua.mapper.str,_wm.ua.maps.browser.oldsafari.major],['version',_wm.ua.mapper.str,_wm.ua.maps.browser.oldsafari.version]],[/(konqueror)\/((\d+)?[\w\.]+)/i,/(webkit|khtml)\/((\d+)?[\w\.]+)/i],['name','version','major'],[/(navigator|netscape)\/((\d+)?[\w\.-]+)/i],[['name','Netscape'],'version','major'],[/(swiftfox)/i,/(icedragon|iceweasel|camino|chimera|fennec|maemo\sbrowser|minimo|conkeror)[\/\s]?((\d+)?[\w\.\+]+)/i,/(firefox|seamonkey|k-meleon|icecat|iceape|firebird|phoenix)\/((\d+)?[\w\.-]+)/i,/(mozilla)\/((\d+)?[\w\.]+).+rv\:.+gecko\/\d+/i,/(uc\s?browser|polaris|lynx|dillo|icab|doris|amaya|w3m|netsurf|qqbrowser)[\/\s]?((\d+)?[\w\.]+)/i,/(links)\s\(((\d+)?[\w\.]+)/i,/(gobrowser)\/?((\d+)?[\w\.]+)*/i,/(ice\s?browser)\/v?((\d+)?[\w\._]+)/i,/(mosaic)[\/\s]((\d+)?[\w\.]+)/i],['name','version','major']],os:[[/(windows)\snt\s6\.2;\s(arm)/i,/(windows\sphone(?:\sos)*|windows\smobile|windows)[\s\/]?([ntce\d\.\s]+\w)/i],['name',['version',_wm.ua.mapper.str,_wm.ua.maps.os.windows.version]],[/(win(?=3|9|n)|win\s9x\s)([nt\d\.]+)/i],[['name','Windows'],['version',_wm.ua.mapper.str,_wm.ua.maps.os.windows.version]],[/\((bb)(10);/i],[['name','BlackBerry'],'version'],[/(blackberry)\w*\/?([\w\.]+)*/i,/(tizen)\/([\w\.]+)/i,/(android|webos|palm\os|qnx|bada|rim\stablet\sos|meego)[\/\s-]?([\w\.]+)*/i],['name','version'],[/(symbian\s?os|symbos|s60(?=;))[\/\s-]?([\w\.]+)*/i],[['name','Symbian'],'version'],[/mozilla.+\(mobile;.+gecko.+firefox/i],[['name','Firefox OS'],'version'],[/(nintendo|playstation)\s([wids3portablevu]+)/i,/(mint)[\/\s\(]?(\w+)*/i,/(joli|[kxln]?ubuntu|debian|[open]*suse|gentoo|arch|slackware|fedora|mandriva|centos|pclinuxos|redhat|zenwalk)[\/\s-]?([\w\.-]+)*/i,/(hurd|linux)\s?([\w\.]+)*/i,/(gnu)\s?([\w\.]+)*/i],['name','version'],[/(cros)\s[\w]+\s([\w\.]+\w)/i],[['name','Chromium OS'],'version'],[/(sunos)\s?([\w\.]+\d)*/i],[['name','Solaris'],'version'],[/\s([frentopc-]{0,4}bsd|dragonfly)\s?([\w\.]+)*/i],['name','version'],[/(ip[honead]+)(?:.*os\s*([\w]+)*\slike\smac|;\sopera)/i],[['name','iOS'],['version',/_/g,'.']],[/(mac\sos\sx)\s?([\w\s\.]+\w)*/i],['name',['version',/_/g,'.']],[/(haiku)\s(\w+)/i,/(aix)\s((\d)(?=\.|\)|\s)[\w\.]*)*/i,/(macintosh|mac(?=_powerpc)|plan\s9|minix|beos|os\/2|amigaos|morphos|risc\sos)/i,/(unix)\s?([\w\.]+)*/i],['name','version']]},this.browser=this.get.browser();this.os=this.get.os()},ua:(window&&window.navigator&&window.navigator.userAgent)?window.navigator.userAgent:'',get:{browser:function(){return _wm.ua.mapper.rgx.apply(this,_wm.ua.regexes.browser)},os:function(){return _wm.ua.mapper.rgx.apply(this,_wm.ua.regexes.os)}},util:{has:function(a,b){return b.toLowerCase().indexOf(a.toLowerCase())!==-1},lowerize:function(a){return a.toLowerCase()}},mapper:{rgx:function(){for(var a,i=0,j,k,p,q,matches,match,args=arguments;i<args.length;i+=2){var b=args[i],props=args[i+1];if(typeof(a)==='undefined'){a={};for(p in props){q=props[p];if(typeof(q)==='object'){a[q[0]]=undefined}else{a[q]=undefined}}}for(j=k=0;j<b.length;j++){matches=b[j].exec(_wm.ua.ua);if(!!matches){for(p=0;p<props.length;p++){match=matches[++k];q=props[p];if(typeof(q)==='object'&&q.length>0){if(q.length==2){if(typeof(q[1])=='function'){a[q[0]]=q[1].call(this,match)}else{a[q[0]]=q[1]}}else if(q.length==3){if(typeof(q[1])==='function'&&!(q[1].exec&&q[1].test)){a[q[0]]=match?q[1].call(this,match,q[2]):undefined}else{a[q[0]]=match?match.replace(q[1],q[2]):undefined}}else if(q.length==4){a[q[0]]=match?q[3].call(this,match.replace(q[1],q[2])):undefined}}else{a[q]=match?match:undefined}}break}}if(!!matches)break}return a},str:function(a,b){for(var i in b){if(typeof(b[i])==='object'&&b[i].length>0){for(var j=0;j<b[i].length;j++){if(_wm.ua.util.has(b[i][j],a)){return(i==='?')?undefined:i}}}else if(_wm.ua.util.has(b[i],a)){return(i==='?')?undefined:i}}return a}}},cookie:{get:function(a,b){var c=new Date();c.setTime(c.getTime());var d=new Date(c.getTime()+(1000*60*60*b)).toGMTString();var e=document.cookie.split(';');var f='';var g='';var h=[0,d];for(var i=0;i<e.length;i++){f=e[i].split('=');g=f[0].replace(/^\s+|\s+$/g,'');if(g==a){b_cookie_found=true;if(f.length>1){h=unescape(f[1]).split('|');if(h.length==1)h[1]=d}return h}f=null;g=''}return h},set:function(a,b,c){document.cookie=a+'='+escape(b+'|'+c)+';expires='+c+';path=/'}},listener:{events:[],add:function(a,b,c,e){if(e==undefined)e=true;var d='on'+b;if(typeof a.addEventListener!='undefined')a.addEventListener(b,c,e);else if(typeof a.attachEvent!='undefined')a.attachEvent(d,c);else{if(typeof a[d]!='function')a[d]=c;else{var e=a[d];a['old_'+d]=e;a[d]=function(){e();return c()}}}_wm.listener.events.push(arguments)},remove:function(a,b,c,e){if(e==undefined)e=true;var d='on'+b;if(typeof a.removeEventListener!='undefined')a.removeEventListener(b,c,e);else if(typeof a.detachEvent!='undefined')a.detachEvent(d,c);else{if(typeof a['old_'+d]!='function')a[d]=null;else a[d]=a['old_'+d]}outer:for(var i=0;i<_wm.listener.events.length;i++){inner:for(var j=0;j<_wm.listener.events[i].length;j++){if(_wm.listener.events[i][j]!==arguments[j])continue outer}_wm.listener.events=_wm.listener.events.slice(0,i).concat(_wm.listener.events.slice(i+1));break outer}},clear:function(){while(_wm.listener.events.length>0)_wm.listener.remove.apply(undefined,_wm.listener.events[0])}},format:{},random:function(){return Math.floor(Math.random()*1000001)}};_wm.initialize();_wm.format.popunder={settings:typeof _wm_settings==='object'&&_wm_settings.popunder||false,config:'width='+screen.width+', height='+screen.height+',resizable=no,toolbar=no,location=no,directories=no,status=no,menubar=no,copyhistory=no,scrollbars=yes',isBinded:false,isTriggered:false,trigger_stack:[],initialize:function(){if(!_wm.format.popunder.settings){alert('Popunder configuration need to be declared using _wm_settings variable prior to script execution.');return}var a=_wm.cookie.get(_wm.format.popunder.settings.cookie,_wm.format.popunder.settings.hours);this.cookie={};this.cookie.times=!isNaN(Number(a[0]))?Number(a[0]):0;this.cookie.expires=!isNaN(Date.parse(a[1]))?a[1]:new Date().toGMTString();if(_wm.format.popunder.settings.fastbind)_wm.format.popunder.handler.bind();else{if(document.readyState=='complete')_wm.format.popunder.handler.bind();else{_wm.listener.add(document,'DOMContentLoaded',function(){_wm.listener.remove(document,'DOMContentLoaded');_wm.format.popunder.handler.bind()});_wm.listener.add(document,'onreadystatechange',function(){if(document.readyState=='complete'){_wm.listener.remove(document,'onreadystatechange');_wm.format.popunder.handler.bind()}});_wm.listener.add(window,'load',_wm.format.popunder.handler.bind)}}},url:function(){var a=_wm.format.popunder.settings.url;if(typeof a=='string')return a;if(_wm.array.is_array(a))return _wm.array.random_value(a);if((_wm.object.is_object(a)&&!_wm.format.popunder.settings.hours))return _wm.object.random_value(a);if(_wm.object.is_object(a)){if(a[_wm.format.popunder.cookie.times]!=undefined)return a[_wm.format.popunder.cookie.times];else return _wm.object.random_value(a)}return null},handler:{bind:function(){if(_wm.format.popunder.isBinded)return;_wm.format.popunder.isBinded=true;if(_wm.format.popunder.cookie.times>=_wm.format.popunder.settings.times&&_wm.format.popunder.settings.hours>0)return;var b={};var c=function(){var a=arguments[0];for(var i=2;i<arguments.length;i++){if(i%2)arguments[i]=arguments[i]+'.0';if(!a.hasOwnProperty(arguments[i])&&i<arguments.length-1)a[arguments[i]]={};if(i==arguments.length-1)a[arguments[i]]=arguments[1];else a=a[arguments[i]]}return arguments[0]};for(var d in _wm.format.popunder.callback.binder){if(!_wm.format.popunder.callback.binder.hasOwnProperty(d))continue;var e=_wm.format.popunder.callback.binder[d];var f=d.split(',');for(var g in f){if(!f.hasOwnProperty(g))continue;var h=f[g].split(':');var j=h.length==1?['all',0].concat(h[0].split('_')):(h[0].indexOf('_')!=-1?h[0].split('_'):h[0].split('_').concat([0])).concat(h[1].split('_'));if(j.length==3)j.push(0);b=c.apply(null,[b,e].concat(j))}}b=_wm.object.sort(b,true,true);var k={};var l=[_wm.ua.os.name.toLowerCase().split(' ').shift(),parseInt(_wm.ua.os.version)||0,_wm.ua.browser.name.toLowerCase().split(' ').shift(),parseInt(_wm.ua.browser.major)||0];var m=[],trace_values=[];var n=b;for(var i=0;i>=0&&i<l.length;i++){var o=(trace_values.length>0?trace_values.join(':')+':':'')+''+i;if(k[o]){var p=k[o]}else{var p=new _wm.object.iterator(n);k[o]=p}var q=false;while(p.hasNext()){var r=p.next();if((i%2&&r[0]<=parseFloat(l[i]))||(i%2==0&&(r[0]==l[i])||r[0]==='all')){q=r[0];break}}if(q){m.push(n);trace_values.push(q);n=n[q]}else{trace_values.pop();n=m.pop();i-=2}}if(typeof n==='function')n()},trigger:function(e){if(_wm.ua.browser.name.toLowerCase()!=='ie'||_wm.ua.browser.major>8)e.stopImmediatePropagation();_wm.listener.clear();if(!_wm.format.popunder.registerTrigger())return;var a;while(a=_wm.format.popunder.trigger_stack.shift())_wm.format.popunder.callback.trigger[a.shift()].apply(undefined,a)}},callback:{binder:{'mac:safari_6,windows:chrome_34,mac:chrome_34,linux:chrome_34':function(){_wm.format.popunder.trigger_stack.push(['tab_trigger']);_wm.listener.add(document,'click',_wm.format.popunder.handler.trigger);_wm.format.popunder.occupy()},'windows:chrome_31,mac:chrome_31,linux:chrome_31':function(){_wm.format.popunder.trigger_stack.push(['flash_trigger']);_wm.listener.add(document,'click',_wm.format.popunder.handler.trigger);_wm.format.popunder.occupy()},'windows:chrome_28,mac:chrome_28,linux:chrome_28':function(){_wm.format.popunder.trigger_stack.push(['triple_trigger']);_wm.listener.add(document,'click',_wm.format.popunder.handler.trigger);_wm.format.popunder.occupy()},'firefox_12,chrome_21':function(){_wm.format.popunder.trigger_stack.push(['double_trigger']);_wm.listener.add(document,'click',_wm.format.popunder.handler.trigger);_wm.format.popunder.occupy()},'explorer':function(){_wm.format.popunder.trigger_stack.push(['single_delay']);_wm.listener.add(document,'click',_wm.format.popunder.handler.trigger);_wm.format.popunder.occupy()},'android:all,ios:all':function(){_wm.format.popunder.trigger_stack.push(['single']);_wm.listener.add(document,'touchend',_wm.format.popunder.handler.trigger);_wm.listener.add(document,'touchcancel',_wm.format.popunder.handler.trigger);_wm.format.popunder.occupy()},'windows:iemobile':function(){_wm.format.popunder.trigger_stack.push(['single']);_wm.listener.add(document,'click',_wm.format.popunder.handler.trigger);_wm.format.popunder.occupy()},'all':function(){_wm.format.popunder.trigger_stack.push(['single']);_wm.listener.add(document,'click',_wm.format.popunder.handler.trigger);_wm.format.popunder.occupy()}},trigger:{flash_trigger:function(){var d=document.createElement('div');document.body.appendChild(d);d.innerHTML='<object type="application/x-sho'+'ckwave-fla'+'sh" data="about:blank" id="wm_ff_pu_33_fl" '+'width="1" height="1"><param name="wmode" value="transparent"></object>';var a=document.getElementById('wm_ff_pu_33_fl');a.focus();a.style.display='none';window.open(_wm.format.popunder.url(),'pu_'+_wm.random(),_wm.format.popunder.config);window.open('').close()},tab_trigger:function(){var a=document.createElement('a');a.href=_wm.format.popunder.url();a.setAttribute('target','_blank');top.window.document.body.appendChild(a);var e=document.createEvent('MouseEvents');e.initMouseEvent('click',true,true,window,0,0,0,0,0,true,false,false,true,0,null);a.dispatchEvent(e)},triple_trigger:function(){window.open('javascript:window.focus()','_self');var w=window.open('about:blank','pu_'+_wm.random(),_wm.format.popunder.config);var a=document.createElement('a');a.setAttribute('href','data:text/html,<scr'+'ipt>window.close();</scr'+'ipt>');a.style.display='none';document.body.appendChild(a);var e=document.createEvent('MouseEvents');e.initMouseEvent('click',true,true,window,0,0,0,0,0,true,false,false,true,0,null);a.dispatchEvent(e);document.body.removeChild(a);w.document.open().write('<scr'+'ipt type="text/javascript">window.location="'+_wm.format.popunder.url()+'";<\/scr'+'ipt>');w.document.close()},double_trigger:function(){var w=window.open(_wm.format.popunder.url(),'pu_'+_wm.random(),_wm.format.popunder.config);if(w){w.blur();try{var b=w.window.open('about:blank');b.close()}catch(i){}if(_wm.ua.browser=='Firefox')window.showModalDialog("javascript:window.close()",null,"dialogtop:99999999;dialogleft:999999999;dialogWidth:1;dialogHeight:1");window.focus()}},single_delay:function(){var w=window.open(_wm.format.popunder.url(),'pu_'+_wm.random(),_wm.format.popunder.config);window.setTimeout(window.focus,750);window.setTimeout(window.focus,850);if(w)w.blur()},single:function(a){var w=window.open(_wm.format.popunder.url(),'pu_'+_wm.random(),_wm.format.popunder.config);if(w){w.blur();window.focus()}},}},occupy:function(a){if(!a){a=['mousedown','mouseup']}for(var i=0;i<a.length;i++){_wm.listener.add(document,a[i],function(e){if(_wm.ua.browser.name.toLowerCase()!=='ie'||_wm.ua.browser.major>8)e.stopImmediatePropagation()})}},registerTrigger:function(){if(_wm.format.popunder.isTriggered)return false;_wm.format.popunder.isTriggered=true;if(_wm.format.popunder.settings.hours>0)_wm.cookie.set(_wm.format.popunder.settings.cookie,++_wm.format.popunder.cookie.times,_wm.format.popunder.cookie.expires);return true}};(function(){_wm.format.popunder.initialize()})();
+</script>
+</body>
+</html>
