@@ -21,7 +21,7 @@ func mustNewRequest(t *testing.T, method, urlStr string, body io.Reader) *http.R
 }
 
 func describeReq(req *http.Request) string {
-	return req.Method + " " + req.URL.Path
+	return req.Method + " " + req.URL.String()
 }
 
 func fooBarSites() []site {
@@ -191,15 +191,26 @@ func TestGetTorrents(t *testing.T) {
 
 	expected := []map[string]interface{}{
 		{
-			"id":   "a",
-			"site": siteA.Site,
+			"id": "a",
 		},
 		{
-			"id":   "b",
-			"site": siteB.Site,
+			"id": "b",
 		},
 	}
 	if !reflect.DeepEqual(actual, expected) {
 		t.Errorf("JSON actual: %v\nExpected: %v", actual, expected)
+	}
+}
+
+// TestGetTorrentsFail tests what happens when you don't include the
+// required param q
+func TestGetTorrentsFail(t *testing.T) {
+	req := mustNewRequest(t, "GET", "/torrents", nil)
+	res := httptest.NewRecorder()
+
+	router(&app{}).ServeHTTP(res, req)
+
+	if res.Code != http.StatusBadRequest {
+		t.Errorf("%s : status = %d, expected %d", describeReq(req), res.Code, http.StatusBadRequest)
 	}
 }

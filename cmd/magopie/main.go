@@ -56,10 +56,25 @@ func (a *app) handleSites(w http.ResponseWriter, r *http.Request) {
 }
 
 func (a *app) handleTorrents(w http.ResponseWriter, r *http.Request) {
-	sites := a.sites.GetEnabledSites()
-	_ = sites
+	// TODO better error response?
+	term := r.FormValue("q")
+	if term == "" {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
 
+	// TODO do this concurrently
 	torrents := []magopie.Torrent{}
+	for _, s := range a.sites.GetEnabledSites() {
+		results, err := s.search(term)
+		if err != nil {
+			log.Printf("Error searching %q on %v: %v", term, s.ID, err)
+			continue
+		}
+		for _, t := range results {
+			torrents = append(torrents, t)
+		}
+	}
 
 	if err := json.NewEncoder(w).Encode(torrents); err != nil {
 		log.Println(err)
