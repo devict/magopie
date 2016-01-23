@@ -16,6 +16,9 @@ func TestKATParse(t *testing.T) {
 	defer data.Close()
 
 	actual, err := katParse(data)
+	if err != nil {
+		t.Fatal("katParse err should be nil, was:", err)
+	}
 
 	expected := []mp.Torrent{
 		{
