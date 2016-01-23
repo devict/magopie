@@ -8,7 +8,7 @@ import (
 
 type site struct {
 	magopie.Site
-	search func(term string) []magopie.Torrent
+	search func(term string) ([]magopie.Torrent, error)
 }
 
 type sitedb struct {

@@ -124,7 +124,7 @@ func TestGetTorrents(t *testing.T) {
 			Enabled: true,
 		},
 	}
-	siteA.search = func(term string) []mp.Torrent {
+	siteA.search = func(term string) ([]mp.Torrent, error) {
 		termA = term
 		return []mp.Torrent{
 			{
@@ -132,7 +132,7 @@ func TestGetTorrents(t *testing.T) {
 				Title:   "ubuntu 1",
 				FileURL: "http://sitea/torrentA",
 			},
-		}
+		}, nil
 	}
 
 	var termB string
@@ -141,14 +141,14 @@ func TestGetTorrents(t *testing.T) {
 			Enabled: true,
 		},
 	}
-	siteB.search = func(term string) []mp.Torrent {
+	siteB.search = func(term string) ([]mp.Torrent, error) {
 		termB = term
 		return []mp.Torrent{
 			{
 				ID:   "b",
 				Site: siteB.Site,
 			},
-		}
+		}, nil
 	}
 
 	var termC string
@@ -156,9 +156,9 @@ func TestGetTorrents(t *testing.T) {
 		Site: mp.Site{
 			Enabled: false,
 		},
-		search: func(term string) []mp.Torrent {
+		search: func(term string) ([]mp.Torrent, error) {
 			termC = term
-			return nil
+			return nil, nil
 		},
 	}
 
