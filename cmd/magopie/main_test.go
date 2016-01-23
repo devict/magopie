@@ -206,9 +206,9 @@ func TestGetTorrents(t *testing.T) {
 			"FileURL":     "http://sitea/torrent1",
 			"SiteID":      "a",
 			"Description": "torrent a",
-			"Seeders":     10,
-			"Leechers":    50,
-			"Size":        1234567,
+			"Seeders":     float64(10),
+			"Leechers":    float64(50),
+			"Size":        float64(1234567),
 		},
 		{
 			"ID":          "torrentB",
@@ -216,13 +216,25 @@ func TestGetTorrents(t *testing.T) {
 			"FileURL":     "http://siteb/torrentB",
 			"SiteID":      "b",
 			"Description": "torrent b",
-			"Seeders":     20,
-			"Leechers":    80,
-			"Size":        7654321,
+			"Seeders":     float64(20),
+			"Leechers":    float64(80),
+			"Size":        float64(7654321),
 		},
 	}
 	if !reflect.DeepEqual(actual, expected) {
+		diffMaps(t, actual, expected)
 		t.Errorf("JSON actual: %v\nExpected: %v", actual, expected)
+	}
+}
+
+func diffMaps(t *testing.T, a, b []map[string]interface{}) {
+	for i := range a {
+		for k := range a[i] {
+			valA, valB := a[i][k], b[i][k]
+			if valA != valB {
+				t.Logf("%d %q: a: %v, b: %v", i, k, valA, valB)
+			}
+		}
 	}
 }
 
