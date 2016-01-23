@@ -6,11 +6,12 @@ import (
 	"log"
 	"net/http"
 	"os"
-
-	"github.com/gophergala2016/magopie/entities"
 )
 
 func main() {
+	// TODO populate with registered sites
+	a := &app{}
+
 	var port string
 	if port = os.Getenv("PORT"); port == "" {
 		port = "8080"
@@ -18,24 +19,23 @@ func main() {
 
 	addr := fmt.Sprintf("%s:%s", "localhost", port)
 	log.Printf("Listening on %s", addr)
-	log.Fatal(http.ListenAndServe(addr, router()))
+	log.Fatal(http.ListenAndServe(addr, router(a)))
 }
 
-func router() http.Handler {
+func router(a *app) http.Handler {
 	r := http.NewServeMux()
 
-	r.HandleFunc("/sites", handleSearch)
+	r.HandleFunc("/sites", a.handleSites)
 
 	return r
 }
 
-func handleSearch(w http.ResponseWriter, r *http.Request) {
-	// TODO get list of sites from somewhere
-	s := []entities.Site{
-		{},
-	}
+type app struct {
+	sites sitedb
+}
 
-	if err := json.NewEncoder(w).Encode(s); err != nil {
+func (a *app) handleSites(w http.ResponseWriter, r *http.Request) {
+	if err := json.NewEncoder(w).Encode(a.sites.GetAllSites()); err != nil {
 		log.Println(err)
 		return
 	}

@@ -5,7 +5,10 @@ import (
 	"io"
 	"net/http"
 	"net/http/httptest"
+	"reflect"
 	"testing"
+
+	"github.com/gophergala2016/magopie/entities"
 )
 
 func mustNewRequest(t *testing.T, method, urlStr string, body io.Reader) *http.Request {
@@ -25,16 +28,51 @@ func TestGetSites(t *testing.T) {
 	req := mustNewRequest(t, "GET", "/sites", nil)
 	res := httptest.NewRecorder()
 
-	router().ServeHTTP(res, req)
+	a := &app{
+		sites: sitedb{
+			sites: []entities.Site{
+				{
+					ID:      "foo",
+					Name:    "Foo",
+					URL:     "http://foo.foo",
+					Enabled: true,
+				},
+				{
+					ID:      "bar",
+					Name:    "Bar",
+					URL:     "http://bar.bar",
+					Enabled: false,
+				},
+			},
+		},
+	}
+
+	router(a).ServeHTTP(res, req)
 
 	if res.Code != http.StatusOK {
 		t.Errorf("%s : status = %d, expected %d", describeReq(req), res.Code, http.StatusOK)
 	}
 
-	body := []map[string]interface{}{}
-	if err := json.NewDecoder(res.Body).Decode(&body); err != nil {
-		t.Fatal("Error parsing response as json. Err:", err)
+	actual := []map[string]interface{}{}
+	if err := json.NewDecoder(res.Body).Decode(&actual); err != nil {
+		t.Fatal("Error parsing json response as []. Err:", err)
 	}
 
-	// TODO assert something about the response
+	expected := []map[string]interface{}{
+		{
+			"ID":      "foo",
+			"Name":    "Foo",
+			"URL":     "http://foo.foo",
+			"Enabled": true,
+		},
+		{
+			"ID":      "bar",
+			"Name":    "Bar",
+			"URL":     "http://bar.bar",
+			"Enabled": false,
+		},
+	}
+	if !reflect.DeepEqual(actual, expected) {
+		t.Errorf("JSON actual: %v\nExpected: %v", actual, expected)
+	}
 }
