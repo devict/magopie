@@ -64,16 +64,16 @@ func TestGetSites(t *testing.T) {
 
 	expected := []map[string]interface{}{
 		{
-			"ID":      "foo",
-			"Name":    "Foo",
-			"URL":     "http://foo.foo",
-			"Enabled": true,
+			"id":      "foo",
+			"name":    "Foo",
+			"url":     "http://foo.foo",
+			"enabled": true,
 		},
 		{
-			"ID":      "bar",
-			"Name":    "Bar",
-			"URL":     "http://bar.bar",
-			"Enabled": false,
+			"id":      "bar",
+			"name":    "Bar",
+			"url":     "http://bar.bar",
+			"enabled": false,
 		},
 	}
 	if !reflect.DeepEqual(actual, expected) {
