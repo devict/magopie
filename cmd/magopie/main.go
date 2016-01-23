@@ -6,6 +6,8 @@ import (
 	"log"
 	"net/http"
 	"os"
+
+	"github.com/gophergala2016/magopie/entities"
 )
 
 func main() {
@@ -27,6 +29,7 @@ func router(a *app) http.Handler {
 
 	r.HandleFunc("/sites", a.handleSites)
 	r.HandleFunc("/sites/", a.handleSites)
+	r.HandleFunc("/torrents", a.handleTorrents)
 
 	return r
 }
@@ -48,6 +51,17 @@ func (a *app) handleSites(w http.ResponseWriter, r *http.Request) {
 
 	id := r.URL.Path[pfx:]
 	if err := enc.Encode(a.sites.GetSite(id)); err != nil {
+		log.Println(err)
+	}
+}
+
+func (a *app) handleTorrents(w http.ResponseWriter, r *http.Request) {
+	sites := a.sites.GetEnabledSites()
+	_ = sites
+
+	torrents := []entities.Torrent{}
+
+	if err := json.NewEncoder(w).Encode(torrents); err != nil {
 		log.Println(err)
 	}
 }
