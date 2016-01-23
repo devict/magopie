@@ -30,18 +30,22 @@ func TestGetSites(t *testing.T) {
 
 	a := &app{
 		sites: sitedb{
-			sites: []entities.Site{
+			sites: []site{
 				{
-					ID:      "foo",
-					Name:    "Foo",
-					URL:     "http://foo.foo",
-					Enabled: true,
+					Site: entities.Site{
+						ID:      "foo",
+						Name:    "Foo",
+						URL:     "http://foo.foo",
+						Enabled: true,
+					},
 				},
 				{
-					ID:      "bar",
-					Name:    "Bar",
-					URL:     "http://bar.bar",
-					Enabled: false,
+					Site: entities.Site{
+						ID:      "bar",
+						Name:    "Bar",
+						URL:     "http://bar.bar",
+						Enabled: false,
+					},
 				},
 			},
 		},

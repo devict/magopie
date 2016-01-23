@@ -1,14 +1,22 @@
 package main
 
-import "github.com/gophergala2016/magopie/entities"
-import "sync"
+import (
+	"sync"
+
+	"github.com/gophergala2016/magopie/entities"
+)
+
+type site struct {
+	entities.Site
+	search func(term string) []entities.Torrent
+}
 
 type sitedb struct {
 	mtx   sync.RWMutex
-	sites []entities.Site
+	sites []site
 }
 
-func (db *sitedb) GetSite(id string) entities.Site {
+func (db *sitedb) GetSite(id string) site {
 	db.mtx.RLock()
 	defer db.mtx.RUnlock()
 
@@ -18,21 +26,21 @@ func (db *sitedb) GetSite(id string) entities.Site {
 		}
 	}
 
-	return entities.Site{}
+	return site{}
 }
 
-func (db *sitedb) GetAllSites() []entities.Site {
+func (db *sitedb) GetAllSites() []site {
 	db.mtx.RLock()
 	defer db.mtx.RUnlock()
 
 	return db.sites
 }
 
-func (db *sitedb) GetEnabledSites() []entities.Site {
+func (db *sitedb) GetEnabledSites() []site {
 	db.mtx.RLock()
 	defer db.mtx.RUnlock()
 
-	var sites []entities.Site
+	var sites []site
 	for _, s := range db.sites {
 		if s.Enabled {
 			sites = append(sites, s)

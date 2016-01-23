@@ -7,45 +7,40 @@ import (
 	"github.com/gophergala2016/magopie/entities"
 )
 
-func TestGetSite(t *testing.T) {
-	foo := entities.Site{ID: "foo"}
-	bar := entities.Site{ID: "bar"}
+var (
+	siteFoo = site{Site: entities.Site{ID: "foo", Enabled: true}}
+	siteBar = site{Site: entities.Site{ID: "bar", Enabled: false}}
+	siteBaz = site{Site: entities.Site{ID: "baz", Enabled: true}}
+)
 
+func TestGetSite(t *testing.T) {
 	a := sitedb{
-		sites: []entities.Site{foo, bar},
+		sites: []site{siteFoo, siteBar},
 	}
 
-	if actual := a.GetSite("bar"); actual != bar {
-		t.Errorf("sitedb.GetSite(bar) = %v, expected %v", actual, bar)
+	if actual := a.GetSite(siteBar.ID); !reflect.DeepEqual(actual, siteBar) {
+		t.Errorf("sitedb.GetSite(%q) = %v, expected %v", siteBar.ID, actual, siteBar)
 	}
 }
 
 func TestGetAllSites(t *testing.T) {
-	foo := entities.Site{ID: "foo", Enabled: true}
-	bar := entities.Site{ID: "bar", Enabled: false}
-	baz := entities.Site{ID: "baz", Enabled: true}
-
 	a := sitedb{
-		sites: []entities.Site{foo, bar, baz},
+		sites: []site{siteFoo, siteBar, siteBaz},
 	}
 
-	expected := []entities.Site{foo, bar, baz}
+	expected := []site{siteFoo, siteBar, siteBaz}
 	if actual := a.GetAllSites(); !reflect.DeepEqual(actual, expected) {
-		t.Errorf("sitedb.GetAllSites() = %v, expected %v", actual, bar)
+		t.Errorf("sitedb.GetAllSites() = %v, expected %v", actual, expected)
 	}
 }
 
 func TestGetEnabledSites(t *testing.T) {
-	foo := entities.Site{ID: "foo", Enabled: true}
-	bar := entities.Site{ID: "bar", Enabled: false}
-	baz := entities.Site{ID: "baz", Enabled: true}
-
 	a := sitedb{
-		sites: []entities.Site{foo, bar, baz},
+		sites: []site{siteFoo, siteBar, siteBaz},
 	}
 
-	expected := []entities.Site{foo, baz}
+	expected := []site{siteFoo, siteBaz}
 	if actual := a.GetEnabledSites(); !reflect.DeepEqual(actual, expected) {
-		t.Errorf("sitedb.GetAllSites() = %v, expected %v", actual, bar)
+		t.Errorf("sitedb.GetAllSites() = %v, expected %v", actual, siteBar)
 	}
 }
