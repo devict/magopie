@@ -17,3 +17,6 @@
 # Generated files
 bin/
 gen/
+
+# gomobile generated files
+*.aar

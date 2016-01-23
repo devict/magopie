@@ -6,7 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import go.client.Client;
+import go.magopie.Magopie;
 
 public class MainActivity extends Activity {
 
@@ -16,9 +16,9 @@ public class MainActivity extends Activity {
         setContentView(R.layout.content_main);
 
         TextView helloText = (TextView)findViewById(R.id.helloText);
-        //String str = Client.Greetings("magopie");
-        Client.TorrentCollection results = Client.Search("nana");
-        helloText.setText(String.valueOf(results.GetResultsLength())+": "+results.GetResultID(0));
+        String str = Magopie.Greetings("magopie");
+        Magopie.TorrentCollection results = Magopie.Search("nana");
+        helloText.setText(String.valueOf(results.Length())+": "+results.Get(0));
     }
 
     @Override

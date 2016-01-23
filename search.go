@@ -4,24 +4,6 @@ import (
 	"fmt"
 )
 
-// TorrentCollection ...
-type TorrentCollection struct {
-	list []Torrent
-}
-
-// GetResultsLength returns the number of results in the TorrentCollection
-func (tc *TorrentCollection) GetResultsLength() int {
-	return len(tc.list)
-}
-
-// GetResultID ...
-func (tc *TorrentCollection) GetResultID(idx int) string {
-	if idx <= len(tc.list) {
-		return tc.list[idx].ID
-	}
-	return "Index not found"
-}
-
 // Greetings ...
 func Greetings(n string) string {
 	return fmt.Sprintf("Hello, %s!", n)

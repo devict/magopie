@@ -1,16 +1,74 @@
 package magopie
 
+import "fmt"
+
 // A Torrent is an individual result from a search operation representing a
 // single torrent file.
 type Torrent struct {
-	ID      string `json:"id"`
-	Title   string `json:"title"`
-	FileURL string `json:"fileURL"`
-	Site    Site   `json:"site"`
+	ID      string
+	Title   string
+	FileURL string
+	SiteID  string
 
 	// Fields we hopefully can populate
-	Description string `json:"description"`
-	Seeders     int    `json:"seeders"`
-	Leechers    int    `json:"leechers"`
-	Size        int    `json:"size"`
+	Description string
+	Seeders     int
+	Leechers    int
+	Size        int
+}
+
+// TorrentCollection is a collection of torrents because gomobile can't
+// handle slices
+type TorrentCollection struct {
+	list []Torrent
+}
+
+// Length returns how many torrents are in the collection
+func (tc *TorrentCollection) Length() int {
+	return len(tc.list)
+}
+
+// Get returns the torrent at idx or a nil torrent
+func (tc *TorrentCollection) Get(idx int) *Torrent {
+	if idx <= tc.Length() {
+		return &tc.list[idx]
+	}
+	return nil
+}
+
+// Clear empties the list of torrents
+func (tc *TorrentCollection) Clear() {
+	tc.list = tc.list[:0]
+}
+
+// Index finds the index of a torrent or -1 if not found
+func (tc *TorrentCollection) Index(t *Torrent) int {
+	for i, tst := range tc.list {
+		if tst == *t {
+			return i
+		}
+	}
+	return -1
+}
+
+// Insert inserts a torrent into the collection at i
+func (tc *TorrentCollection) Insert(i int, t *Torrent) {
+	if i < 0 || i > tc.Length() {
+		fmt.Printf("Magopie-go:: Attempted to insert a torrent at an invalid index")
+		return
+	}
+	tc.list = append(tc.list, Torrent{})
+	copy(tc.list[i+1:], tc.list[i:])
+	tc.list[i] = *t
+}
+
+// Remove a torrent from the collection at i
+func (tc *TorrentCollection) Remove(i int) {
+	if i < 0 || i > tc.Length() {
+		fmt.Printf("Magopie-go:: Attempted to remove a torrent from an invalid index")
+		return
+	}
+	copy(tc.list[i:], tc.list[i+1:])
+	tc.list[len(tc.list)-1] = Torrent{}
+	tc.list = tc.list[:len(tc.list)-1]
 }

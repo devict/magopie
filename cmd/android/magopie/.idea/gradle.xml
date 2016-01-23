@@ -10,7 +10,7 @@
           <set>
             <option value="/mnt/d/Development/go/src/github.com/gophergala2016/magopie/cmd/android/magopie" />
             <option value="/mnt/d/Development/go/src/github.com/gophergala2016/magopie/cmd/android/magopie/app" />
-            <option value="/mnt/d/Development/go/src/github.com/gophergala2016/magopie/cmd/android/magopie/client" />
+            <option value="/mnt/d/Development/go/src/github.com/gophergala2016/magopie/cmd/android/magopie/magopie-go" />
           </set>
         </option>
       </GradleProjectSettings>
