@@ -1,7 +1,8 @@
 # Magopie
-## (It's a silent "O")
 
 [![GoDoc][godoc-badge]][godoc]
+
+## (It's a silent "O")
 
 Your personal torrent search engine.
 
