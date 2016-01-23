@@ -3,6 +3,7 @@ package main
 import (
 	"io"
 
+	"github.com/PuerkitoBio/goquery"
 	"github.com/gophergala2016/magopie"
 )
 
