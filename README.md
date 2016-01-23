@@ -1,2 +1,2 @@
 # Magopie
-## (It's a silent O)
+## (It's a silent "O")
