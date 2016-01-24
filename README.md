@@ -44,5 +44,5 @@ Magopie is licensed with the MIT license.
 [gomobile]: https://github.com/golang/mobile "gomobile"
 [afero]: https://github.com/spf13/afero "Afero"
 [goquery]: https://github.com/PuerkitoBio/goquery "goquery"
-[mascot]: https://raw.githubusercontent.com/benblankley/magopie/master/magopie.png "Magopie Mascot"
-[magopietext]: https://raw.githubusercontent.com/benblankley/magopie/master/magopie_logo_text.png "Magopie"
+[mascot]: https://raw.githubusercontent.com/gophergala2016/magopie/master/magopie.png "Magopie Mascot"
+[magopietext]: https://raw.githubusercontent.com/gophergala2016/magopie/master/magopie_logo_text.png "Magopie"
