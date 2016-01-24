@@ -31,6 +31,9 @@ project named `magpie`.
 * Torrents are gathered by parsing Kick Ass Torrents XML feeds and by scraping
   the search page of The Pirate Bay using [goquery][goquery].
 
+## License
+Magopie is licenses with the MIT license.
+
 [godoc]: https://godoc.org/github.com/gophergala2016/magopie "GoDoc"
 [godoc-badge]: https://godoc.org/github.com/gophergala2016/magopie?status.svg "GoDoc Badge"
 [travis]: https://travis-ci.org/gophergala2016/magopie "Travis CI"
