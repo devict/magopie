@@ -47,6 +47,13 @@ func (a *server) handleSingleSite(ctx context.Context, w http.ResponseWriter, r 
 	}
 }
 
+// BySeeders implements sort.Interface for []magopie.Torrent based on Seeeders.
+type BySeeders []magopie.Torrent
+
+func (s BySeeders) Len() int           { return len(s) }
+func (s BySeeders) Swap(i, j int)      { s[i], s[j] = s[j], s[i] }
+func (s BySeeders) Less(i, j int) bool { return s[i].Seeders > s[j].Seeders }
+
 func (a *server) handleTorrents(ctx context.Context, w http.ResponseWriter, r *http.Request) {
 	term := r.FormValue("q")
 	if term == "" {
@@ -86,7 +93,7 @@ func (a *server) handleTorrents(ctx context.Context, w http.ResponseWriter, r *h
 		torrents = append(torrents, t)
 	}
 
-	sort.Sort(magopie.BySeeders(torrents))
+	sort.Sort(BySeeders(torrents))
 
 	if err := json.NewEncoder(w).Encode(torrents); err != nil {
 		log.Println(err)
