@@ -21,7 +21,7 @@ func mustNewRequest(t *testing.T, method, urlStr string, body io.Reader) *http.R
 }
 
 func describeReq(req *http.Request) string {
-	return req.Method + " " + req.URL.Path
+	return req.Method + " " + req.URL.String()
 }
 
 func fooBarSites() []site {
@@ -66,16 +66,16 @@ func TestGetSites(t *testing.T) {
 
 	expected := []map[string]interface{}{
 		{
-			"id":      "foo",
-			"name":    "Foo",
-			"url":     "http://foo.foo",
-			"enabled": true,
+			"ID":      "foo",
+			"Name":    "Foo",
+			"URL":     "http://foo.foo",
+			"Enabled": true,
 		},
 		{
-			"id":      "bar",
-			"name":    "Bar",
-			"url":     "http://bar.bar",
-			"enabled": false,
+			"ID":      "bar",
+			"Name":    "Bar",
+			"URL":     "http://bar.bar",
+			"Enabled": false,
 		},
 	}
 	if !reflect.DeepEqual(actual, expected) {
@@ -103,10 +103,10 @@ func TestGetSiteSingle(t *testing.T) {
 	}
 
 	expected := map[string]interface{}{
-		"id":      "bar",
-		"name":    "Bar",
-		"url":     "http://bar.bar",
-		"enabled": false,
+		"ID":      "bar",
+		"Name":    "Bar",
+		"URL":     "http://bar.bar",
+		"Enabled": false,
 	}
 	if !reflect.DeepEqual(actual, expected) {
 		t.Errorf("JSON actual: %v\nExpected: %v", actual, expected)
@@ -123,16 +123,20 @@ func TestGetTorrents(t *testing.T) {
 		Site: mp.Site{
 			Enabled: true,
 		},
-	}
-	siteA.search = func(term string) ([]mp.Torrent, error) {
-		termA = term
-		return []mp.Torrent{
-			{
-				ID:      "torrentA",
-				Title:   "ubuntu 1",
-				FileURL: "http://sitea/torrentA",
-			},
-		}, nil
+		search: func(term string) ([]mp.Torrent, error) {
+			termA = term
+			return []mp.Torrent{
+				{
+					ID:        "torrent1",
+					Title:     "ubuntu 1",
+					MagnetURI: "http://sitea/torrent1",
+					SiteID:    "a",
+					Seeders:   10,
+					Leechers:  50,
+					Size:      1234567,
+				},
+			}, nil
+		},
 	}
 
 	var termB string
@@ -140,15 +144,20 @@ func TestGetTorrents(t *testing.T) {
 		Site: mp.Site{
 			Enabled: true,
 		},
-	}
-	siteB.search = func(term string) ([]mp.Torrent, error) {
-		termB = term
-		return []mp.Torrent{
-			{
-				ID:   "b",
-				Site: siteB.Site,
-			},
-		}, nil
+		search: func(term string) ([]mp.Torrent, error) {
+			termB = term
+			return []mp.Torrent{
+				{
+					ID:        "torrentB",
+					Title:     "ubuntu 2",
+					MagnetURI: "http://siteb/torrentB",
+					SiteID:    "b",
+					Seeders:   20,
+					Leechers:  80,
+					Size:      7654321,
+				},
+			}, nil
+		},
 	}
 
 	var termC string
@@ -172,14 +181,13 @@ func TestGetTorrents(t *testing.T) {
 		t.Errorf("%s : status = %d, expected %d", describeReq(req), res.Code, http.StatusOK)
 	}
 
+	// Ensure our search term was passed to the appropriate site search funcs
 	if termA != term {
 		t.Errorf("Site A search was passed %q, expected %q", termA, term)
 	}
-
 	if termB != term {
 		t.Errorf("Site B search was passed %q, expected %q", termB, term)
 	}
-
 	if termC != "" {
 		t.Errorf("Site C search was passed %q, expected site to not be used", termC)
 	}
@@ -191,15 +199,50 @@ func TestGetTorrents(t *testing.T) {
 
 	expected := []map[string]interface{}{
 		{
-			"id":   "a",
-			"site": siteA.Site,
+			"ID":        "torrent1",
+			"Title":     "ubuntu 1",
+			"MagnetURI": "http://sitea/torrent1",
+			"SiteID":    "a",
+			"Seeders":   float64(10),
+			"Leechers":  float64(50),
+			"Size":      float64(1234567),
 		},
 		{
-			"id":   "b",
-			"site": siteB.Site,
+			"ID":        "torrentB",
+			"Title":     "ubuntu 2",
+			"MagnetURI": "http://siteb/torrentB",
+			"SiteID":    "b",
+			"Seeders":   float64(20),
+			"Leechers":  float64(80),
+			"Size":      float64(7654321),
 		},
 	}
 	if !reflect.DeepEqual(actual, expected) {
+		diffMaps(t, actual, expected)
 		t.Errorf("JSON actual: %v\nExpected: %v", actual, expected)
+	}
+}
+
+func diffMaps(t *testing.T, a, b []map[string]interface{}) {
+	for i := range a {
+		for k := range a[i] {
+			valA, valB := a[i][k], b[i][k]
+			if valA != valB {
+				t.Logf("%d %q: a: %v, b: %v", i, k, valA, valB)
+			}
+		}
+	}
+}
+
+// TestGetTorrentsFail tests what happens when you don't include the
+// required param q
+func TestGetTorrentsFail(t *testing.T) {
+	req := mustNewRequest(t, "GET", "/torrents", nil)
+	res := httptest.NewRecorder()
+
+	router(&app{}).ServeHTTP(res, req)
+
+	if res.Code != http.StatusBadRequest {
+		t.Errorf("%s : status = %d, expected %d", describeReq(req), res.Code, http.StatusBadRequest)
 	}
 }

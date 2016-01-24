@@ -1,4 +1,7 @@
 # Magopie
+
+[![GoDoc](https://godoc.org/github.com/gophergala2016/magopie?status.svg)](http://godoc.org/github.com/gophergala2016/magopie)
+
 ## (It's a silent "O")
 
 Your personal torrent search engine.

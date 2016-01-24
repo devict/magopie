@@ -5,16 +5,13 @@ import "fmt"
 // A Torrent is an individual result from a search operation representing a
 // single torrent file.
 type Torrent struct {
-	ID      string
-	Title   string
-	FileURL string
-	SiteID  string
-
-	// Fields we hopefully can populate
-	Description string
-	Seeders     int
-	Leechers    int
-	Size        int
+	ID        string
+	Title     string
+	MagnetURI string
+	SiteID    string
+	Seeders   int
+	Leechers  int
+	Size      int
 }
 
 // TorrentCollection is a collection of torrents because gomobile can't
