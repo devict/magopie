@@ -49,13 +49,23 @@ func main() {
 func router(a *app) http.Handler {
 	mux := xmux.New()
 
-	// TODO switch to a muxer where I define the method as part of the route
-	mux.GET("/sites", xhandler.HandlerFuncC(a.handleAllSites))
-	mux.GET("/sites/:id", xhandler.HandlerFuncC(a.handleSingleSite))
-	mux.GET("/torrents", xhandler.HandlerFuncC(a.handleTorrents))
-	mux.POST("/download/:hash", xhandler.HandlerFuncC(a.handleDownload))
+	c := xhandler.Chain{}
+
+	c.Use(mwLogger)
+
+	mux.GET("/sites", c.HandlerCF(xhandler.HandlerFuncC(a.handleAllSites)))
+	mux.GET("/sites/:id", c.HandlerCF(xhandler.HandlerFuncC(a.handleSingleSite)))
+	mux.GET("/torrents", c.HandlerCF(xhandler.HandlerFuncC(a.handleTorrents)))
+	mux.POST("/download/:hash", c.HandlerCF(xhandler.HandlerFuncC(a.handleDownload)))
 
 	return xhandler.New(context.Background(), mux)
+}
+
+func mwLogger(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		log.Println("Serving", r.Method, r.URL.String(), "to", r.RemoteAddr)
+		next.ServeHTTP(w, r)
+	})
 }
 
 type app struct {
