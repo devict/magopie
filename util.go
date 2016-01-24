@@ -12,10 +12,10 @@ func Search(s string) *TorrentCollection {
 	for i := 0; i < 100; i++ {
 		ai := strconv.Itoa(i)
 		ret.Push(&Torrent{
-			ID:      s + "-" + ai,
-			Title:   "the-" + s + "-" + ai,
-			FileURL: "http://localhost/the-" + s + "-" + ai,
-			SiteID:  "the_pirate_bay",
+			ID:        s + "-" + ai,
+			Title:     "the-" + s + "-" + ai,
+			MagnetURI: s + "-" + ai,
+			SiteID:    "the_pirate_bay",
 		})
 	}
 	return ret

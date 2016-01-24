@@ -44,7 +44,7 @@ public class ResultAdapter extends ArrayAdapter<Magopie.Torrent> {
     final Magopie.Torrent wrk = getItem(position);
     if(wrk != null) {
       holder.torrent = wrk;
-      holder.torrentFile.setText(wrk.getFileURL());
+      holder.torrentFile.setText(wrk.getMagnetURI());
       holder.torrentTitle.setText(wrk.getTitle());
     }
 
