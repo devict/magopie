@@ -45,9 +45,7 @@ func katParse(r io.Reader) ([]magopie.Torrent, error) {
 			Hash          string `xml:"infoHash"`
 			Seeds         int    `xml:"seeds"`
 			Peers         int    `xml:"peers"`
-			Enclosure     struct {
-				URL string `xml:"url,attr"`
-			} `xml:"enclosure"`
+			MagnetURI     string `xml:"magnetURI"`
 		} `xml:"channel>item"`
 	}
 
@@ -58,13 +56,13 @@ func katParse(r io.Reader) ([]magopie.Torrent, error) {
 	ts := make([]magopie.Torrent, len(d.Items))
 	for i, item := range d.Items {
 		ts[i] = magopie.Torrent{
-			ID:       item.Hash,
-			Title:    item.Title,
-			Seeders:  item.Seeds,
-			Leechers: item.Peers - item.Seeds,
-			Size:     item.ContentLength,
-			FileURL:  item.Enclosure.URL,
-			SiteID:   "kat",
+			ID:        item.Hash,
+			Title:     item.Title,
+			Seeders:   item.Seeds,
+			Leechers:  item.Peers - item.Seeds,
+			Size:      item.ContentLength,
+			MagnetURI: item.MagnetURI,
+			SiteID:    "kat",
 		}
 	}
 
