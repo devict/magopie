@@ -7,6 +7,8 @@ import (
 	"testing"
 )
 
+var testKey = "Margo the magpie"
+
 func TestClientSearch(t *testing.T) {
 	torrent1 := Torrent{
 		ID:        "ID 1",
@@ -28,10 +30,12 @@ func TestClientSearch(t *testing.T) {
 	}
 
 	var srvMethod, srvPath, srvQuery string
+	var srvValid bool
 	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		srvMethod = r.Method
 		srvPath = r.URL.Path
 		srvQuery = r.FormValue("q")
+		srvValid = RequestIsSigned(r, testKey)
 		json.NewEncoder(w).Encode([]Torrent{torrent1, torrent2})
 	}))
 	defer srv.Close()
@@ -42,7 +46,7 @@ func TestClientSearch(t *testing.T) {
 		expectedQuery  = "ubuntu 15.10"
 	)
 
-	ret := NewClient(srv.URL).Search(expectedQuery)
+	ret := NewClient(srv.URL, testKey).Search(expectedQuery)
 
 	if srvMethod != expectedMethod {
 		t.Errorf("Search server method %q, expected %q", srvMethod, expectedMethod)
@@ -52,6 +56,9 @@ func TestClientSearch(t *testing.T) {
 	}
 	if srvQuery != expectedQuery {
 		t.Errorf("Search server query %q, expected %q", srvQuery, expectedQuery)
+	}
+	if !srvValid {
+		t.Error("Search server request was not signed")
 	}
 
 	if l := ret.Length(); l != 2 {
@@ -67,30 +74,33 @@ func TestClientSearch(t *testing.T) {
 }
 
 func TestClientDownload(t *testing.T) {
-	torrent := Torrent{
-		ID: "someHash",
-	}
+	var (
+		torrent = Torrent{ID: "someHash"}
 
-	var srvMethod, srvPath string
+		srvMethod, srvPath string
+		srvValid           bool
+
+		expectedMethod = "POST"
+		expectedPath   = "/download/someHash"
+	)
 	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		srvMethod = r.Method
 		srvPath = r.URL.Path
+		srvValid = RequestIsSigned(r, testKey)
 		w.WriteHeader(http.StatusCreated)
 	}))
 	defer srv.Close()
 
-	var (
-		expectedMethod = "POST"
-		expectedPath   = "/download/someHash"
-	)
-
-	ret := NewClient(srv.URL).Download(&torrent)
+	ret := NewClient(srv.URL, testKey).Download(&torrent)
 
 	if srvMethod != expectedMethod {
 		t.Errorf("Download server method %q, expected %q", srvMethod, expectedMethod)
 	}
 	if srvPath != expectedPath {
 		t.Errorf("Download server path %q, expected %q", srvPath, expectedPath)
+	}
+	if !srvValid {
+		t.Error("Download server request was not signed")
 	}
 
 	if ret != true {
