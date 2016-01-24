@@ -3,7 +3,6 @@ package magopie
 import (
 	"encoding/json"
 	"fmt"
-	"io"
 )
 
 // Site defines a site that serves torrent files.
@@ -98,9 +97,4 @@ func (sc *SiteCollection) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON replaces the collection with the results from a JSON []byte
 func (sc *SiteCollection) UnmarshalJSON(data []byte) error {
 	return json.Unmarshal(data, &sc.list)
-}
-
-// UnmarshalJSONReader replaces the collection with the results from a JSON io.Reader
-func (sc *SiteCollection) UnmarshalJSONReader(data io.Reader) error {
-	return json.NewDecoder(data).Decode(&sc.list)
 }

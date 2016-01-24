@@ -3,7 +3,6 @@ package magopie
 import (
 	"encoding/json"
 	"fmt"
-	"io"
 )
 
 // A Torrent is an individual result from a search operation representing a
@@ -102,9 +101,4 @@ func (tc *TorrentCollection) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON replaces the collection with the results from a JSON []byte
 func (tc *TorrentCollection) UnmarshalJSON(data []byte) error {
 	return json.Unmarshal(data, &tc.list)
-}
-
-// UnmarshalJSONReader replaces the collection with the results from a JSON io.Reader
-func (tc *TorrentCollection) UnmarshalJSONReader(data io.Reader) error {
-	return json.NewDecoder(data).Decode(&tc.list)
 }
