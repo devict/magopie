@@ -35,11 +35,39 @@ func fooBarSites() []site {
 	}
 }
 
+// TestAuthentication checks that every route we register gets denied with a
+// 401 if it is not signed.
+func TestAuthentication(t *testing.T) {
+	tests := []struct {
+		method, path string
+	}{
+		{"GET", "/sites"},
+		{"GET", "/sites/foo"},
+		{"GET", "/torrents?q=bar"},
+		{"POST", "/download/1234567890"},
+	}
+
+	r := router(&server{key: testKey})
+
+	for i, test := range tests {
+		req, err := http.NewRequest(test.method, test.path, nil)
+		res := httptest.NewRecorder()
+		if err != nil {
+			t.Fatal("Error making request")
+		}
+		r.ServeHTTP(res, req)
+		if res.Code != http.StatusUnauthorized {
+			t.Errorf("Test %d: %s %s gave status %d, expected %d", i, test.method, test.path, res.Code, http.StatusUnauthorized)
+		}
+	}
+}
+
 func TestGetSites(t *testing.T) {
 	req := mustNewRequest(t, "GET", "/sites", nil)
 	res := httptest.NewRecorder()
 
 	a := &server{
+		key:   testKey,
 		sites: sitedb{sites: fooBarSites()},
 	}
 
@@ -78,6 +106,7 @@ func TestGetSiteSingle(t *testing.T) {
 	res := httptest.NewRecorder()
 
 	a := &server{
+		key:   testKey,
 		sites: sitedb{sites: fooBarSites()},
 	}
 
@@ -162,6 +191,7 @@ func TestGetTorrents(t *testing.T) {
 	}
 
 	a := &server{
+		key:   testKey,
 		sites: sitedb{sites: []site{siteA, siteB, siteC}},
 	}
 
@@ -219,7 +249,7 @@ func TestGetTorrentsFail(t *testing.T) {
 	req := mustNewRequest(t, "GET", "/torrents", nil)
 	res := httptest.NewRecorder()
 
-	router(&server{}).ServeHTTP(res, req)
+	router(&server{key: testKey}).ServeHTTP(res, req)
 
 	if res.Code != http.StatusBadRequest {
 		t.Errorf("%s : status = %d, expected %d", describeReq(req), res.Code, http.StatusBadRequest)
@@ -228,6 +258,7 @@ func TestGetTorrentsFail(t *testing.T) {
 
 func TestPostDownload(t *testing.T) {
 	a := &server{
+		key:         testKey,
 		fs:          &afero.MemMapFs{},
 		downloadDir: "/magopie/downloads",
 	}
