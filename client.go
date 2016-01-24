@@ -10,11 +10,12 @@ import (
 // Client provides methods for talking to a magopie server.
 type Client struct {
 	ServerAddr string
+	ServerKey  string
 }
 
 // NewClient creates a Client
-func NewClient(server string, apiToken string) *Client {
-	return &Client{ServerAddr: server}
+func NewClient(server, key string) *Client {
+	return &Client{ServerAddr: server, ServerKey: key}
 }
 
 // Search asks the Magopie server for a list of results
@@ -30,6 +31,8 @@ func (c *Client) Search(s string) *TorrentCollection {
 	vals := req.URL.Query()
 	vals.Add("q", s)
 	req.URL.RawQuery = vals.Encode()
+
+	SignRequest(req, c.ServerKey)
 
 	res, err := http.DefaultClient.Do(req)
 	if err != nil {
@@ -55,12 +58,18 @@ func (c *Client) Search(s string) *TorrentCollection {
 	return ret
 }
 
-// Download triggers the Magopie server to download
+// Download triggers the Magopie server to download a particular torrent by ID.
 func (c *Client) Download(t *Torrent) bool {
-	fmt.Println("Magopie-go: Triggering Download")
-
 	url := fmt.Sprintf("%s/download/%s", c.ServerAddr, t.ID)
-	res, err := http.Post(url, "", nil)
+	req, err := http.NewRequest("POST", url, nil)
+	if err != nil {
+		log.Print(err)
+		return false
+	}
+
+	SignRequest(req, c.ServerKey)
+
+	res, err := http.DefaultClient.Do(req)
 	if err != nil {
 		log.Print(err)
 		return false
