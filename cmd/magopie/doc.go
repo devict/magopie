@@ -9,11 +9,5 @@
 //*DELETE /sites/{id}/enabled
 
 // GET    /torrents?q=ubuntu
-//*GET    /torrents/{id}
-// POST   /torrents/{id}/download
-//*DELETE /torrents/{id}/download
-
-//*GET    /downloads
-//*GET    /downloads/{id}
-//*POST   /downloads/{id}
+// POST   /download/{id}
 package main

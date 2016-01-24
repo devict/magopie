@@ -5,10 +5,14 @@ import (
 	"io"
 	"net/http"
 	"net/http/httptest"
+	"path/filepath"
 	"reflect"
+	"strings"
 	"testing"
+	"time"
 
 	mp "github.com/gophergala2016/magopie"
+	"github.com/spf13/afero"
 )
 
 func mustNewRequest(t *testing.T, method, urlStr string, body io.Reader) *http.Request {
@@ -244,5 +248,56 @@ func TestGetTorrentsFail(t *testing.T) {
 
 	if res.Code != http.StatusBadRequest {
 		t.Errorf("%s : status = %d, expected %d", describeReq(req), res.Code, http.StatusBadRequest)
+	}
+}
+
+func TestPostDownload(t *testing.T) {
+	a := &app{
+		fs:          &afero.MemMapFs{},
+		downloadDir: "/magopie/downloads",
+	}
+
+	hash := "337b6dbb824ff8acf38846d4698746df7bf2b5c9"
+	file := hash + ".torrent"
+	fullFile := filepath.Join(a.downloadDir, file)
+	content := "torrents!"
+
+	var torMethod, torPath string
+	torcacheSrv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		torMethod = r.Method
+		torPath = r.URL.Path
+		content := strings.NewReader(content)
+		http.ServeContent(w, r, file, time.Time{}, content)
+	}))
+	defer torcacheSrv.Close()
+	a.torcacheURL = torcacheSrv.URL
+
+	// Make the request to magopie to download a particular torrent by hash
+	req := mustNewRequest(t, "POST", "/download/"+hash, nil)
+	res := httptest.NewRecorder()
+
+	router(a).ServeHTTP(res, req)
+
+	if res.Code != http.StatusCreated {
+		t.Errorf("%s : status = %d, expected %d", describeReq(req), res.Code, http.StatusCreated)
+	}
+
+	// Ensure things about the post to the torache server
+	if torMethod != "GET" {
+		t.Errorf("torcache server method = %q, expected %q", torMethod, "GET")
+	}
+	expectedPath := "/torrent/337B6DBB824FF8ACF38846D4698746DF7BF2B5C9.torrent"
+	if torPath != expectedPath {
+		t.Errorf("torcache server path = %q, expected %q", torPath, expectedPath)
+	}
+
+	// Ensure we downloaded the file from the torcache server
+	actualContent, err := afero.ReadFile(a.fs, fullFile)
+	if err != nil {
+		t.Errorf("err reading file in test: %v", err)
+	}
+
+	if string(actualContent) != content {
+		t.Errorf("downloaded file contents %s\nexpected %s", actualContent, content)
 	}
 }
