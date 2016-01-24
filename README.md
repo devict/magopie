@@ -1,4 +1,4 @@
-# Magopie
+# ![alt text][magopietext]
 ## (It's a silent "O")
 [![GoDoc][godoc-badge]][godoc]
 [![Build Status][travis-badge]][travis] 
@@ -6,7 +6,6 @@
 Your Personal Torrent Search Engine
 
 ![alt text][mascot]
-![alt text][magopietext]
 
 ## What's with the name?
 Magopie is pronounced just like "magpie" the bird. We chose the name because
