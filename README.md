@@ -34,8 +34,14 @@ project named `magpie`.
 ## Installation
 TODO
 
-## License
+## Licenses
 Magopie is licensed with the [MIT license](LICENSE).
+The Magopie mascot is a derivative work of the Go gopher, and thus, is licensed under 
+the Creative Commons 3.0 Attributions license.
+
+The Go gopher was designed by Renee French. http://reneefrench.blogspot.com/
+The design is licensed under the Creative Commons 3.0 Attributions license.
+Read this article for more details: https://blog.golang.org/gopher
 
 [godoc]: https://godoc.org/github.com/gophergala2016/magopie "GoDoc"
 [godoc-badge]: https://godoc.org/github.com/gophergala2016/magopie?status.svg "GoDoc Badge"
