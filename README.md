@@ -32,7 +32,10 @@ project named `magpie`.
 * Searches against upstream sites are performed concurrently.
 
 ## Installation
-TODO
+* To install the server:
+```go install github.com/gophergala2016/magopie/cmd/magopie```
+* To install the Android client:
+```TBD```
 
 ## Licenses
 Magopie is licensed with the [MIT license](LICENSE).
