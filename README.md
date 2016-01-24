@@ -1,6 +1,7 @@
 # Magopie
 ## (It's a silent "O")
 [![GoDoc][godoc-badge]][godoc]
+[![Build Status][travis-badge]][travis] 
 
 Your Personal Torrent Search Engine
 
@@ -32,6 +33,8 @@ project named `magpie`.
 
 [godoc]: https://godoc.org/github.com/gophergala2016/magopie "GoDoc"
 [godoc-badge]: https://godoc.org/github.com/gophergala2016/magopie?status.svg "GoDoc Badge"
+[travis]: https://travis-ci.org/gophergala2016/magopie "Travis CI"
+[travis-badge]: https://travis-ci.org/gophergala2016/magopie.svg?branch=master
 [transmission]: http://www.transmissionbt.com/ "Transmission"
 [gomobile]: https://github.com/golang/mobile "gomobile"
 [afero]: https://github.com/spf13/afero "Afero"
