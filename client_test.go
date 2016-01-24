@@ -7,7 +7,7 @@ import (
 	"testing"
 )
 
-func TestSearch(t *testing.T) {
+func TestClientSearch(t *testing.T) {
 	torrent1 := Torrent{
 		ID:        "ID 1",
 		Title:     "Title 1",
@@ -63,5 +63,37 @@ func TestSearch(t *testing.T) {
 	}
 	if trnt := ret.Get(1); *trnt != torrent2 {
 		t.Errorf("Search result[0] = %v, expected %v", *trnt, torrent2)
+	}
+}
+
+func TestClientDownload(t *testing.T) {
+	torrent := Torrent{
+		ID: "someHash",
+	}
+
+	var srvMethod, srvPath string
+	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		srvMethod = r.Method
+		srvPath = r.URL.Path
+		w.WriteHeader(http.StatusCreated)
+	}))
+	defer srv.Close()
+
+	var (
+		expectedMethod = "POST"
+		expectedPath   = "/download/someHash"
+	)
+
+	ret := NewClient(srv.URL).Download(&torrent)
+
+	if srvMethod != expectedMethod {
+		t.Errorf("Download server method %q, expected %q", srvMethod, expectedMethod)
+	}
+	if srvPath != expectedPath {
+		t.Errorf("Download server path %q, expected %q", srvPath, expectedPath)
+	}
+
+	if ret != true {
+		t.Errorf("Download result %v, expected %v", ret, true)
 	}
 }

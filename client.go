@@ -58,5 +58,18 @@ func (c *Client) Search(s string) *TorrentCollection {
 // Download triggers the Magopie server to download
 func (c *Client) Download(t *Torrent) bool {
 	fmt.Println("Magopie-go: Triggering Download")
+
+	url := fmt.Sprintf("%s/download/%s", c.ServerAddr, t.ID)
+	res, err := http.Post(url, "", nil)
+	if err != nil {
+		log.Print(err)
+		return false
+	}
+
+	if res.StatusCode != http.StatusCreated {
+		log.Print("Download request responded with status", res.StatusCode)
+		return false
+	}
+
 	return true
 }
