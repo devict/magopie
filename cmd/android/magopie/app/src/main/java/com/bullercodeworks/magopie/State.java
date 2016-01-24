@@ -26,10 +26,14 @@ public class State {
     results = new ArrayList<>();
     sites = new HashMap<>();
     client = Magopie.NewClient(ServerURL, ApiToken);
-    Magopie.SiteCollection s = client.ListSites();
+    Magopie.SiteCollection s = UpdateSites();
     for(int i = 0; i < s.Length(); i++) {
       sites.put(s.Get(i).getID(), s.Get(i).getName());
     }
+  }
+
+  public Magopie.SiteCollection UpdateSites() {
+    return client.ListSites();
   }
 
   public void save() {

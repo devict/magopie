@@ -57,8 +57,6 @@ public class MainActivity extends Activity {
     TextView.OnEditorActionListener searchOnDone = new TextView.OnEditorActionListener() {
       @Override
       public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-        System.out.println("Triggering search...");
-        System.out.println(actionId);
         if (actionId == EditorInfo.IME_ACTION_DONE) {
           doSearch();
           return true;

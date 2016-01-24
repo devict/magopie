@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+  <item android:id="@+id/download"
+        android:title="Trigger Download"/>
+  <item android:id="@+id/send_to"
+        android:title="Send To..."/>
+</menu>

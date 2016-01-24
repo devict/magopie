@@ -1,10 +1,13 @@
 package com.bullercodeworks.magopie.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,9 +28,14 @@ public class ResultAdapter extends ArrayAdapter<Magopie.Torrent> {
     super(_ctx, R.layout.torrent_list_row, R.id.torrentTitle, _state.results);
     ctx = _ctx;
     state = _state;
+    // If state doesn't have sites at this point, try to grab them again.
+    if(state.sites.isEmpty()) {
+      state.UpdateSites();
+    }
   }
 
   public class ViewHolder {
+    public ImageView magnet;
     public TextView torrentTitle;
     public TextView seeds;
     public TextView leechers;
@@ -36,6 +44,7 @@ public class ResultAdapter extends ArrayAdapter<Magopie.Torrent> {
     public Magopie.Torrent torrent;
 
     ViewHolder(View row) {
+      this.magnet = (ImageView)row.findViewById(R.id.magnetLink);
       this.torrentTitle = (TextView)row.findViewById(R.id.torrentTitle);
       this.seeds = (TextView)row.findViewById(R.id.txtSeeds);
       this.leechers = (TextView)row.findViewById(R.id.txtLeechers);
@@ -45,7 +54,7 @@ public class ResultAdapter extends ArrayAdapter<Magopie.Torrent> {
 
   @Override
   public View getView(int position, View convertView, final ViewGroup parent) {
-    View row = super.getView(position, convertView, parent);
+    final View row = super.getView(position, convertView, parent);
     ViewHolder holder = (ViewHolder)row.getTag();
     if(holder == null) {
       holder = new ViewHolder(row);
@@ -63,18 +72,45 @@ public class ResultAdapter extends ArrayAdapter<Magopie.Torrent> {
     row.setOnLongClickListener(new View.OnLongClickListener() {
       @Override
       public boolean onLongClick(View view) {
-        PopupMenu menu = new PopupMenu(getContext())
-        return false;
+        PopupMenu menu = new PopupMenu(ctx.getApplicationContext(), view);
+        menu.getMenuInflater().inflate(R.menu.popup_menu, menu.getMenu());
+        menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+          public boolean onMenuItemClick(MenuItem item) {
+            int id = item.getItemId();
+            Magopie.Torrent torrent = ((ViewHolder)row.getTag()).torrent;
+            if (id == R.id.download) {
+              if (state.client.Download(torrent)) {
+                Toast.makeText(ctx, "Torrent download triggered", Toast.LENGTH_SHORT).show();
+              } else {
+                Toast.makeText(ctx, "Failed to trigger download!", Toast.LENGTH_SHORT).show();
+              }
+              return true;
+            } else if(id == R.id.send_to) {
+              Intent sendIntent = new Intent();
+              sendIntent.putExtra(Intent.EXTRA_SUBJECT, torrent.getTitle());
+              sendIntent.putExtra(Intent.EXTRA_TEXT, wrk.getMagnetURI());
+              sendIntent.setAction(Intent.ACTION_SEND);
+              sendIntent.setType("text/plain");
+              ctx.startActivity(Intent.createChooser(sendIntent, "Share Torrent!"));
+              return true;
+            }
+            return false;
+          }
+        });
+        menu.show();
+        return true;
       }
     });
-    row.setOnClickListener(new View.OnClickListener() {
+    holder.magnet.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        if(state.client.Download(((ViewHolder) view.getTag()).torrent)) {
-          Toast.makeText(ctx, "Torrent download triggered", Toast.LENGTH_SHORT).show();
-        } else {
-          Toast.makeText(ctx, "Failed to trigger download!", Toast.LENGTH_SHORT).show();
-        }
+        Magopie.Torrent torrent = ((ViewHolder)row.getTag()).torrent;
+        Intent sendIntent = new Intent();
+        sendIntent.putExtra(Intent.EXTRA_SUBJECT, torrent.getTitle());
+        sendIntent.putExtra(Intent.EXTRA_TEXT, wrk.getMagnetURI());
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.setType("text/plain");
+        ctx.startActivity(Intent.createChooser(sendIntent, "Share Torrent!"));
       }
     });
     return row;
