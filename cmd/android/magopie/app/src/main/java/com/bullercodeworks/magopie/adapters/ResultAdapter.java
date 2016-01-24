@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,7 +36,6 @@ public class ResultAdapter extends ArrayAdapter<Magopie.Torrent> {
     public Magopie.Torrent torrent;
 
     ViewHolder(View row) {
-      //this.torrentFile = (TextView)row.findViewById(R.id.torrentFile);
       this.torrentTitle = (TextView)row.findViewById(R.id.torrentTitle);
       this.seeds = (TextView)row.findViewById(R.id.txtSeeds);
       this.leechers = (TextView)row.findViewById(R.id.txtLeechers);
@@ -44,7 +44,7 @@ public class ResultAdapter extends ArrayAdapter<Magopie.Torrent> {
   }
 
   @Override
-  public View getView(int position, View convertView, ViewGroup parent) {
+  public View getView(int position, View convertView, final ViewGroup parent) {
     View row = super.getView(position, convertView, parent);
     ViewHolder holder = (ViewHolder)row.getTag();
     if(holder == null) {
@@ -60,7 +60,13 @@ public class ResultAdapter extends ArrayAdapter<Magopie.Torrent> {
       holder.leechers.setText(String.valueOf(wrk.getLeechers()));
       holder.site.setText(state.sites.get(wrk.getSiteID()));
     }
-
+    row.setOnLongClickListener(new View.OnLongClickListener() {
+      @Override
+      public boolean onLongClick(View view) {
+        PopupMenu menu = new PopupMenu(getContext())
+        return false;
+      }
+    });
     row.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {

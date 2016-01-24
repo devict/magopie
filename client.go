@@ -93,6 +93,9 @@ func (c *Client) ListSites() *SiteCollection {
 		log.Print(err)
 		return ret
 	}
+
+	//SignRequest(req, c.ServerKey)
+
 	res, err := http.DefaultClient.Do(req)
 	if err != nil {
 		// TODO can we return an error?
