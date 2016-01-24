@@ -30,6 +30,9 @@ type server struct {
 
 	// downloadDir is the path to the the dir in fs where we'll store files
 	downloadDir string
+
+	// key is the private key used to check requests
+	key string
 }
 
 func (a *server) handleAllSites(ctx context.Context, w http.ResponseWriter, r *http.Request) {

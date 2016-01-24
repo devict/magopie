@@ -4,13 +4,22 @@ import (
 	"io"
 	"net/http"
 	"testing"
+
+	"github.com/gophergala2016/magopie"
+	"github.com/pborman/uuid"
 )
+
+var testKey = "Margo the magpie"
 
 func mustNewRequest(t *testing.T, method, urlStr string, body io.Reader) *http.Request {
 	r, err := http.NewRequest(method, urlStr, body)
 	if err != nil {
 		t.Fatal(err)
 	}
+
+	id := uuid.NewRandom().String()
+	r.Header.Set("X-Request-ID", id)
+	r.Header.Set("X-HMAC", magopie.HMAC(id, testKey))
 
 	return r
 }
