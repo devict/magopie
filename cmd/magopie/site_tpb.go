@@ -102,15 +102,21 @@ func tpbParse(r io.Reader) ([]magopie.Torrent, error) {
 	return torrents, nil
 }
 
-func hashFromMagnet(m string) (string, error) {
-	re := regexp.MustCompile(`magnet:\?xt=urn:btih:([^&]+)`)
-	match := re.FindStringSubmatch(m)
+// btihRE finds the BTIH hash from the xt segment of a Magnet URI
+var btihRE = regexp.MustCompile(`urn:btih:(.+)`)
 
-	if len(match) <= 0 {
+func hashFromMagnet(m string) (string, error) {
+	parsed, err := url.Parse(m)
+	if err != nil {
+		return "", err
+	}
+
+	matches := btihRE.FindStringSubmatch(parsed.Query().Get("xt"))
+	if len(matches) <= 0 {
 		return "", ErrHashlessMagnet
 	}
 
-	return match[1], nil
+	return matches[1], nil
 }
 
 func bytesFromDetails(d string) (int, error) {
