@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"log"
 	"net/http"
@@ -14,15 +15,28 @@ import (
 	"github.com/spf13/afero"
 )
 
+var (
+	httpAddr    = flag.String("http", ":8080", "HTTP service address")
+	downloadDir = flag.String("dir", ".", "Directory where magopie should download .torrent files")
+	apiKey      = flag.String("key", "", "Shared API key for clients (required)")
+)
+
 func init() {
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
 }
 
-// TODO configure: port/interface, download dir, api key
-
 func main() {
+	flag.Parse()
+
+	if *apiKey == "" {
+		fmt.Fprintln(os.Stderr, "-key flag is required")
+		flag.Usage()
+		os.Exit(1)
+	}
+
 	a := &server{
-		fs: afero.OsFs{},
+		key: *apiKey,
+		fs:  afero.OsFs{},
 		sites: sitedb{
 			sites: []site{
 				kickAssTorrents,
@@ -30,17 +44,11 @@ func main() {
 			},
 		},
 		torcacheURL: "http://torcache.net",
-		downloadDir: ".",
+		downloadDir: *downloadDir,
 	}
 
-	var port string
-	if port = os.Getenv("PORT"); port == "" {
-		port = "8080"
-	}
-
-	addr := fmt.Sprintf("%s:%s", "0.0.0.0", port)
-	log.Printf("Listening on %s", addr)
-	log.Fatal(http.ListenAndServe(addr, router(a)))
+	log.Printf("Listening on %s", *httpAddr)
+	log.Fatal(http.ListenAndServe(*httpAddr, router(a)))
 }
 
 func router(a *server) http.Handler {
