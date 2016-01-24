@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"io"
 	"net/http"
 	"net/http/httptest"
 	"path/filepath"
@@ -14,19 +13,6 @@ import (
 	mp "github.com/gophergala2016/magopie"
 	"github.com/spf13/afero"
 )
-
-func mustNewRequest(t *testing.T, method, urlStr string, body io.Reader) *http.Request {
-	r, err := http.NewRequest(method, urlStr, body)
-	if err != nil {
-		t.Fatal(err)
-	}
-
-	return r
-}
-
-func describeReq(req *http.Request) string {
-	return req.Method + " " + req.URL.String()
-}
 
 func fooBarSites() []site {
 	return []site{
@@ -53,7 +39,7 @@ func TestGetSites(t *testing.T) {
 	req := mustNewRequest(t, "GET", "/sites", nil)
 	res := httptest.NewRecorder()
 
-	a := &app{
+	a := &server{
 		sites: sitedb{sites: fooBarSites()},
 	}
 
@@ -91,7 +77,7 @@ func TestGetSiteSingle(t *testing.T) {
 	req := mustNewRequest(t, "GET", "/sites/bar", nil)
 	res := httptest.NewRecorder()
 
-	a := &app{
+	a := &server{
 		sites: sitedb{sites: fooBarSites()},
 	}
 
@@ -175,7 +161,7 @@ func TestGetTorrents(t *testing.T) {
 		},
 	}
 
-	a := &app{
+	a := &server{
 		sites: sitedb{sites: []site{siteA, siteB, siteC}},
 	}
 
@@ -227,24 +213,13 @@ func TestGetTorrents(t *testing.T) {
 	}
 }
 
-func diffMaps(t *testing.T, a, b []map[string]interface{}) {
-	for i := range a {
-		for k := range a[i] {
-			valA, valB := a[i][k], b[i][k]
-			if valA != valB {
-				t.Logf("%d %q: a: %v, b: %v", i, k, valA, valB)
-			}
-		}
-	}
-}
-
 // TestGetTorrentsFail tests what happens when you don't include the
 // required param q
 func TestGetTorrentsFail(t *testing.T) {
 	req := mustNewRequest(t, "GET", "/torrents", nil)
 	res := httptest.NewRecorder()
 
-	router(&app{}).ServeHTTP(res, req)
+	router(&server{}).ServeHTTP(res, req)
 
 	if res.Code != http.StatusBadRequest {
 		t.Errorf("%s : status = %d, expected %d", describeReq(req), res.Code, http.StatusBadRequest)
@@ -252,7 +227,7 @@ func TestGetTorrentsFail(t *testing.T) {
 }
 
 func TestPostDownload(t *testing.T) {
-	a := &app{
+	a := &server{
 		fs:          &afero.MemMapFs{},
 		downloadDir: "/magopie/downloads",
 	}
