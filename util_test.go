@@ -32,7 +32,7 @@ func TestSignRequest(t *testing.T) {
 		key    = "banana"
 	)
 
-	SignRequest(req, key)
+	signRequest(req, key)
 
 	id := req.Header.Get("X-Request-ID")
 	if id == "" {
@@ -61,12 +61,12 @@ func TestRequestIsSigned(t *testing.T) {
 	req.Header.Set("X-Request-ID", id)
 	req.Header.Set("X-HMAC", mac)
 
-	if !RequestIsSigned(req, key) {
+	if !requestIsSigned(req, key) {
 		t.Fatal("RequestIsSigned rejected our message, should have accepted it.")
 	}
 
 	req.Header.Set("X-HMAC", badMAC)
-	if RequestIsSigned(req, key) {
+	if requestIsSigned(req, key) {
 		t.Fatal("RequestIsSigned accepted our message, should have rejected it.")
 	}
 }
