@@ -21,12 +21,12 @@
     </activity>
     <activity
         android:name=".ConfigActivity"
-        android:label="magopie config"
+        android:label=""
         android:screenOrientation="portrait"
         android:theme="@style/AppTheme"/>
     <activity
         android:name=".AboutActivity"
-        android:label="about magopie"
+        android:label=""
         android:screenOrientation="portrait"
         android:theme="@style/AppTheme"/>
   </application>

@@ -11,7 +11,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-import android.view.animation.AlphaAnimation;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -22,12 +21,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.bullercodeworks.magopie.adapters.ResultAdapter;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.w3c.dom.Text;
-
-import javax.xml.transform.Result;
 
 import go.magopie.Magopie;
 
@@ -141,6 +134,7 @@ public class MainActivity extends Activity {
 
     //noinspection SimplifiableIfStatement
     if (id == R.id.action_settings) {
+      loadConfigActivity();
       return true;
     }
 

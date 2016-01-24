@@ -9,6 +9,7 @@ import (
 // Search asks the Magopie server for a list of results
 func Search(s string) *TorrentCollection {
 	ret := &TorrentCollection{}
+
 	for i := 0; i < 100; i++ {
 		ai := strconv.Itoa(i)
 		ret.Push(&Torrent{

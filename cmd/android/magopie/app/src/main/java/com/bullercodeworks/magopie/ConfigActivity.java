@@ -33,13 +33,21 @@ public class ConfigActivity extends Activity {
   public void onResume() {
     super.onResume();
     state.load();
-    TextView serverURL = (TextView)findViewById(R.id.txtServerURL);
-    serverURL.setText(state.ServerURL);
+    txtServerURL.setText(state.ServerURL);
   }
 
   @Override
   public void onPause() {
     state.save();
     super.onPause();
+  }
+
+  @Override
+  public void onBackPressed() {
+    if("".equals(txtServerURL.getText().toString())) {
+      this.finishAffinity();
+    } else {
+      super.onBackPressed();
+    }
   }
 }
