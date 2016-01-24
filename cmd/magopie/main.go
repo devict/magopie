@@ -11,7 +11,11 @@ import (
 	"path/filepath"
 	"strings"
 
+	"golang.org/x/net/context"
+
 	"github.com/gophergala2016/magopie"
+	"github.com/rs/xhandler"
+	"github.com/rs/xmux"
 	"github.com/spf13/afero"
 )
 
@@ -43,15 +47,15 @@ func main() {
 }
 
 func router(a *app) http.Handler {
-	r := http.NewServeMux()
+	mux := xmux.New()
 
 	// TODO switch to a muxer where I define the method as part of the route
-	r.HandleFunc("/sites", a.handleSites)
-	r.HandleFunc("/sites/", a.handleSites)
-	r.HandleFunc("/torrents", a.handleTorrents)
-	r.HandleFunc("/download/", a.handleDownload)
+	mux.GET("/sites", xhandler.HandlerFuncC(a.handleAllSites))
+	mux.GET("/sites/:id", xhandler.HandlerFuncC(a.handleSingleSite))
+	mux.GET("/torrents", xhandler.HandlerFuncC(a.handleTorrents))
+	mux.POST("/download/:hash", xhandler.HandlerFuncC(a.handleDownload))
 
-	return r
+	return xhandler.New(context.Background(), mux)
 }
 
 type app struct {
@@ -68,24 +72,22 @@ type app struct {
 	downloadDir string
 }
 
-func (a *app) handleSites(w http.ResponseWriter, r *http.Request) {
-	enc := json.NewEncoder(w)
-	pfx := len("/sites/")
-
-	if len(r.URL.Path) <= pfx {
-		if err := enc.Encode(a.sites.GetAllSites()); err != nil {
-			log.Println(err)
-		}
-		return
-	}
-
-	id := r.URL.Path[pfx:]
-	if err := enc.Encode(a.sites.GetSite(id)); err != nil {
+func (a *app) handleAllSites(ctx context.Context, w http.ResponseWriter, r *http.Request) {
+	err := json.NewEncoder(w).Encode(a.sites.GetAllSites())
+	if err != nil {
 		log.Println(err)
 	}
 }
 
-func (a *app) handleTorrents(w http.ResponseWriter, r *http.Request) {
+func (a *app) handleSingleSite(ctx context.Context, w http.ResponseWriter, r *http.Request) {
+	id := xmux.Param(ctx, "id")
+	err := json.NewEncoder(w).Encode(a.sites.GetSite(id))
+	if err != nil {
+		log.Println(err)
+	}
+}
+
+func (a *app) handleTorrents(ctx context.Context, w http.ResponseWriter, r *http.Request) {
 	// TODO better error response?
 	term := r.FormValue("q")
 	if term == "" {
@@ -111,23 +113,17 @@ func (a *app) handleTorrents(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func (a *app) handleDownload(w http.ResponseWriter, r *http.Request) {
-	pfx := len("/download/")
-	if len(r.URL.Path) <= pfx {
-		// TODO what to do here?
-		w.WriteHeader(http.StatusBadRequest)
-		return
-	}
-
-	hash := r.URL.Path[pfx:]
+func (a *app) handleDownload(ctx context.Context, w http.ResponseWriter, r *http.Request) {
+	hash := strings.ToUpper(xmux.Param(ctx, "hash"))
 	url := fmt.Sprintf(
 		"%s/torrent/%s.torrent",
 		a.torcacheURL,
-		url.QueryEscape(strings.ToUpper(hash)),
+		url.QueryEscape(hash),
 	)
 
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
+		log.Print(err)
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
@@ -141,6 +137,8 @@ func (a *app) handleDownload(w http.ResponseWriter, r *http.Request) {
 	}
 	defer res.Body.Close()
 
+	// Ensure download directory exists
+	// TODO should this be done every request?
 	err = a.fs.MkdirAll(a.downloadDir, 0755)
 	if err != nil {
 		log.Print("Error making download dir", err)
@@ -148,6 +146,8 @@ func (a *app) handleDownload(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// Create file to write torrent
+	// TODO create with .part or something then move when done
 	path := filepath.Join(a.downloadDir, hash+".torrent")
 	file, err := a.fs.Create(path)
 	if err != nil {
@@ -155,6 +155,8 @@ func (a *app) handleDownload(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
+
+	// Copy file contents from torcache response to os file
 	_, err = io.Copy(file, res.Body)
 	if err != nil {
 		log.Print(err)

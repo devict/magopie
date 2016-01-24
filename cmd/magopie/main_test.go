@@ -258,7 +258,7 @@ func TestPostDownload(t *testing.T) {
 	}
 
 	hash := "337b6dbb824ff8acf38846d4698746df7bf2b5c9"
-	file := hash + ".torrent"
+	file := strings.ToUpper(hash) + ".torrent"
 	fullFile := filepath.Join(a.downloadDir, file)
 	content := "torrents!"
 
