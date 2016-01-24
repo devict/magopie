@@ -1,11 +1,8 @@
-# ![alt text][magopietext]
-## (It's a silent "O")
-[![GoDoc][godoc-badge]][godoc]
-[![Build Status][travis-badge]][travis] 
+# ![Magopie][magopietext] [![GoDoc][godoc-badge]][godoc] [![Build Status][travis-badge]][travis]
+![Magopie Mascot][mascot]
 
-Your Personal Torrent Search Engine
+Your Personal Torrent Search Engine. *(It's a silent "O".)*
 
-![alt text][mascot]
 
 ## What's with the name?
 Magopie is pronounced just like "magpie" the bird. We chose the name because
@@ -32,6 +29,9 @@ project named `magpie`.
   implementations.
 * Torrents are gathered by parsing Kick Ass Torrents XML feeds and by scraping
   the search page of The Pirate Bay using [goquery][goquery].
+
+## Installation
+TODO
 
 ## License
 Magopie is licensed with the [MIT license](LICENSE).
