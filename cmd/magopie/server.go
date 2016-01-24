@@ -10,6 +10,7 @@ import (
 	"path/filepath"
 	"sort"
 	"strings"
+	"sync"
 
 	"github.com/gophergala2016/magopie"
 	"github.com/rs/xmux"
@@ -53,17 +54,36 @@ func (a *server) handleTorrents(ctx context.Context, w http.ResponseWriter, r *h
 		return
 	}
 
-	// TODO do this concurrently
+	ch := make(chan magopie.Torrent)
+	sites := a.sites.GetEnabledSites()
+	var wg sync.WaitGroup
+	wg.Add(len(sites))
+
+	// Kick off a search of each upstream site
+	for _, s := range sites {
+		go func(s site) {
+			defer wg.Done()
+			results, err := s.search(term)
+			if err != nil {
+				log.Printf("Error searching %q on %v: %v", term, s.ID, err)
+				return
+			}
+			for _, t := range results {
+				ch <- t
+			}
+		}(s)
+	}
+
+	// Once all sites are done close the chan so the range loop below finishes
+	go func() {
+		wg.Wait()
+		close(ch)
+	}()
+
+	// Fan in results from all goroutines
 	torrents := []magopie.Torrent{}
-	for _, s := range a.sites.GetEnabledSites() {
-		results, err := s.search(term)
-		if err != nil {
-			log.Printf("Error searching %q on %v: %v", term, s.ID, err)
-			continue
-		}
-		for _, t := range results {
-			torrents = append(torrents, t)
-		}
+	for t := range ch {
+		torrents = append(torrents, t)
 	}
 
 	sort.Sort(magopie.BySeeders(torrents))

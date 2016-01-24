@@ -29,6 +29,7 @@ project named `magpie`.
   implementations.
 * Torrents are gathered by parsing Kick Ass Torrents XML feeds and by scraping
   the search page of The Pirate Bay using [goquery][goquery].
+* Searches against upstream sites are performed concurrently.
 
 ## Installation
 TODO
