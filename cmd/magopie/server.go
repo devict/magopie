@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"net/url"
 	"path/filepath"
+	"sort"
 	"strings"
 
 	"github.com/gophergala2016/magopie"
@@ -46,7 +47,6 @@ func (a *server) handleSingleSite(ctx context.Context, w http.ResponseWriter, r 
 }
 
 func (a *server) handleTorrents(ctx context.Context, w http.ResponseWriter, r *http.Request) {
-	// TODO better error response?
 	term := r.FormValue("q")
 	if term == "" {
 		w.WriteHeader(http.StatusBadRequest)
@@ -65,6 +65,8 @@ func (a *server) handleTorrents(ctx context.Context, w http.ResponseWriter, r *h
 			torrents = append(torrents, t)
 		}
 	}
+
+	sort.Sort(magopie.BySeeders(torrents))
 
 	if err := json.NewEncoder(w).Encode(torrents); err != nil {
 		log.Println(err)

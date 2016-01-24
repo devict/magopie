@@ -189,15 +189,6 @@ func TestGetTorrents(t *testing.T) {
 
 	expected := []map[string]interface{}{
 		{
-			"ID":        "torrent1",
-			"Title":     "ubuntu 1",
-			"MagnetURI": "http://sitea/torrent1",
-			"SiteID":    "a",
-			"Seeders":   float64(10),
-			"Leechers":  float64(50),
-			"Size":      float64(1234567),
-		},
-		{
 			"ID":        "torrentB",
 			"Title":     "ubuntu 2",
 			"MagnetURI": "http://siteb/torrentB",
@@ -205,6 +196,15 @@ func TestGetTorrents(t *testing.T) {
 			"Seeders":   float64(20),
 			"Leechers":  float64(80),
 			"Size":      float64(7654321),
+		},
+		{
+			"ID":        "torrent1",
+			"Title":     "ubuntu 1",
+			"MagnetURI": "http://sitea/torrent1",
+			"SiteID":    "a",
+			"Seeders":   float64(10),
+			"Leechers":  float64(50),
+			"Size":      float64(1234567),
 		},
 	}
 	if !reflect.DeepEqual(actual, expected) {

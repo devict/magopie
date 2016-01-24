@@ -14,6 +14,13 @@ type Torrent struct {
 	Size      int
 }
 
+// BySeeders implements sort.Interface for []Torrent based on Seeeders.
+type BySeeders []Torrent
+
+func (s BySeeders) Len() int           { return len(s) }
+func (s BySeeders) Swap(i, j int)      { s[i], s[j] = s[j], s[i] }
+func (s BySeeders) Less(i, j int) bool { return s[i].Seeders > s[j].Seeders }
+
 // TorrentCollection is a collection of torrents because gomobile can't
 // handle slices
 type TorrentCollection struct {
