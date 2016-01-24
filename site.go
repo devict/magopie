@@ -1,6 +1,9 @@
 package magopie
 
-import "fmt"
+import (
+	"encoding/json"
+	"fmt"
+)
 
 // Site defines a site that serves torrent files.
 type Site struct {
@@ -64,4 +67,34 @@ func (sc *SiteCollection) Remove(i int) {
 	copy(sc.list[i:], sc.list[i+1:])
 	sc.list[len(sc.list)-1] = Site{}
 	sc.list = sc.list[:len(sc.list)-1]
+}
+
+// Push adds an element to the end of the collection
+func (sc *SiteCollection) Push(s *Site) {
+	sc.Insert(sc.Length(), s)
+}
+
+// Pop removes the last element from the collection
+func (sc *SiteCollection) Pop(s *Site) {
+	sc.Remove(sc.Length() - 1)
+}
+
+// Unshift adds an element to the front of the collection
+func (sc *SiteCollection) Unshift(s *Site) {
+	sc.Insert(0, s)
+}
+
+// Shift removes an element from the front of the collection
+func (sc *SiteCollection) Shift(s *Site) {
+	sc.Remove(0)
+}
+
+// MarshalJSON replaces the collection with what is from the json
+func (sc *TorrentCollection) MarshalJSON() ([]byte, error) {
+	return json.Marshal(sc.list)
+}
+
+// UnmarshalJSON returns JSON from the collection
+func (sc *TorrentCollection) UnmarshalJSON(data []byte) error {
+	return json.Unmarshal(data, sc.list)
 }

@@ -61,11 +61,31 @@ func (tc *TorrentCollection) Insert(i int, t *Torrent) {
 
 // Remove a torrent from the collection at i
 func (tc *TorrentCollection) Remove(i int) {
-	if i < 0 || i > tc.Length() {
+	if i < 0 || i >= tc.Length() {
 		fmt.Printf("Magopie-go:: Attempted to remove a torrent from an invalid index")
 		return
 	}
 	copy(tc.list[i:], tc.list[i+1:])
 	tc.list[len(tc.list)-1] = Torrent{}
 	tc.list = tc.list[:len(tc.list)-1]
+}
+
+// Push adds an element to the end of the collection
+func (tc *TorrentCollection) Push(t *Torrent) {
+	tc.Insert(tc.Length(), t)
+}
+
+// Pop removes the last element from the collection
+func (tc *TorrentCollection) Pop(t *Torrent) {
+	tc.Remove(tc.Length() - 1)
+}
+
+// Unshift adds an element to the front of the collection
+func (tc *TorrentCollection) Unshift(t *Torrent) {
+	tc.Insert(0, t)
+}
+
+// Shift removes an element from the front of the collection
+func (tc *TorrentCollection) Shift(t *Torrent) {
+	tc.Remove(0)
 }
