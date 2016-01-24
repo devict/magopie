@@ -25,6 +25,7 @@ func main() {
 		sites: sitedb{
 			sites: []site{
 				kickAssTorrents,
+				thePirateBay,
 			},
 		},
 		torcacheURL: "http://torcache.net",

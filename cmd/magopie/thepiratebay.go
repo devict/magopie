@@ -1,8 +1,11 @@
 package main
 
 import (
+	"fmt"
 	"io"
 	"log"
+	"net/http"
+	"net/url"
 	"regexp"
 	"strconv"
 
@@ -19,14 +22,26 @@ var thePirateBay = site{
 		Enabled: true,
 	},
 	search: func(term string) ([]magopie.Torrent, error) {
-		// TODO make http request the pass body to tpbParse()
-		return nil, nil
+		url := fmt.Sprintf(
+			"https://thepiratebay.se/search/%s/0/7/0",
+			url.QueryEscape(term),
+		)
+
+		res, err := http.DefaultClient.Get(url)
+		if err != nil {
+			return nil, err
+		}
+		defer res.Body.Close()
+
+		if res.StatusCode != 200 {
+			return nil, ErrFailedRequest
+		}
+
+		return tpbParse(res.Body)
 	},
 }
 
 func tpbParse(r io.Reader) ([]magopie.Torrent, error) {
-	// TODO implement
-
 	doc, err := goquery.NewDocumentFromReader(r)
 	if err != nil {
 		return nil, err
