@@ -35,7 +35,7 @@ func TestClientSearch(t *testing.T) {
 		srvMethod = r.Method
 		srvPath = r.URL.Path
 		srvQuery = r.FormValue("q")
-		srvValid = RequestIsSigned(r, testKey)
+		srvValid = requestIsSigned(r, testKey)
 		json.NewEncoder(w).Encode([]Torrent{torrent1, torrent2})
 	}))
 	defer srv.Close()
@@ -86,7 +86,7 @@ func TestClientDownload(t *testing.T) {
 	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		srvMethod = r.Method
 		srvPath = r.URL.Path
-		srvValid = RequestIsSigned(r, testKey)
+		srvValid = requestIsSigned(r, testKey)
 		w.WriteHeader(http.StatusCreated)
 	}))
 	defer srv.Close()

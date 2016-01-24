@@ -32,7 +32,7 @@ func (c *Client) Search(s string) *TorrentCollection {
 	vals.Add("q", s)
 	req.URL.RawQuery = vals.Encode()
 
-	SignRequest(req, c.ServerKey)
+	signRequest(req, c.ServerKey)
 
 	res, err := http.DefaultClient.Do(req)
 	if err != nil {
@@ -67,7 +67,7 @@ func (c *Client) Download(t *Torrent) bool {
 		return false
 	}
 
-	SignRequest(req, c.ServerKey)
+	signRequest(req, c.ServerKey)
 
 	res, err := http.DefaultClient.Do(req)
 	if err != nil {

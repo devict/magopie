@@ -51,16 +51,16 @@ func CheckMAC(message, messageMAC, key string) bool {
 	return hmac.Equal(msgMAC, mac.Sum(nil))
 }
 
-// SignRequest sets X-Request-ID and X-HMAC headers on a request signed with
+// signRequest sets X-Request-ID and X-HMAC headers on a request signed with
 // the given key.
-func SignRequest(r *http.Request, key string) {
+func signRequest(r *http.Request, key string) {
 	id := uuid.NewRandom().String()
 	r.Header.Set("X-Request-ID", id)
 	r.Header.Set("X-HMAC", HMAC(id, key))
 }
 
-// RequestIsSigned validates the authentication headers on a request.
-func RequestIsSigned(r *http.Request, key string) bool {
+// requestIsSigned validates the authentication headers on a request.
+func requestIsSigned(r *http.Request, key string) bool {
 	hdr := r.Header
 	return CheckMAC(hdr.Get("X-Request-ID"), hdr.Get("X-HMAC"), key)
 }
