@@ -5,6 +5,9 @@
 
 Your Personal Torrent Search Engine
 
+![alt text][mascot]
+![alt text][magopietext]
+
 ## What's with the name?
 Magopie is pronounced just like "magpie" the bird. We chose the name because
 magpies are known for collecting things (especially if they're shiny). We added
@@ -32,7 +35,7 @@ project named `magpie`.
   the search page of The Pirate Bay using [goquery][goquery].
 
 ## License
-Magopie is licenses with the MIT license.
+Magopie is licensed with the MIT license.
 
 [godoc]: https://godoc.org/github.com/gophergala2016/magopie "GoDoc"
 [godoc-badge]: https://godoc.org/github.com/gophergala2016/magopie?status.svg "GoDoc Badge"
@@ -42,3 +45,5 @@ Magopie is licenses with the MIT license.
 [gomobile]: https://github.com/golang/mobile "gomobile"
 [afero]: https://github.com/spf13/afero "Afero"
 [goquery]: https://github.com/PuerkitoBio/goquery "goquery"
+[mascot]: https://raw.githubusercontent.com/benblankley/magopie/master/magopie.png "Magopie Mascot"
+[magopietext]: https://raw.githubusercontent.com/benblankley/magopie/master/magopie_logo_text.png "Magopie"
