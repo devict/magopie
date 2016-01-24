@@ -20,6 +20,7 @@ func NewClient(server, key string) *Client {
 
 // Search asks the Magopie server for a list of results
 func (c *Client) Search(s string) *TorrentCollection {
+	fmt.Println("Sending Search Request: " + c.ServerAddr + " - " + c.ServerKey)
 	ret := &TorrentCollection{}
 
 	req, err := http.NewRequest("GET", c.ServerAddr+"/torrents", nil)
@@ -60,6 +61,7 @@ func (c *Client) Search(s string) *TorrentCollection {
 
 // Download triggers the Magopie server to download a particular torrent by ID.
 func (c *Client) Download(t *Torrent) bool {
+	fmt.Println("Sending Download Request: " + c.ServerAddr + " - " + c.ServerKey)
 	url := fmt.Sprintf("%s/download/%s", c.ServerAddr, t.ID)
 	req, err := http.NewRequest("POST", url, nil)
 	if err != nil {
@@ -85,6 +87,7 @@ func (c *Client) Download(t *Torrent) bool {
 
 // ListSites returns a collection of the sites that the server knows about
 func (c *Client) ListSites() *SiteCollection {
+	fmt.Println("Sending SiteList Request: " + c.ServerAddr + " - " + c.ServerKey)
 	ret := &SiteCollection{}
 
 	req, err := http.NewRequest("GET", c.ServerAddr+"/sites", nil)
