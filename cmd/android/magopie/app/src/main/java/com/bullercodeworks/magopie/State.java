@@ -4,6 +4,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import go.magopie.Magopie;
 
@@ -15,15 +16,27 @@ public class State {
   public String file = "/data/data/com.bullercodeworks.magopie/state";
 
   public String ServerURL = "";
+  public String ApiToken = "";
   public ArrayList<Magopie.Torrent> results;
+  public Magopie.Client client;
+  public HashMap<String, String> sites;
 
   public State() {
+    load();
     results = new ArrayList<>();
+    sites = new HashMap<>();
+    client = Magopie.NewClient(ServerURL, ApiToken);
+    Magopie.SiteCollection s = client.ListSites();
+    for(int i = 0; i < s.Length(); i++) {
+      sites.put(s.Get(i).getID(), s.Get(i).getName());
+    }
   }
+
   public void save() {
     try {
       JSONObject jsonState = new JSONObject();
       jsonState.put("serverURL", ServerURL);
+      jsonState.put("apiToken", ApiToken);
       Magopie.SaveToFile(file, jsonState.toString().getBytes());
     } catch(Exception e) { }
   }
@@ -36,6 +49,7 @@ public class State {
       try {
         JSONObject jsonState = new JSONObject(ret);
         ServerURL = jsonState.getString("serverURL");
+        ApiToken = jsonState.getString("apiToken");
       } catch(JSONException e) {}
     }
   }

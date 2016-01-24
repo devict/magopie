@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 /**
@@ -11,7 +12,8 @@ import android.widget.TextView;
  */
 public class ConfigActivity extends Activity {
   public State state;
-  TextView txtServerURL;
+  EditText txtServerURL;
+  EditText txtApiToken;
   Button btnSaveConfig;
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -19,11 +21,14 @@ public class ConfigActivity extends Activity {
     setContentView(R.layout.content_config);
     state = new State();
     btnSaveConfig = (Button)findViewById(R.id.btnSaveConfig);
-    txtServerURL = (TextView)findViewById(R.id.txtServerURL);
+    txtServerURL = (EditText)findViewById(R.id.txtServerURL);
+    txtApiToken = (EditText)findViewById(R.id.txtApiToken);
     btnSaveConfig.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
         state.ServerURL = txtServerURL.getText().toString();
+        state.ApiToken = txtApiToken.getText().toString();
+
         finish();
       }
     });
@@ -34,6 +39,7 @@ public class ConfigActivity extends Activity {
     super.onResume();
     state.load();
     txtServerURL.setText(state.ServerURL);
+    txtApiToken.setText(state.ApiToken);
   }
 
   @Override

@@ -3,18 +3,62 @@
     android:orientation="horizontal"
     android:layout_height="match_parent"
     android:layout_width="match_parent">
-  <LinearLayout
-    android:orientation="vertical"
+  <RelativeLayout
     android:layout_height="match_parent"
     android:layout_width="match_parent">
+    <ImageView android:id="@+id/magnetLink"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_margin="6dp"
+        android:src="@drawable/magnet"/>
+
     <TextView android:id="@+id/torrentTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="25dip"/>
-    <TextView android:id="@+id/torrentFile"
-        android:layout_width="match_parent"
+        android:layout_toLeftOf="@id/magnetLink"
+        android:textSize="18dip"/>
+
+    <TextView android:id="@+id/torrentSite"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_alignParentLeft="true"
+              android:layout_below="@id/torrentTitle"
+              android:textSize="16dip"/>
+
+    <LinearLayout
+        android:layout_below="@id/torrentTitle"
+        android:layout_toLeftOf="@id/magnetLink"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="12dip"/>
-  </LinearLayout>
+        android:orientation="horizontal">
+
+      <TextView android:id="@+id/lblSeeds"
+                android:text="S:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16dip"/>
+      <TextView android:id="@+id/txtSeeds"
+                android:text=""
+                android:textColor="@android:color/holo_green_light"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="6dp"
+                android:textSize="16dip"/>
+
+      <TextView android:id="@+id/lblLeechers"
+                android:text="L:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16dip"/>
+      <TextView android:id="@+id/txtLeechers"
+                android:text=""
+                android:textColor="@android:color/holo_red_light"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16dip"/>
+
+    </LinearLayout>
+  </RelativeLayout>
 </LinearLayout>
     

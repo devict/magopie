@@ -3,6 +3,7 @@ package com.bullercodeworks.magopie;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -87,7 +88,7 @@ public class MainActivity extends Activity {
     inpResSearch.setOnEditorActionListener(searchOnDone);
 
     if(resultAdapter == null) {
-      resultAdapter = new ResultAdapter(state.results, this);
+      resultAdapter = new ResultAdapter(state, this);
     }
     resultList = (ListView)findViewById(R.id.resultList);
     resultList.setAdapter(resultAdapter);
@@ -142,18 +143,25 @@ public class MainActivity extends Activity {
   }
 
   public void doSearch() {
-    // TODO: Actually Search, Display Results.
-    System.out.println("Doing Torrent Search");
     String srchTerm = inpSearch.getText().toString();
     if(layoutResults.getVisibility() == View.VISIBLE) {
       srchTerm = inpResSearch.getText().toString();
     }
-    Magopie.TorrentCollection wrk = Magopie.NewClient(state.ServerURL).Search(srchTerm);
+    /*
+    ProgressDialog progress = new ProgressDialog(this);
+    progress.setTitle("Loading");
+    progress.setMessage("Wait while loading...");
+    progress.show();
+    */
+    Magopie.TorrentCollection wrk = Magopie.NewClient(state.ServerURL, state.ApiToken).Search(srchTerm);
     state.results.clear();
     for(int i = 0; i < wrk.Length(); i++) {
       state.results.add(wrk.Get(i));
     }
     resultAdapter.notifyDataSetChanged();
+    /*
+    progress.dismiss();
+    */
     if(layoutResults.getVisibility() != View.VISIBLE) {
       switchToResults();
     } else {

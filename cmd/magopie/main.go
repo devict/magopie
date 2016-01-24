@@ -35,7 +35,7 @@ func main() {
 		port = "8080"
 	}
 
-	addr := fmt.Sprintf("%s:%s", "localhost", port)
+	addr := fmt.Sprintf("%s:%s", "0.0.0.0", port)
 	log.Printf("Listening on %s", addr)
 	log.Fatal(http.ListenAndServe(addr, router(a)))
 }

@@ -13,7 +13,7 @@ type Client struct {
 }
 
 // NewClient creates a Client
-func NewClient(server string) *Client {
+func NewClient(server string, apiToken string) *Client {
 	return &Client{ServerAddr: server}
 }
 
@@ -72,4 +72,37 @@ func (c *Client) Download(t *Torrent) bool {
 	}
 
 	return true
+}
+
+// ListSites returns a collection of the sites that the server knows about
+func (c *Client) ListSites() *SiteCollection {
+	ret := &SiteCollection{}
+
+	req, err := http.NewRequest("GET", c.ServerAddr+"/sites", nil)
+	if err != nil {
+		// TODO can we return an error?
+		log.Print(err)
+		return ret
+	}
+	res, err := http.DefaultClient.Do(req)
+	if err != nil {
+		// TODO can we return an error?
+		log.Print(err)
+		return ret
+	}
+	defer res.Body.Close()
+	var buf bytes.Buffer
+	if _, err := buf.ReadFrom(res.Body); err != nil {
+		// TODO can we return an error?
+		log.Print(err)
+		return ret
+	}
+
+	if err := ret.UnmarshalJSON(buf.Bytes()); err != nil {
+		// TODO can we return an error?
+		log.Print(err)
+		return ret
+	}
+
+	return ret
 }
