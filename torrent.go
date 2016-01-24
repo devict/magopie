@@ -1,6 +1,10 @@
 package magopie
 
-import "fmt"
+import (
+	"encoding/json"
+	"fmt"
+	"io"
+)
 
 // A Torrent is an individual result from a search operation representing a
 // single torrent file.
@@ -88,4 +92,19 @@ func (tc *TorrentCollection) Unshift(t *Torrent) {
 // Shift removes an element from the front of the collection
 func (tc *TorrentCollection) Shift(t *Torrent) {
 	tc.Remove(0)
+}
+
+// MarshalJSON returns JSON from the collection
+func (tc *TorrentCollection) MarshalJSON() ([]byte, error) {
+	return json.Marshal(tc.list)
+}
+
+// UnmarshalJSON replaces the collection with the results from a JSON []byte
+func (tc *TorrentCollection) UnmarshalJSON(data []byte) error {
+	return json.Unmarshal(data, &tc.list)
+}
+
+// UnmarshalJSONReader replaces the collection with the results from a JSON io.Reader
+func (tc *TorrentCollection) UnmarshalJSONReader(data io.Reader) error {
+	return json.NewDecoder(data).Decode(&tc.list)
 }

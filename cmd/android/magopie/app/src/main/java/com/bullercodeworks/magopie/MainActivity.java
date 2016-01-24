@@ -148,7 +148,7 @@ public class MainActivity extends Activity {
     if(layoutResults.getVisibility() == View.VISIBLE) {
       srchTerm = inpResSearch.getText().toString();
     }
-    Magopie.TorrentCollection wrk = Magopie.Search(srchTerm);
+    Magopie.TorrentCollection wrk = Magopie.NewClient(state.ServerURL).Search(srchTerm);
     state.results.clear();
     for(int i = 0; i < wrk.Length(); i++) {
       state.results.add(wrk.Get(i));
