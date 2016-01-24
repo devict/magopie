@@ -28,13 +28,13 @@ project named `magpie`.
 ## Notable Features
 * Android client using Go bindings via [gomobile][gomobile].
 * Downloaded `.torrent` files are saved to disk through an [afero][afero]
-  filesystem interface providing for future extensability to other remote afero
+  filesystem interface providing for future extensibility to other remote afero
   implementations.
 * Torrents are gathered by parsing Kick Ass Torrents XML feeds and by scraping
   the search page of The Pirate Bay using [goquery][goquery].
 
 ## License
-Magopie is licensed with the MIT license.
+Magopie is licensed with the [MIT license](LICENSE).
 
 [godoc]: https://godoc.org/github.com/gophergala2016/magopie "GoDoc"
 [godoc-badge]: https://godoc.org/github.com/gophergala2016/magopie?status.svg "GoDoc Badge"
