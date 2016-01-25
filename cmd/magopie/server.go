@@ -136,19 +136,27 @@ func (a *server) handleDownload(ctx context.Context, w http.ResponseWriter, r *h
 		return
 	}
 
-	// Create file to write torrent
-	// TODO create with .part or something then move when done
-	path := filepath.Join(a.downloadDir, hash+".torrent")
-	file, err := a.fs.Create(path)
+	// Create temp .part file to write torrent contents from the response Body
+	// then move .part file to .torrent. We do this so other services don't see
+	// the .torrent file while we're still writing it and moving it is an atomic
+	// operation.
+	tempPath := filepath.Join(a.downloadDir, hash+".part")
+	finalPath := filepath.Join(a.downloadDir, hash+".torrent")
+	file, err := a.fs.Create(tempPath)
 	if err != nil {
 		log.Print(err)
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
 
-	// Copy file contents from torcache response to os file
 	_, err = io.Copy(file, res.Body)
 	if err != nil {
+		log.Print(err)
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+
+	if err := a.fs.Rename(tempPath, finalPath); err != nil {
 		log.Print(err)
 		w.WriteHeader(http.StatusInternalServerError)
 		return
