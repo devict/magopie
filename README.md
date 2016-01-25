@@ -24,7 +24,8 @@ project named `magpie`.
 
 ![Demo][demogif]
 
-Note: we were tunneling through ngrok to work around a local network problem.
+Note: we were tunneling through ngrok for the demo to work around a local
+networking problem.
 
 ## Notable Features
 * Android client using Go bindings via [gomobile][gomobile].
@@ -34,6 +35,11 @@ Note: we were tunneling through ngrok to work around a local network problem.
 * Torrents are gathered by parsing Kick Ass Torrents XML feeds and by scraping
   the search page of The Pirate Bay using [goquery][goquery].
 * Searches against upstream sites are performed concurrently.
+
+## Future Plans
+* Serve magopie over TLS with automatic integration with Let's Encrypt.
+* Improve/replace the authentication mechanism.
+* Create an iOS app using the gomobile bindings.
 
 ## Licenses
 Magopie is licensed with the [MIT license](LICENSE).
