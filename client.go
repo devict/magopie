@@ -97,7 +97,7 @@ func (c *Client) ListSites() *SiteCollection {
 		return ret
 	}
 
-	//SignRequest(req, c.ServerKey)
+	signRequest(req, c.ServerKey)
 
 	res, err := http.DefaultClient.Do(req)
 	if err != nil {

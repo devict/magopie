@@ -6,7 +6,7 @@ gobind {
   pkg = "github.com/gophergala2016/magopie"
 
   /* GOPATH where the Go package is; check `go env` */
-  GOPATH = "/home/brbuller/Development/go"
+  GOPATH = "/Users/jwalker/go"
 
   /* Absolute path to the go binary */
   GO = "/usr/local/go/bin/go"
