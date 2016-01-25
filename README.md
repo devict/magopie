@@ -38,7 +38,7 @@ project named `magpie`.
 
 ## Licenses
 Magopie is licensed with the [MIT license](LICENSE).
-The Magopie mascot is a derivative work of the Go gopher, and thus, is licensed under 
+Margo, the Magopie mascot, is a derivative work of the Go gopher, and thus, is licensed under 
 the Creative Commons 3.0 Attributions license.
 
 The Go gopher was designed by Renee French. http://reneefrench.blogspot.com/
