@@ -1,5 +1,6 @@
 # ![Magopie][magopietext] [![GoDoc][godoc-badge]][godoc] [![Build Status][travis-badge]][travis]
-![Magopie Mascot][mascot]
+
+<img width="200px" align="right" src="https://raw.githubusercontent.com/gophergala2016/magopie/master/magopie.png">
 
 Your Personal Torrent Search Engine. *(It's a silent "O".)*
 
@@ -53,4 +54,4 @@ Read this article for more details: https://blog.golang.org/gopher
 [goquery]: https://github.com/PuerkitoBio/goquery "goquery"
 [mascot]: https://raw.githubusercontent.com/gophergala2016/magopie/master/magopie.png "Magopie Mascot"
 [magopietext]: https://raw.githubusercontent.com/gophergala2016/magopie/master/magopie_logo_text.png "Magopie"
-[demogif]: https://raw.githubusercontent.com/gophergala2016/magopie/master/magopie_demo.gif "Demo"
+[demogif]: http://i.imgur.com/cLshfTl.gif "Demo"
