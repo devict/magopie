@@ -3,7 +3,6 @@
 
 Your Personal Torrent Search Engine. *(It's a silent "O".)*
 
-
 ## What's with the name?
 Magopie is pronounced just like "magpie" the bird. We chose the name because
 magpies are known for collecting things (especially if they're shiny). We added
@@ -22,6 +21,8 @@ project named `magpie`.
    that same directory for new `.torrent` files.
 3. I want to do all of that from my phone.
 
+![Demo][demogif]
+
 ## Notable Features
 * Android client using Go bindings via [gomobile][gomobile].
 * Downloaded `.torrent` files are saved to disk through an [afero][afero]
@@ -30,11 +31,6 @@ project named `magpie`.
 * Torrents are gathered by parsing Kick Ass Torrents XML feeds and by scraping
   the search page of The Pirate Bay using [goquery][goquery].
 * Searches against upstream sites are performed concurrently.
-
-## Installation
-* To install the server:
-```go install github.com/gophergala2016/magopie/cmd/magopie```
-* To install the Android client:
 
 ## Licenses
 Magopie is licensed with the [MIT license](LICENSE).
@@ -55,3 +51,4 @@ Read this article for more details: https://blog.golang.org/gopher
 [goquery]: https://github.com/PuerkitoBio/goquery "goquery"
 [mascot]: https://raw.githubusercontent.com/gophergala2016/magopie/master/magopie.png "Magopie Mascot"
 [magopietext]: https://raw.githubusercontent.com/gophergala2016/magopie/master/magopie_logo_text.png "Magopie"
+[demogif]: https://raw.githubusercontent.com/gophergala2016/magopie/master/magopie_demo.gif "Demo"
