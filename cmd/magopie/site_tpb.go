@@ -10,8 +10,8 @@ import (
 	"strconv"
 
 	"github.com/PuerkitoBio/goquery"
-	"github.com/dustin/go-humanize"
 	"github.com/devict/magopie"
+	"github.com/dustin/go-humanize"
 )
 
 var thePirateBay = site{

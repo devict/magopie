@@ -1,8 +1,7 @@
-# ![Magopie][magopietext] [![GoDoc][godoc-badge]][godoc] [![Build Status][travis-badge]][travis]
+# <img src="https://raw.githubusercontent.com/devict/magopie/master/logo.png" style="background-color: transparent!" alt="Magopie" title="Magopie" /><br />[![GoDoc][godoc-badge]][godoc] [![Build Status][travis-badge]][travis] [![Build Status][goreport-badge]][goreport]
 
-<img width="200px" align="right" src="https://raw.githubusercontent.com/devict/magopie/master/magopie.png">
-
-Your Personal Torrent Search Engine. *(It's a silent "O".)*
+Your Personal Torrent Search Engine.  
+*(It's a silent "O".)*
 
 ## What's with the name?
 Magopie is pronounced just like "magpie" the bird. We chose the name because
@@ -44,6 +43,7 @@ networking problem.
 
 ## Licenses
 Magopie is licensed with the [MIT license](LICENSE).
+
 Margo, the Magopie mascot, is a derivative work of the Go gopher, and thus, is licensed under 
 the Creative Commons 3.0 Attributions license.
 
@@ -53,12 +53,12 @@ Read this article for more details: https://blog.golang.org/gopher
 
 The magopie project was initially developed for the [2016 Gopher Gala][magopie-gala]
 
-[mascot]: https://raw.githubusercontent.com/devict/magopie/master/magopie.png "Magopie Mascot"
-[magopietext]: https://raw.githubusercontent.com/devict/magopie/master/magopie_logo_text.png "Magopie"
 [godoc]: https://godoc.org/github.com/devict/magopie "GoDoc"
 [godoc-badge]: https://godoc.org/github.com/devict/magopie?status.svg "GoDoc Badge"
 [travis]: https://travis-ci.org/devict/magopie "Travis CI"
 [travis-badge]: https://travis-ci.org/devict/magopie.svg?branch=master
+[goreport]: http://goreportcard.com/report/devict/magopie "Go Report Card"
+[goreport-badge]: http://goreportcard.com/badge/devict/magopie "Go Report Card Badge"
 [transmission]: http://www.transmissionbt.com/ "Transmission"
 [gomobile]: https://github.com/golang/mobile "gomobile"
 [afero]: https://github.com/spf13/afero "Afero"
