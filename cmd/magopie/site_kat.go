@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/gophergala2016/magopie"
+	"github.com/devict/magopie"
 )
 
 var kickAssTorrents = site{

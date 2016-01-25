@@ -3,7 +3,7 @@ plugins {
 }
 
 gobind {
-  pkg = "github.com/gophergala2016/magopie"
+  pkg = "github.com/devict/magopie"
 
   /* GOPATH where the Go package is; check `go env` */
   GOPATH = "/Users/jwalker/go"

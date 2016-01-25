@@ -3,7 +3,7 @@ package main
 import (
 	"sync"
 
-	"github.com/gophergala2016/magopie"
+	"github.com/devict/magopie"
 )
 
 type site struct {

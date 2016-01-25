@@ -12,7 +12,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/gophergala2016/magopie"
+	"github.com/devict/magopie"
 	"github.com/rs/xmux"
 	"github.com/spf13/afero"
 	"golang.org/x/net/context"

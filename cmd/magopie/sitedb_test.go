@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	mp "github.com/gophergala2016/magopie"
+	mp "github.com/devict/magopie"
 )
 
 var (

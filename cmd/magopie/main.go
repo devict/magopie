@@ -9,7 +9,7 @@ import (
 
 	"golang.org/x/net/context"
 
-	"github.com/gophergala2016/magopie"
+	"github.com/devict/magopie"
 	"github.com/rs/xhandler"
 	"github.com/rs/xmux"
 	"github.com/spf13/afero"

@@ -1,6 +1,6 @@
 # ![Magopie][magopietext] [![GoDoc][godoc-badge]][godoc] [![Build Status][travis-badge]][travis]
 
-<img width="200px" align="right" src="https://raw.githubusercontent.com/gophergala2016/magopie/master/magopie.png">
+<img width="200px" align="right" src="https://raw.githubusercontent.com/devict/magopie/master/magopie.png">
 
 Your Personal Torrent Search Engine. *(It's a silent "O".)*
 
@@ -22,6 +22,7 @@ project named `magpie`.
    that same directory for new `.torrent` files.
 3. I want to do all of that from my phone.
 
+## Demo
 ![Demo][demogif]
 
 Note: we were tunneling through ngrok for the demo to work around a local
@@ -50,14 +51,17 @@ The Go gopher was designed by Renee French. http://reneefrench.blogspot.com/
 The design is licensed under the Creative Commons 3.0 Attributions license.
 Read this article for more details: https://blog.golang.org/gopher
 
-[godoc]: https://godoc.org/github.com/gophergala2016/magopie "GoDoc"
-[godoc-badge]: https://godoc.org/github.com/gophergala2016/magopie?status.svg "GoDoc Badge"
-[travis]: https://travis-ci.org/gophergala2016/magopie "Travis CI"
-[travis-badge]: https://travis-ci.org/gophergala2016/magopie.svg?branch=master
+The magopie project was initially developed for the [2016 Gopher Gala][magopie-gala]
+
+[mascot]: https://raw.githubusercontent.com/devict/magopie/master/magopie.png "Magopie Mascot"
+[magopietext]: https://raw.githubusercontent.com/devict/magopie/master/magopie_logo_text.png "Magopie"
+[godoc]: https://godoc.org/github.com/devict/magopie "GoDoc"
+[godoc-badge]: https://godoc.org/github.com/devict/magopie?status.svg "GoDoc Badge"
+[travis]: https://travis-ci.org/devict/magopie "Travis CI"
+[travis-badge]: https://travis-ci.org/devict/magopie.svg?branch=master
 [transmission]: http://www.transmissionbt.com/ "Transmission"
 [gomobile]: https://github.com/golang/mobile "gomobile"
 [afero]: https://github.com/spf13/afero "Afero"
 [goquery]: https://github.com/PuerkitoBio/goquery "goquery"
-[mascot]: https://raw.githubusercontent.com/gophergala2016/magopie/master/magopie.png "Magopie Mascot"
-[magopietext]: https://raw.githubusercontent.com/gophergala2016/magopie/master/magopie_logo_text.png "Magopie"
 [demogif]: http://i.imgur.com/cLshfTl.gif "Demo"
+[magopie-gala]: https://github.com/gophergala2016/magopie "magopie for the Gopher Gala"

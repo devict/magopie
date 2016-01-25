@@ -11,7 +11,7 @@ import (
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/dustin/go-humanize"
-	"github.com/gophergala2016/magopie"
+	"github.com/devict/magopie"
 )
 
 var thePirateBay = site{

@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"testing"
 
-	"github.com/gophergala2016/magopie"
+	"github.com/devict/magopie"
 	"github.com/pborman/uuid"
 )
 

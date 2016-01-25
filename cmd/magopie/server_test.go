@@ -10,7 +10,7 @@ import (
 	"testing"
 	"time"
 
-	mp "github.com/gophergala2016/magopie"
+	mp "github.com/devict/magopie"
 	"github.com/spf13/afero"
 )
 
