@@ -23,6 +23,8 @@ project named `magpie`.
 
 ![Demo][demogif]
 
+Note: we were tunneling through ngrok to work around a local network problem.
+
 ## Notable Features
 * Android client using Go bindings via [gomobile][gomobile].
 * Downloaded `.torrent` files are saved to disk through an [afero][afero]
