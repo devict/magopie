@@ -9,7 +9,7 @@ import (
 )
 
 func TestTPBParse(t *testing.T) {
-	data, err := os.Open("testdata/tpb_ubuntu.html")
+	data, err := os.Open("testdata/tpb_ubuntu")
 	if err != nil {
 		t.Fatal("Error opening fixture", err)
 	}
