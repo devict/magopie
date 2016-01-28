@@ -11,6 +11,7 @@ import (
 type Client struct {
 	ServerAddr string
 	ServerKey  string
+	verbose    bool
 }
 
 // NewClient creates a Client
@@ -20,13 +21,17 @@ func NewClient(server, key string) *Client {
 
 // Search asks the Magopie server for a list of results
 func (c *Client) Search(s string) *TorrentCollection {
-	log.Println("Sending Search Request: " + c.ServerAddr + " - " + c.ServerKey)
+	if c.verbose {
+		log.Println("Sending Search Request: " + c.ServerAddr + " - " + c.ServerKey)
+	}
 	ret := &TorrentCollection{}
 
 	req, err := http.NewRequest("GET", c.ServerAddr+"/torrents", nil)
 	if err != nil {
 		// TODO can we return an error?
-		log.Print(err)
+		if c.verbose {
+			log.Print(err)
+		}
 		return ret
 	}
 	vals := req.URL.Query()
@@ -38,7 +43,9 @@ func (c *Client) Search(s string) *TorrentCollection {
 	res, err := http.DefaultClient.Do(req)
 	if err != nil {
 		// TODO can we return an error?
-		log.Print(err)
+		if c.verbose {
+			log.Print(err)
+		}
 		return ret
 	}
 	defer res.Body.Close()
@@ -46,13 +53,17 @@ func (c *Client) Search(s string) *TorrentCollection {
 	var buf bytes.Buffer
 	if _, err := buf.ReadFrom(res.Body); err != nil {
 		// TODO can we return an error?
-		log.Print(err)
+		if c.verbose {
+			log.Print(err)
+		}
 		return ret
 	}
 
 	if err := ret.UnmarshalJSON(buf.Bytes()); err != nil {
 		// TODO can we return an error?
-		log.Print(err)
+		if c.verbose {
+			log.Print(err)
+		}
 		return ret
 	}
 
@@ -61,11 +72,15 @@ func (c *Client) Search(s string) *TorrentCollection {
 
 // Download triggers the Magopie server to download a particular torrent by ID.
 func (c *Client) Download(t *Torrent) bool {
-	log.Println("Sending Download Request: " + c.ServerAddr + " - " + c.ServerKey)
+	if c.verbose {
+		log.Println("Sending Download Request: " + c.ServerAddr + " - " + c.ServerKey)
+	}
 	url := fmt.Sprintf("%s/download/%s", c.ServerAddr, t.ID)
 	req, err := http.NewRequest("POST", url, nil)
 	if err != nil {
-		log.Print(err)
+		if c.verbose {
+			log.Print(err)
+		}
 		return false
 	}
 
@@ -73,12 +88,16 @@ func (c *Client) Download(t *Torrent) bool {
 
 	res, err := http.DefaultClient.Do(req)
 	if err != nil {
-		log.Print(err)
+		if c.verbose {
+			log.Print(err)
+		}
 		return false
 	}
 
 	if res.StatusCode != http.StatusCreated {
-		log.Print("Download request responded with status", res.StatusCode)
+		if c.verbose {
+			log.Print("Download request responded with status", res.StatusCode)
+		}
 		return false
 	}
 
@@ -87,13 +106,17 @@ func (c *Client) Download(t *Torrent) bool {
 
 // ListSites returns a collection of the sites that the server knows about
 func (c *Client) ListSites() *SiteCollection {
-	log.Println("Sending SiteList Request: " + c.ServerAddr + " - " + c.ServerKey)
+	if c.verbose {
+		log.Println("Sending SiteList Request: " + c.ServerAddr + " - " + c.ServerKey)
+	}
 	ret := &SiteCollection{}
 
 	req, err := http.NewRequest("GET", c.ServerAddr+"/sites", nil)
 	if err != nil {
 		// TODO can we return an error?
-		log.Print(err)
+		if c.verbose {
+			log.Print(err)
+		}
 		return ret
 	}
 
@@ -102,22 +125,33 @@ func (c *Client) ListSites() *SiteCollection {
 	res, err := http.DefaultClient.Do(req)
 	if err != nil {
 		// TODO can we return an error?
-		log.Print(err)
+		if c.verbose {
+			log.Print(err)
+		}
 		return ret
 	}
 	defer res.Body.Close()
 	var buf bytes.Buffer
 	if _, err := buf.ReadFrom(res.Body); err != nil {
 		// TODO can we return an error?
-		log.Print(err)
+		if c.verbose {
+			log.Print(err)
+		}
 		return ret
 	}
 
 	if err := ret.UnmarshalJSON(buf.Bytes()); err != nil {
 		// TODO can we return an error?
-		log.Print(err)
+		if c.verbose {
+			log.Print(err)
+		}
 		return ret
 	}
 
 	return ret
+}
+
+// SetVerbose tells whether the client chatters about what's going on
+func (c *Client) SetVerbose(b bool) {
+	c.verbose = b
 }
