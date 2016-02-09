@@ -3,6 +3,8 @@
 Your Personal Torrent Search Engine.  
 *(It's a silent "O".)*
 
+This project was an [honorable mention][gala-blog] in the 2016 Gopher Gala.
+
 ## What's with the name?
 Magopie is pronounced just like "magpie" the bird. We chose the name because
 magpies are known for collecting things (especially if they're shiny). We added
@@ -51,8 +53,6 @@ The Go gopher was designed by Renee French. http://reneefrench.blogspot.com/
 The design is licensed under the Creative Commons 3.0 Attributions license.
 Read this article for more details: https://blog.golang.org/gopher
 
-The magopie project was initially developed for the [2016 Gopher Gala][magopie-gala]
-
 [godoc]: https://godoc.org/github.com/devict/magopie "GoDoc"
 [godoc-badge]: https://godoc.org/github.com/devict/magopie?status.svg "GoDoc Badge"
 [travis]: https://travis-ci.org/devict/magopie "Travis CI"
@@ -64,4 +64,4 @@ The magopie project was initially developed for the [2016 Gopher Gala][magopie-g
 [afero]: https://github.com/spf13/afero "Afero"
 [goquery]: https://github.com/PuerkitoBio/goquery "goquery"
 [demogif]: http://i.imgur.com/cLshfTl.gif "Demo"
-[magopie-gala]: https://github.com/gophergala2016/magopie "magopie for the Gopher Gala"
+[gala-blog]: http://gophergala.com/blog/gopher/gala/2016/02/05/winners-2016/ "Gopher Gala blog"
