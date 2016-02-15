@@ -13,9 +13,8 @@ import (
 	"sync"
 
 	"github.com/devict/magopie"
-	"github.com/rs/xmux"
+	"github.com/gorilla/mux"
 	"github.com/spf13/afero"
-	"golang.org/x/net/context"
 )
 
 type server struct {
@@ -35,15 +34,16 @@ type server struct {
 	key string
 }
 
-func (a *server) handleAllSites(ctx context.Context, w http.ResponseWriter, r *http.Request) {
+func (a *server) handleAllSites(w http.ResponseWriter, r *http.Request) {
 	err := json.NewEncoder(w).Encode(a.sites.GetAllSites())
 	if err != nil {
 		log.Println(err)
 	}
 }
 
-func (a *server) handleSingleSite(ctx context.Context, w http.ResponseWriter, r *http.Request) {
-	id := xmux.Param(ctx, "id")
+func (a *server) handleSingleSite(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	id := vars["id"]
 	err := json.NewEncoder(w).Encode(a.sites.GetSite(id))
 	if err != nil {
 		log.Println(err)
@@ -57,7 +57,7 @@ func (s BySeeders) Len() int           { return len(s) }
 func (s BySeeders) Swap(i, j int)      { s[i], s[j] = s[j], s[i] }
 func (s BySeeders) Less(i, j int) bool { return s[i].Seeders > s[j].Seeders }
 
-func (a *server) handleTorrents(ctx context.Context, w http.ResponseWriter, r *http.Request) {
+func (a *server) handleTorrents(w http.ResponseWriter, r *http.Request) {
 	term := r.FormValue("q")
 	if term == "" {
 		w.WriteHeader(http.StatusBadRequest)
@@ -103,8 +103,9 @@ func (a *server) handleTorrents(ctx context.Context, w http.ResponseWriter, r *h
 	}
 }
 
-func (a *server) handleDownload(ctx context.Context, w http.ResponseWriter, r *http.Request) {
-	hash := strings.ToUpper(xmux.Param(ctx, "hash"))
+func (a *server) handleDownload(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	hash := strings.ToUpper(vars["hash"])
 	url := fmt.Sprintf(
 		"%s/torrent/%s.torrent",
 		a.torcacheURL,

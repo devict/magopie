@@ -7,11 +7,9 @@ import (
 	"net/http"
 	"os"
 
-	"golang.org/x/net/context"
-
 	"github.com/devict/magopie"
-	"github.com/rs/xhandler"
-	"github.com/rs/xmux"
+	"github.com/gorilla/mux"
+	"github.com/justinas/alice"
 	"github.com/spf13/afero"
 )
 
@@ -52,19 +50,16 @@ func main() {
 }
 
 func router(a *server) http.Handler {
-	mux := xmux.New()
+	r := mux.NewRouter()
 
-	c := xhandler.Chain{}
+	r.HandleFunc("/sites", a.handleAllSites).Methods("GET")
+	r.HandleFunc("/sites/{id}", a.handleSingleSite).Methods("GET")
+	r.HandleFunc("/torrents", a.handleTorrents).Methods("GET")
+	r.HandleFunc("/download/{hash}", a.handleDownload).Methods("POST")
 
-	c.Use(mwLogger)
-	c.Use(mwAuthenticationCheck(a.key))
+	chain := alice.New(mwLogger, mwAuthenticationCheck(a.key)).Then(r)
 
-	mux.GET("/sites", c.HandlerCF(xhandler.HandlerFuncC(a.handleAllSites)))
-	mux.GET("/sites/:id", c.HandlerCF(xhandler.HandlerFuncC(a.handleSingleSite)))
-	mux.GET("/torrents", c.HandlerCF(xhandler.HandlerFuncC(a.handleTorrents)))
-	mux.POST("/download/:hash", c.HandlerCF(xhandler.HandlerFuncC(a.handleDownload)))
-
-	return xhandler.New(context.Background(), mux)
+	return chain
 }
 
 func mwLogger(next http.Handler) http.Handler {
