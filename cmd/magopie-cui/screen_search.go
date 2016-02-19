@@ -55,14 +55,14 @@ func (screen *searchScreen) handleKeyEvent(event termbox.Event) int {
 		saveConfig()
 		return searchScreenIndex
 	} else if screen.showClientNotSetModal {
-		screen.clientNotSet.HandleKeyPress(event)
+		screen.clientNotSet.HandleEvent(event)
 		if screen.clientNotSet.IsDone() {
 			screen.showClientNotSetModal = false
 			screen.showClientAddrModal = true
 		}
 		return searchScreenIndex
 	} else if screen.showClientAddrModal {
-		screen.clientAddrM.HandleKeyPress(event)
+		screen.clientAddrM.HandleEvent(event)
 		if screen.clientAddrM.IsDone() {
 			val := screen.clientAddrM.GetValue()
 			if !strings.HasPrefix(val, "http") {
@@ -73,7 +73,7 @@ func (screen *searchScreen) handleKeyEvent(event termbox.Event) int {
 		}
 		return searchScreenIndex
 	} else if screen.showClientKeyModal {
-		screen.clientKeyM.HandleKeyPress(event)
+		screen.clientKeyM.HandleEvent(event)
 		if screen.clientKeyM.IsDone() {
 			screen.showClientKeyModal = false
 			if !createClient(screen.clientAddrM.GetValue(), screen.clientKeyM.GetValue()) {
@@ -95,10 +95,10 @@ func (screen *searchScreen) handleKeyEvent(event termbox.Event) int {
 		if event.Key == termbox.KeyEnter {
 			screen.performSearch()
 		} else {
-			screen.searchBox.HandleKeyPress(event)
+			screen.searchBox.HandleEvent(event)
 		}
 	case tabResults:
-		screen.resMenu.HandleKeyPress(event)
+		screen.resMenu.HandleEvent(event)
 		if screen.resMenu.IsDone() {
 			i := screen.resMenu.GetSelectedIndex()
 			if len(screen.results) > i {
