@@ -1,0 +1,111 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"path": "github.com/PuerkitoBio/goquery",
+			"revision": "4126223a86db8598275b29db04d511cfdab67cf1",
+			"revisionTime": "2016-02-16T20:35:17-05:00"
+		},
+		{
+			"path": "github.com/andybalholm/cascadia",
+			"revision": "3ad29d1ad1c4f2023e355603324348cf1f4b2d48",
+			"revisionTime": "2015-07-30T10:44:59-07:00"
+		},
+		{
+			"path": "github.com/br0xen/termbox-util",
+			"revision": "c3e595e205f44a41e8f959d9c70fbbb1faf18f67",
+			"revisionTime": "2016-02-19T08:51:24-06:00"
+		},
+		{
+			"path": "github.com/dustin/go-humanize",
+			"revision": "8929fe90cee4b2cb9deb468b51fb34eba64d1bf0",
+			"revisionTime": "2015-11-25T16:46:33-05:00"
+		},
+		{
+			"path": "github.com/gorilla/context",
+			"revision": "1c83b3eabd45b6d76072b66b746c20815fb2872d",
+			"revisionTime": "2015-08-19T22:12:45-07:00"
+		},
+		{
+			"path": "github.com/gorilla/mux",
+			"revision": "26a6070f849969ba72b72256e9f14cf519751690",
+			"revisionTime": "2015-12-31T08:19:08-08:00"
+		},
+		{
+			"path": "github.com/justinas/alice",
+			"revision": "78131a09b9e7bcccbb8a99d8e2f2168bb576e67a",
+			"revisionTime": "2016-02-10T18:25:14+02:00"
+		},
+		{
+			"path": "github.com/kr/fs",
+			"revision": "2788f0dbd16903de03cb8186e5c7d97b69ad387b",
+			"revisionTime": "2013-11-07T09:25:44+11:00"
+		},
+		{
+			"path": "github.com/mattn/go-runewidth",
+			"revision": "d037b52ae5c0338c2bb18da01fb7ddf0e8be9aa1",
+			"revisionTime": "2016-02-16T20:09:16+09:00"
+		},
+		{
+			"path": "github.com/nsf/termbox-go",
+			"revision": "362329b0aa6447eadd52edd8d660ec1dff470295",
+			"revisionTime": "2016-01-23T04:29:15+05:00"
+		},
+		{
+			"path": "github.com/pborman/uuid",
+			"revision": "c55201b036063326c5b1b89ccfe45a184973d073",
+			"revisionTime": "2016-02-16T08:37:10-08:00"
+		},
+		{
+			"path": "github.com/pkg/sftp",
+			"revision": "e84cc8c755ca39b7b64f510fe1fffc1b51f210a5",
+			"revisionTime": "2016-01-18T14:07:21-05:00"
+		},
+		{
+			"path": "github.com/spf13/afero",
+			"revision": "2f194a29d557d6d46aa202870df1e9062dbda4d4",
+			"revisionTime": "2016-02-17T11:33:17+01:00"
+		},
+		{
+			"path": "github.com/spf13/afero/mem",
+			"revision": "2f194a29d557d6d46aa202870df1e9062dbda4d4",
+			"revisionTime": "2016-02-17T11:33:17+01:00"
+		},
+		{
+			"path": "github.com/spf13/afero/sftp",
+			"revision": "2f194a29d557d6d46aa202870df1e9062dbda4d4",
+			"revisionTime": "2016-02-17T11:33:17+01:00"
+		},
+		{
+			"path": "golang.org/x/crypto/curve25519",
+			"revision": "1f22c0103821b9390939b6776727195525381532",
+			"revisionTime": "2016-01-26T09:50:25-08:00"
+		},
+		{
+			"path": "golang.org/x/crypto/ssh",
+			"revision": "1f22c0103821b9390939b6776727195525381532",
+			"revisionTime": "2016-01-26T09:50:25-08:00"
+		},
+		{
+			"path": "golang.org/x/net/html",
+			"revision": "b6d7b1396ec874c3b00f6c84cd4301a17c56c8ed",
+			"revisionTime": "2016-02-16T22:16:06+09:00"
+		},
+		{
+			"path": "golang.org/x/net/html/atom",
+			"revision": "b6d7b1396ec874c3b00f6c84cd4301a17c56c8ed",
+			"revisionTime": "2016-02-16T22:16:06+09:00"
+		},
+		{
+			"path": "golang.org/x/text/transform",
+			"revision": "07b9a78963006a15c538ec5175243979025fa7a8",
+			"revisionTime": "2016-02-11T19:16:47+11:00"
+		},
+		{
+			"path": "golang.org/x/text/unicode/norm",
+			"revision": "07b9a78963006a15c538ec5175243979025fa7a8",
+			"revisionTime": "2016-02-11T19:16:47+11:00"
+		}
+	]
+}

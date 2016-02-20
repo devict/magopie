@@ -43,6 +43,13 @@ networking problem.
 * Improve/replace the authentication mechanism.
 * Create an iOS app using the gomobile bindings.
 
+## Development
+Go dependencies are vendored under `vendor/`. If you need to add or update a
+dep you should use the [govendor tool][govendor].
+
+Development currently targets Go version 1.6 but will probably work on 1.5 with
+the vendor experiment enabled.
+
 ## Licenses
 Magopie is licensed with the [MIT license](LICENSE).
 
@@ -64,4 +71,5 @@ Read this article for more details: https://blog.golang.org/gopher
 [afero]: https://github.com/spf13/afero "Afero"
 [goquery]: https://github.com/PuerkitoBio/goquery "goquery"
 [demogif]: http://i.imgur.com/cLshfTl.gif "Demo"
+[govendor]: https://github.com/kardianos/govendor "govendor"
 [gala-blog]: http://gophergala.com/blog/gopher/gala/2016/02/05/winners-2016/ "Gopher Gala blog"
