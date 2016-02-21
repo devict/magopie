@@ -14,9 +14,11 @@ import (
 )
 
 var (
-	httpAddr    = flag.String("http", ":8080", "HTTP service address")
+	addr        = flag.String("addr", ":8080", "HTTP(S) service address")
 	downloadDir = flag.String("dir", ".", "Directory where magopie should download .torrent files")
 	apiKey      = flag.String("key", "", "Shared API key for clients (required)")
+	tlsKey      = flag.String("tlsKey", "", "Path to TLS Key")
+	tlsCert     = flag.String("tlsCert", "", "Path to TLS Cert")
 )
 
 func init() {
@@ -45,8 +47,13 @@ func main() {
 		downloadDir: *downloadDir,
 	}
 
-	log.Printf("Listening on %s", *httpAddr)
-	log.Fatal(http.ListenAndServe(*httpAddr, router(a)))
+	if *tlsKey != "" && *tlsCert != "" {
+		log.Printf("Listening for HTTPS on %s with key %s and cert %s", *addr, *tlsKey, *tlsCert)
+		log.Fatal(http.ListenAndServeTLS(*addr, *tlsCert, *tlsKey, router(a)))
+	} else {
+		log.Printf("Listening for HTTP on %s", *addr)
+		log.Fatal(http.ListenAndServe(*addr, router(a)))
+	}
 }
 
 func router(a *server) http.Handler {
