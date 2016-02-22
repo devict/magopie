@@ -50,6 +50,20 @@ dep you should use the [govendor tool][govendor].
 Development currently targets Go version 1.6 but will probably work on 1.5 with
 the vendor experiment enabled.
 
+### Android
+To work on the Android app do the following:
+
+* Install [gomobile][gomobile].
+* Install [Android Studio][android] and SDK level 22.
+* Connect a device and ensure you can see it with `adb devices`.
+* In Android Studio set your `GOPATH`. First open the settings dialog at
+  `Android Studio > Preferences` on Mac OS X or under `File > Settings` on
+  Linux and Windows. From there go to `Build, Execution, Deployment > Path
+  Variables` and add the variable `GOPATH` that points to your normal `$GOPATH`
+  such as `/Users/jwalker/go`.
+* Open the project `$GOPATH/src/github.com/devict/magopie/cmd/android/magopie`.
+* Run the `app` module.
+
 ## Licenses
 Magopie is licensed with the [MIT license](LICENSE).
 
@@ -68,6 +82,7 @@ Read this article for more details: https://blog.golang.org/gopher
 [goreport-badge]: http://goreportcard.com/badge/devict/magopie "Go Report Card Badge"
 [transmission]: http://www.transmissionbt.com/ "Transmission"
 [gomobile]: https://github.com/golang/mobile "gomobile"
+[android]: http://developer.android.com/sdk/index.html "Android Studio"
 [afero]: https://github.com/spf13/afero "Afero"
 [goquery]: https://github.com/PuerkitoBio/goquery "goquery"
 [demogif]: http://i.imgur.com/cLshfTl.gif "Demo"
