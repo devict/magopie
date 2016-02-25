@@ -1,13 +1,7 @@
 plugins {
-  id "org.golang.mobile.bind" version "0.2.2"
+  id "org.golang.mobile.bind" version "0.2.3"
 }
 
 gobind {
   pkg = "github.com/devict/magopie"
-
-  /* GOPATH where the Go package is; check `go env` */
-  GOPATH = "/Users/jwalker/go"
-
-  /* Absolute path to the go binary */
-  GO = "/usr/local/go/bin/go"
 }

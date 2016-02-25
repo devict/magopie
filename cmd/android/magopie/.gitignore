@@ -20,3 +20,5 @@ gen/
 
 # gomobile generated files
 *.aar
+
+.idea/
