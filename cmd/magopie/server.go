@@ -128,6 +128,11 @@ func (a *server) handleDownload(w http.ResponseWriter, r *http.Request) {
 	}
 	defer res.Body.Close()
 
+	if res.StatusCode != http.StatusOK {
+		w.WriteHeader(res.StatusCode)
+		return
+	}
+
 	// Ensure download directory exists
 	// TODO should this be done every request?
 	err = a.fs.MkdirAll(a.downloadDir, 0755)
