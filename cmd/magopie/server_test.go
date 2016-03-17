@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"io"
 	"net/http"
 	"net/http/httptest"
 	"path/filepath"
@@ -305,5 +306,39 @@ func TestPostDownload(t *testing.T) {
 
 	if string(actualContent) != content {
 		t.Errorf("downloaded file contents %s\nexpected %s", actualContent, content)
+	}
+}
+
+func TestFailedDownload(t *testing.T) {
+	a := &server{
+		key:         testKey,
+		fs:          &afero.MemMapFs{},
+		downloadDir: "/",
+	}
+
+	hash := "942f8a2fa20f86c991e66abf636d18bc3a357860"
+
+	torcacheSrv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusNotFound)
+		content := strings.NewReader("404 torrent not found")
+		io.Copy(w, content)
+	}))
+	defer torcacheSrv.Close()
+	a.torcacheURL = torcacheSrv.URL
+
+	// Make the request to magopie to download a particular torrent by hash
+	req := mustNewRequest(t, "POST", "/download/"+hash, nil)
+	res := httptest.NewRecorder()
+
+	router(a).ServeHTTP(res, req)
+
+	if res.Code != http.StatusNotFound {
+		t.Errorf("%s : status = %d, expected %d", describeReq(req), res.Code, http.StatusNotFound)
+	}
+
+	if empty, err := afero.IsEmpty(a.fs, "/"); err != nil {
+		t.Errorf("should not have had err parsing fs. got %v", err)
+	} else if !empty {
+		t.Error("should not have created any files")
 	}
 }
