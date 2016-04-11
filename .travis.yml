@@ -4,5 +4,11 @@ go:
   - 1.6
   - tip
 
+matrix:
+  fast_finish: true
+  allow_failures:
+    - go: tip
+
 install: true # Bypass installing deps on travis to force vendoring
+
 script: go test -v -race ./...
